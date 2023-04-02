@@ -84,6 +84,11 @@ public class NOT extends Operator {
     }
 
     @Override
+    public String toBracketFormat() {
+        return "!" + elements.get(0).toBracketFormat();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

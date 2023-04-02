@@ -216,4 +216,6 @@ public interface BooleanExpression {
     String toString();
 
     String toSimpleString();
+
+    String toBracketFormat();
 }

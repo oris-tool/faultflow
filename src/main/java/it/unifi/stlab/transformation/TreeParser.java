@@ -51,7 +51,7 @@ public class TreeParser {
         system.getComponents().forEach(component -> {
             component.getErrorModes().forEach(errorMode -> {
                 errorModes.put(errorMode.getOutgoingFailure(), errorMode);
-                activationFunctions.put(errorMode.getActivationFunction().toSimpleString(), errorMode);
+                activationFunctions.put((errorMode.getActivationFunction().toBracketFormat()), errorMode);
                 errorMode.getInputFaultModes().forEach(faultMode -> faults.put(faultMode.getName(), faultMode));
             });
             propagations.addAll(component.getPropagationPorts());
@@ -64,13 +64,13 @@ public class TreeParser {
     public Node createTree(ErrorMode errorMode) {
         setStructures();
 
-        String activationFunction = errorMode.getActivationFunction().toSimpleString();
+        String activationFunction = (errorMode.getActivationFunction().toBracketFormat());
         activationFunction = "(" + activationFunction + ")";
         Map<String, List<String>> errorModeEntities = new LinkedHashMap<>();
 
         // Receive all the entities to be created for the fault tree and then calls the appropriate method
         errorModeEntities.putAll(ActivationFunctionParser.getActivationFunctionEntities(activationFunction));
-        return createTreeEntity(errorMode.getActivationFunction().toSimpleString(), errorModeEntities);
+        return createTreeEntity((errorMode.getActivationFunction().toBracketFormat()), errorModeEntities);
     }
 
     /**
@@ -82,51 +82,69 @@ public class TreeParser {
         List<String> subEntities = errorModeEntities.get(entity);
 
         // If it has no subentities, it is a simple fault mode, internal or external
-        if (subEntities.size() == 0) {
-            FaultMode faultMode = faults.get(entity);
+        if(subEntities!= null) {
+            if (subEntities.size() == 0) {
+                FaultMode faultMode = faults.get(entity);
 
-            if (faultMode instanceof InternalFaultMode) {
-                return new BasicEvent((InternalFaultMode) faultMode);
-            } else {
+                if (faultMode instanceof InternalFaultMode) {
+                    return new BasicEvent((InternalFaultMode) faultMode);
+                } else {
                 /* If it is an external fault mode, we need to retrieve the activation function of the failure mode that
                 causes it and create the sub-tree related to the external fault mode*/
-                FailureMode failureMode = getFailureModeFromPropagation((ExternalFaultMode) faultMode);
-                ErrorMode errorMode = errorModes.get(failureMode);
+                    FailureMode failureMode = getFailureModeFromPropagation((ExternalFaultMode) faultMode);
+                    ErrorMode errorMode = errorModes.get(failureMode);
 
-                String activationFunction = errorMode.getActivationFunction().toSimpleString();
-                activationFunction = "(" + activationFunction + ")";
-                errorModeEntities.putAll(ActivationFunctionParser.getActivationFunctionEntities(activationFunction));
+                    String activationFunction = (errorMode.getActivationFunction().toBracketFormat());
+                    activationFunction = "(" + activationFunction + ")";
+                    errorModeEntities.putAll(ActivationFunctionParser.getActivationFunctionEntities(activationFunction));
 
-                return createTreeEntity(errorMode.getActivationFunction().toSimpleString(), errorModeEntities);
+                    return createTreeEntity((errorMode.getActivationFunction().toBracketFormat()), errorModeEntities);
+                }
+            } else {
+                // If it has subentities, it is a gate!
+                String gateType = subEntities.get(0);
+                Gate gate;
+                ErrorMode errorMode = activationFunctions.get(entity);
+
+                switch (gateType) {
+                    case "AND":
+                        if (errorMode != null) {
+                            gate = new AND(activationFunctions.get(entity));
+                            PropagationPort pp = getPropagationPortFromFailureMode(errorMode.getOutgoingFailure());
+                            if(pp != null)
+                                gate.setRoutingProbability(pp.getRoutingProbability().doubleValue());
+                            else
+                                gate.setRoutingProbability(1.0);
+                        }
+                        else
+                            gate = new AND(entity);
+                        break;
+                    case "OR":
+                        if (errorMode != null) {
+                            gate = new OR(activationFunctions.get(entity));
+                            PropagationPort pp = getPropagationPortFromFailureMode(errorMode.getOutgoingFailure());
+                            if(pp != null)
+                                gate.setRoutingProbability(pp.getRoutingProbability().doubleValue());
+                            else
+                                gate.setRoutingProbability(1.0);
+                        }
+                        else
+                            gate = new OR(entity);
+                        break;
+                    default:
+                        throw new RuntimeException();
+                }
+
+                for (int index = 1; index < subEntities.size(); index++) {
+                    Node node = createTreeEntity(subEntities.get(index), errorModeEntities);
+                    if( node != null)
+                        gate.addChild(createTreeEntity(subEntities.get(index), errorModeEntities));
+                }
+
+                return gate;
             }
-        } else {
-            // If it has subentities, it is a gate!
-            String gateType = subEntities.get(0);
-            Gate gate;
-            ErrorMode errorMode = activationFunctions.get(entity);
-
-            switch (gateType) {
-                case "AND":
-                    if (errorMode != null)
-                        gate = new AND(activationFunctions.get(entity));
-                    else
-                        gate = new AND(entity);
-                    break;
-                case "OR":
-                    if (errorMode != null)
-                        gate = new OR(activationFunctions.get(entity));
-                    else
-                        gate = new OR(entity);
-                    break;
-                default:
-                    throw new RuntimeException();
-            }
-
-            for (int index = 1; index < subEntities.size(); index++)
-                gate.addChild(createTreeEntity(subEntities.get(index), errorModeEntities));
-
-            return gate;
         }
+        return null;
     }
 
     /**
@@ -150,5 +168,17 @@ public class TreeParser {
         }
 
         return null;
+    }
+
+    private PropagationPort getPropagationPortFromFailureMode(FailureMode failureMode){
+        for (PropagationPort propagationPort : propagations) {
+            if (propagationPort.getPropagatedFailureMode().equals(failureMode))
+                return propagationPort;
+        }
+        return null;
+    }
+
+    private String getClearFunction(String orisEnablingFunction){
+        return orisEnablingFunction.replace(">0", "");
     }
 }

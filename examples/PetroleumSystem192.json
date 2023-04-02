@@ -1,0 +1,3361 @@
+{
+    "bdd":{
+        "blocks":   [
+            {
+                "externalId": "GasDetectionSystem_id",
+                "name": "GasDetectionSystem",
+                "description": "Gas Detection System"
+            },
+            {
+                "externalId": "GasDetectorA_id",
+                "name": "GasDetectorA",
+                "description": "Gas Detector A"
+            },
+            {
+                "externalId": "GasDetectorB_id",
+                "name": "GasDetectorB",
+                "description": "Gas Detector B"
+            },
+            {
+                "externalId": "GasDetectorC_id",
+                "name": "GasDetectorC",
+                "description": "Gas Detector C"
+            },
+            {
+                "externalId": "InitiatorA_id",
+                "name": "InitiatorA",
+                "description": "Initiator A"
+            },
+            {
+                "externalId": "InitiatorB_id",
+                "name": "InitiatorB",
+                "description": "Initiator B"
+            },
+            {
+                "externalId": "InitiatorC_id",
+                "name": "InitiatorC",
+                "description": "Initiator C"
+            }
+        ],
+        "parentings": [
+            {
+                "parentId": "GasDetectionSystem_id",
+                "childId":"GasDetectorA_id",
+                "label":"cp1"
+            },
+            {
+                "parentId": "GasDetectionSystem_id",
+                "childId":"GasDetectorB_id",
+                "label":"cp2"
+            },
+            {
+                "parentId": "GasDetectionSystem_id",
+                "childId":"GasDetectorC_id",
+                "label":"cp3"
+            },
+            {
+                "parentId": "GasDetectorA_id",
+                "childId":"InitiatorA_id",
+                "label":"cp4"
+            },
+            {
+                "parentId": "GasDetectorB_id",
+                "childId":"InitiatorB_id",
+                "label":"cp5"
+            },
+            {
+                "parentId": "GasDetectorC_id",
+                "childId":"InitiatorC_id",
+                "label":"cp6"
+            }
+        ],
+        "rootId":"GasDetectionSystem_id"
+    },
+    "faultTree": {
+        "nodes": [
+
+            {
+                "externalId": "F1_id",
+                "componentName": "InitiatorA",
+                "label": "F1",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F2_id",
+                "componentName": "InitiatorA",
+                "label": "F2",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F13_id",
+                "componentName": "InitiatorA",
+                "label": "F13",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F14_id",
+                "componentName": "InitiatorA",
+                "label": "F14",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F25_id",
+                "componentName": "InitiatorA",
+                "label": "F25",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F26_id",
+                "componentName": "InitiatorA",
+                "label": "F26",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F27_id",
+                "componentName": "InitiatorA",
+                "label": "F27",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F28_id",
+                "componentName": "InitiatorA",
+                "label": "F28",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+
+            {
+                "externalId": "F49_id",
+                "componentName": "InitiatorA",
+                "label": "F49",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F50_id",
+                "componentName": "InitiatorA",
+                "label": "F50",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F51_id",
+                "componentName": "InitiatorA",
+                "label": "F51",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F52_id",
+                "componentName": "InitiatorA",
+                "label": "F52",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F53_id",
+                "componentName": "InitiatorA",
+                "label": "F53",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F54_id",
+                "componentName": "InitiatorA",
+                "label": "F54",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F55_id",
+                "componentName": "InitiatorA",
+                "label": "F55",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F56_id",
+                "componentName": "InitiatorA",
+                "label": "F56",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F97_id",
+                "componentName": "InitiatorA",
+                "label": "F97",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F98_id",
+                "componentName": "InitiatorA",
+                "label": "F98",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F99_id",
+                "componentName": "InitiatorA",
+                "label": "F99",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F100_id",
+                "componentName": "InitiatorA",
+                "label": "F100",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F101_id",
+                "componentName": "InitiatorA",
+                "label": "F101",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F102_id",
+                "componentName": "InitiatorA",
+                "label": "F102",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F103_id",
+                "componentName": "InitiatorA",
+                "label": "F103",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F104_id",
+                "componentName": "InitiatorA",
+                "label": "F104",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+
+            {
+                "externalId": "F105_id",
+                "componentName": "InitiatorA",
+                "label": "F105",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F106_id",
+                "componentName": "InitiatorA",
+                "label": "F106",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F107_id",
+                "componentName": "InitiatorA",
+                "label": "F107",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F108_id",
+                "componentName": "InitiatorA",
+                "label": "F108",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F109_id",
+                "componentName": "InitiatorA",
+                "label": "F109",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F110_id",
+                "componentName": "InitiatorA",
+                "label": "F110",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F111_id",
+                "componentName": "InitiatorA",
+                "label": "  F111",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F112_id",
+                "componentName": "InitiatorA",
+                "label": "F112",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F3_id",
+                "componentName": "GasDetectorA",
+                "label": "F3",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F4_id",
+                "componentName": "GasDetectorA",
+                "label": "F4",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F15_id",
+                "componentName": "GasDetectorA",
+                "label": "F15",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F16_id",
+                "componentName": "GasDetectorA",
+                "label": "F16",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F29_id",
+                "componentName": "GasDetectorA",
+                "label": "F29",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F30_id",
+                "componentName": "GasDetectorA",
+                "label": "F30",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F31_id",
+                "componentName": "GasDetectorA",
+                "label": "F31",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F32_id",
+                "componentName": "GasDetectorA",
+                "label": "F32",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+
+            {
+                "externalId": "F57_id",
+                "componentName": "GasDetectorA",
+                "label": "F57",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F58_id",
+                "componentName": "GasDetectorA",
+                "label": "F58",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F59_id",
+                "componentName": "GasDetectorA",
+                "label": "F59",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F60_id",
+                "componentName": "GasDetectorA",
+                "label": "F60",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F61_id",
+                "componentName": "GasDetectorA",
+                "label": "F61",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F62_id",
+                "componentName": "GasDetectorA",
+                "label": "F62",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F63_id",
+                "componentName": "GasDetectorA",
+                "label": "F63",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F64_id",
+                "componentName": "GasDetectorA",
+                "label": "F64",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F113_id",
+                "componentName": "GasDetectorA",
+                "label": "F113",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F114_id",
+                "componentName": "GasDetectorA",
+                "label": "F114",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F115_id",
+                "componentName": "GasDetectorA",
+                "label": "F115",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F116_id",
+                "componentName": "GasDetectorA",
+                "label": "F116",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F117_id",
+                "componentName": "GasDetectorA",
+                "label": "F117",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F118_id",
+                "componentName": "GasDetectorA",
+                "label": "F118",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F119_id",
+                "componentName": "GasDetectorA",
+                "label": "F119",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F120_id",
+                "componentName": "GasDetectorA",
+                "label": "F120",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F121_id",
+                "componentName": "GasDetectorA",
+                "label": "F121",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F122_id",
+                "componentName": "GasDetectorA",
+                "label": "F122",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F123_id",
+                "componentName": "GasDetectorA",
+                "label": "F123",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F124_id",
+                "componentName": "GasDetectorA",
+                "label": "F124",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F125_id",
+                "componentName": "GasDetectorA",
+                "label": "F125",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F126_id",
+                "componentName": "GasDetectorA",
+                "label": "F126",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F127_id",
+                "componentName": "GasDetectorA",
+                "label": "F127",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F128_id",
+                "componentName": "GasDetectorA",
+                "label": "F128",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F5_id",
+                "componentName": "InitiatorB",
+                "label": "F5",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F6_id",
+                "componentName": "InitiatorB",
+                "label": "F6",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F17_id",
+                "componentName": "InitiatorB",
+                "label": "F17",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F18_id",
+                "componentName": "InitiatorB",
+                "label": "F18",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F33_id",
+                "componentName": "InitiatorB",
+                "label": "F33",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F34_id",
+                "componentName": "InitiatorB",
+                "label": "F34",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F35_id",
+                "componentName": "InitiatorB",
+                "label": "F35",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F36_id",
+                "componentName": "InitiatorB",
+                "label": "F36",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+
+            {
+                "externalId": "F65_id",
+                "componentName": "InitiatorB",
+                "label": "F65",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F66_id",
+                "componentName": "InitiatorB",
+                "label": "F66",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F67_id",
+                "componentName": "InitiatorB",
+                "label": "F67",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F68_id",
+                "componentName": "InitiatorB",
+                "label": "F68",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F69_id",
+                "componentName": "InitiatorB",
+                "label": "F69",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F70_id",
+                "componentName": "InitiatorB",
+                "label": "F70",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F71_id",
+                "componentName": "InitiatorB",
+                "label": "F71",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F72_id",
+                "componentName": "InitiatorB",
+                "label": "F72",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F129_id",
+                "componentName": "InitiatorB",
+                "label": "F129",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F130_id",
+                "componentName": "InitiatorB",
+                "label": "F130",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F131_id",
+                "componentName": "InitiatorB",
+                "label": "F131",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F132_id",
+                "componentName": "InitiatorB",
+                "label": "F132",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F133_id",
+                "componentName": "InitiatorB",
+                "label": "F133",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F134_id",
+                "componentName": "InitiatorB",
+                "label": "F134",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F135_id",
+                "componentName": "InitiatorB",
+                "label": "F135",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F136_id",
+                "componentName": "InitiatorB",
+                "label": "F136",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+
+            {
+                "externalId": "F137_id",
+                "componentName": "InitiatorB",
+                "label": "F137",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F138_id",
+                "componentName": "InitiatorB",
+                "label": "F138",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F139_id",
+                "componentName": "InitiatorB",
+                "label": "F139",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F140_id",
+                "componentName": "InitiatorB",
+                "label": "F140",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F141_id",
+                "componentName": "InitiatorB",
+                "label": "F141",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F142_id",
+                "componentName": "InitiatorB",
+                "label": "F142",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F143_id",
+                "componentName": "InitiatorB",
+                "label": "F143",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F144_id",
+                "componentName": "InitiatorB",
+                "label": "F144",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F7_id",
+                "componentName": "GasDetectorB",
+                "label": "F7",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F8_id",
+                "componentName": "GasDetectorB",
+                "label": "F8",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F19_id",
+                "componentName": "GasDetectorB",
+                "label": "F19",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F20_id",
+                "componentName": "GasDetectorB",
+                "label": "F20",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F37_id",
+                "componentName": "GasDetectorB",
+                "label": "F37",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F38_id",
+                "componentName": "GasDetectorB",
+                "label": "F38",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F39_id",
+                "componentName": "GasDetectorB",
+                "label": "F39",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F40_id",
+                "componentName": "GasDetectorB",
+                "label": "F40",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+
+            {
+                "externalId": "F73_id",
+                "componentName": "GasDetectorB",
+                "label": "F73",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F74_id",
+                "componentName": "GasDetectorB",
+                "label": "F74",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F75_id",
+                "componentName": "GasDetectorB",
+                "label": "F75",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F76_id",
+                "componentName": "GasDetectorB",
+                "label": "F76",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F77_id",
+                "componentName": "GasDetectorB",
+                "label": "F77",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F78_id",
+                "componentName": "GasDetectorB",
+                "label": "F78",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F79_id",
+                "componentName": "GasDetectorB",
+                "label": "F79",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F80_id",
+                "componentName": "GasDetectorB",
+                "label": "F80",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F145_id",
+                "componentName": "GasDetectorB",
+                "label": "F145",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F146_id",
+                "componentName": "GasDetectorB",
+                "label": "F146",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F147_id",
+                "componentName": "GasDetectorB",
+                "label": "F147",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F148_id",
+                "componentName": "GasDetectorB",
+                "label": "F148",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F149_id",
+                "componentName": "GasDetectorB",
+                "label": "F140",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F150_id",
+                "componentName": "GasDetectorB",
+                "label": "F150",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F151_id",
+                "componentName": "GasDetectorB",
+                "label": "F151",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F152_id",
+                "componentName": "GasDetectorB",
+                "label": "F152",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+
+            {
+                "externalId": "F153_id",
+                "componentName": "GasDetectorB",
+                "label": "F153",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F154_id",
+                "componentName": "GasDetectorB",
+                "label": "F154",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F155_id",
+                "componentName": "GasDetectorB",
+                "label": "F155",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F156_id",
+                "componentName": "GasDetectorB",
+                "label": "F156",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F157_id",
+                "componentName": "GasDetectorB",
+                "label": "F157",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F158_id",
+                "componentName": "GasDetectorB",
+                "label": "F158",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F159_id",
+                "componentName": "GasDetectorB",
+                "label": "F159",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F160_id",
+                "componentName": "GasDetectorB",
+                "label": "F160",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F9_id",
+                "componentName": "InitiatorC",
+                "label": "F9",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F10_id",
+                "componentName": "InitiatorC",
+                "label": "F10",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F21_id",
+                "componentName": "InitiatorC",
+                "label": "F21",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F22_id",
+                "componentName": "InitiatorC",
+                "label": "F22",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F41_id",
+                "componentName": "InitiatorC",
+                "label": "F41",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F42_id",
+                "componentName": "InitiatorC",
+                "label": "F42",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F43_id",
+                "componentName": "InitiatorC",
+                "label": "F43",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F44_id",
+                "componentName": "InitiatorC",
+                "label": "F44",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F81_id",
+                "componentName": "InitiatorC",
+                "label": "F81",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F82_id",
+                "componentName": "InitiatorC",
+                "label": "F82",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F83_id",
+                "componentName": "InitiatorC",
+                "label": "F83",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F84_id",
+                "componentName": "InitiatorC",
+                "label": "F84",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F85_id",
+                "componentName": "InitiatorC",
+                "label": "F85",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F86_id",
+                "componentName": "InitiatorC",
+                "label": "F86",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F87_id",
+                "componentName": "InitiatorC",
+                "label": "F87",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F88_id",
+                "componentName": "InitiatorC",
+                "label": "F88",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F161_id",
+                "componentName": "InitiatorC",
+                "label": "F161",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F162_id",
+                "componentName": "InitiatorC",
+                "label": "F162",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F163_id",
+                "componentName": "InitiatorC",
+                "label": "F163",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F164_id",
+                "componentName": "InitiatorC",
+                "label": "F164",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F165_id",
+                "componentName": "InitiatorC",
+                "label": "F165",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F166_id",
+                "componentName": "InitiatorC",
+                "label": "F166",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F167_id",
+                "componentName": "InitiatorC",
+                "label": "F167",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F168_id",
+                "componentName": "InitiatorC",
+                "label": "F168",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F169_id",
+                "componentName": "InitiatorC",
+                "label": "F169",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F170_id",
+                "componentName": "InitiatorC",
+                "label": "F170",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F171_id",
+                "componentName": "InitiatorC",
+                "label": "F171",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F172_id",
+                "componentName": "InitiatorC",
+                "label": "F172",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F173_id",
+                "componentName": "InitiatorC",
+                "label": "F173",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F174_id",
+                "componentName": "InitiatorC",
+                "label": "F174",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F175_id",
+                "componentName": "InitiatorC",
+                "label": "F175",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F176_id",
+                "componentName": "InitiatorC",
+                "label": "F176",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F11_id",
+                "componentName": "GasDetectorC",
+                "label": "F11",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F12_id",
+                "componentName": "GasDetectorC",
+                "label": "F12",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F23_id",
+                "componentName": "GasDetectorC",
+                "label": "F23",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F24_id",
+                "componentName": "GasDetectorC",
+                "label": "F24",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F45_id",
+                "componentName": "GasDetectorC",
+                "label": "F45",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F46_id",
+                "componentName": "GasDetectorC",
+                "label": "F46",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F47_id",
+                "componentName": "GasDetectorC",
+                "label": "F47",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F48_id",
+                "componentName": "GasDetectorC",
+                "label": "F48",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F89_id",
+                "componentName": "GasDetectorC",
+                "label": "F89",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F90_id",
+                "componentName": "GasDetectorC",
+                "label": "F90",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F91_id",
+                "componentName": "GasDetectorC",
+                "label": "F91",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F92_id",
+                "componentName": "GasDetectorC",
+                "label": "F92",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F93_id",
+                "componentName": "GasDetectorC",
+                "label": "F93",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F94_id",
+                "componentName": "GasDetectorC",
+                "label": "F94",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F95_id",
+                "componentName": "GasDetectorC",
+                "label": "F95",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F96_id",
+                "componentName": "GasDetectorC",
+                "label": "F96",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F177_id",
+                "componentName": "GasDetectorC",
+                "label": "F177",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F178_id",
+                "componentName": "GasDetectorC",
+                "label": "F178",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F179_id",
+                "componentName": "GasDetectorC",
+                "label": "F179",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F180_id",
+                "componentName": "GasDetectorC",
+                "label": "F180",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F181_id",
+                "componentName": "GasDetectorC",
+                "label": "F181",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F182_id",
+                "componentName": "GasDetectorC",
+                "label": "F182",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F183_id",
+                "componentName": "GasDetectorC",
+                "label": "F183",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F184_id",
+                "componentName": "GasDetectorC",
+                "label": "F184",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F185_id",
+                "componentName": "GasDetectorC",
+                "label": "F185",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F186_id",
+                "componentName": "GasDetectorC",
+                "label": "F186",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F187_id",
+                "componentName": "GasDetectorC",
+                "label": "F187",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F188_id",
+                "componentName": "GasDetectorC",
+                "label": "F188",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F189_id",
+                "componentName": "GasDetectorC",
+                "label": "F189",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F190_id",
+                "componentName": "GasDetectorC",
+                "label": "F190",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "F191_id",
+                "componentName": "GasDetectorC",
+                "label": "F191",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F192_id",
+                "componentName": "GasDetectorC",
+                "label": "F192",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "IAAND1_id",
+                "componentName": "InitiatorA",
+                "label": "IAAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAAND2_id",
+                "componentName": "InitiatorA",
+                "label": "IAAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAOR1_id",
+                "componentName": "InitiatorA",
+                "label": "IAOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IAsubOR1_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IAsubOR2_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubOR2",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IAsubOR3_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubOR3",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IAsubOR4_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubOR4",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IAsubAND1_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAsubAND2_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAsubAND3_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND3",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAsubAND4_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND4",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAsubAND5_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND5",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAsubAND6_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND6",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAsubAND7_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND7",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAsubAND8_id",
+                "componentName": "InitiatorA",
+                "label": "IAsubAND8",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBOR1_id",
+                "componentName": "InitiatorB",
+                "label": "IBOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IBAND1_id",
+                "componentName": "InitiatorB",
+                "label": "IBAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBAND2_id",
+                "componentName": "InitiatorB",
+                "label": "IBAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+
+            {
+                "externalId": "IBsubOR1_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IBsubOR2_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubOR2",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IBsubOR3_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubOR3",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IBsubOR4_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubOR4",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IBsubAND1_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBsubAND2_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBsubAND3_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND3",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBsubAND4_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND4",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBsubAND5_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND5",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBsubAND6_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND6",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBsubAND7_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND7",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IBsubAND8_id",
+                "componentName": "InitiatorB",
+                "label": "IBsubAND8",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICOR1_id",
+                "componentName": "InitiatorC",
+                "label": "ICOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+
+            {
+                "externalId": "GDAAND1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAOR1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDAsubAND1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubAND2_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubOR1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDAsubOR2_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubOR2",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDAsubOR3_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubOR3",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDAsubOR4_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubOR4",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDAsubsubAND1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubsubAND2_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubsubAND3_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND3",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubsubAND4_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND4",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubsubAND5_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND5",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubsubAND6_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND6",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubsubAND7_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND7",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAsubsubAND8_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAsubsubAND8",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBAND1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBOR1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDBsubAND1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubAND2_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+
+            {
+                "externalId": "GDBsubOR1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDBsubOR2_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubOR2",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDBsubOR3_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubOR3",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDBsubOR4_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubOR4",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDBsubsubAND1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubsubAND2_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubsubAND3_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND3",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubsubAND4_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND4",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubsubAND5_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND5",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubsubAND6_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND6",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubsubAND7_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND7",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBsubsubAND8_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBsubsubAND8",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND2_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND3_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND3",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND4_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND4",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND5_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND5",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND6_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND6",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND7_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND7",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubsubAND8_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubsubAND8",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCAND1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCOR1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDCsubAND1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubAND2_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCsubOR1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDCsubOR2_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubOR2",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDCsubOR3_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubOR3",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDCsubOR4_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCsubOR4",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDSAND1_id",
+                "componentName": "GasDetectionSystem",
+                "label": "GDSAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDSOR1_id",
+                "componentName": "GasDetectionSystem",
+                "label": "GDSOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "ICAND1_id",
+                "componentName": "InitiatorC",
+                "label": "ICAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICAND2_id",
+                "componentName": "InitiatorC",
+                "label": "ICAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubOR1_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "ICsubOR2_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubOR2",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "ICsubOR3_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubOR3",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "ICsubOR4_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubOR4",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "ICsubAND1_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubAND2_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND2",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubAND3_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND3",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubAND4_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND4",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubAND5_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND5",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubAND6_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND6",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubAND7_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND7",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "ICsubAND8_id",
+                "componentName": "InitiatorC",
+                "label": "ICsubAND8",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "IAFailure1_id",
+                "componentName": "InitiatorA",
+                "label": "IAFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectorA",
+                        "faultName":"GDAEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "IBFailure1_id",
+                "componentName": "InitiatorB",
+                "label": "IBFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectorB",
+                        "faultName":"GDBEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "ICFailure1_id",
+                "componentName": "InitiatorC",
+                "label": "ICFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectorC",
+                        "faultName":"GDCEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDAFailure1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "uniform(0,24)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectionSystem",
+                        "faultName":"GDSEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDBFailure1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBFailGDBFailure1ure1",
+                "nodeType": "FAILURE",
+                "pdf": "uniform(0,24)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectionSystem",
+                        "faultName":"GDSEF2"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDCFailure1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "uniform(0,24)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectionSystem",
+                        "faultName":"GDSEF3"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDSFailure1_id",
+                "componentName": "GasDetectionSystem",
+                "label": "GDSFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)"
+            }
+        ],
+        "parentings": [
+            {
+                "parentId": "GDSFailure1_id",
+                "childId": "GDSOR1_id"
+            },
+            {
+                "parentId": "GDSOR1_id",
+                "childId": "GDSAND1_id"
+            },
+            {
+                "parentId": "GDSOR1_id",
+                "childId": "GDCFailure1_id"
+            },
+            {
+                "parentId": "GDSAND1_id",
+                "childId": "GDBFailure1_id"
+            },
+            {
+                "parentId": "GDSAND1_id",
+                "childId": "GDAFailure1_id"
+            },
+            {
+                "parentId": "GDAFailure1_id",
+                "childId": "GDAAND1_id"
+            },
+            {
+                "parentId": "GDAAND1_id",
+                "childId": "GDAOR1_id"
+            },
+            {
+                "parentId": "GDAAND1_id",
+                "childId": "IAFailure1_id"
+            },
+            {
+                "parentId": "IAFailure1_id",
+                "childId": "IAOR1_id"
+            },
+            {
+                "parentId": "GDAOR1_id",
+                "childId": "GDAsubAND1_id"
+            },
+            {
+                "parentId": "GDAOR1_id",
+                "childId": "GDAsubAND2_id"
+            },
+            {
+                "parentId": "GDAsubAND1_id",
+                "childId": "GDAsubOR1_id"
+            },
+            {
+                "parentId": "GDAsubAND1_id",
+                "childId": "GDAsubOR2_id"
+            },
+            {
+                "parentId": "GDAsubAND2_id",
+                "childId": "GDAsubOR3_id"
+            },
+            {
+                "parentId": "GDAsubAND2_id",
+                "childId": "GDAsubOR4_id"
+            },
+            {
+                "parentId": "GDAsubOR1_id",
+                "childId": "GDAsubsubAND1_id"
+            },
+            {
+                "parentId": "GDAsubOR1_id",
+                "childId": "GDAsubsubAND2_id"
+            },
+            {
+                "parentId": "GDAsubOR2_id",
+                "childId": "GDAsubsubAND3_id"
+            },
+            {
+                "parentId": "GDAsubOR2_id",
+                "childId": "GDAsubsubAND4_id"
+            },
+            {
+                "parentId": "GDAsubOR3_id",
+                "childId": "GDAsubsubAND5_id"
+            },
+            {
+                "parentId": "GDAsubOR3_id",
+                "childId": "GDAsubsubAND6_id"
+            },
+            {
+                "parentId": "GDAsubOR4_id",
+                "childId": "GDAsubsubAND7_id"
+            },
+            {
+                "parentId": "GDAsubOR4_id",
+                "childId": "GDAsubsubAND8_id"
+            },
+            {
+                "parentId": "GDAsubsubAND1_id",
+                "childId": "F3_id"
+            },
+            {
+                "parentId": "GDAsubsubAND1_id",
+                "childId": "F4_id"
+            },
+            {
+                "parentId": "GDAsubsubAND1_id",
+                "childId": "F15_id"
+            },
+            {
+                "parentId": "GDAsubsubAND1_id",
+                "childId": "F16_id"
+            },
+            {
+                "parentId": "GDAsubsubAND2_id",
+                "childId": "F29_id"
+            },
+            {
+                "parentId": "GDAsubsubAND2_id",
+                "childId": "F30_id"
+            },
+            {
+                "parentId": "GDAsubsubAND2_id",
+                "childId": "F31_id"
+            },
+            {
+                "parentId": "GDAsubsubAND2_id",
+                "childId": "F32_id"
+            },
+            {
+                "parentId": "GDAsubsubAND3_id",
+                "childId": "F57_id"
+            },
+            {
+                "parentId": "GDAsubsubAND3_id",
+                "childId": "F58_id"
+            },
+            {
+                "parentId": "GDAsubsubAND3_id",
+                "childId": "F59_id"
+            },
+            {
+                "parentId": "GDAsubsubAND3_id",
+                "childId": "F60_id"
+            },
+            {
+                "parentId": "GDAsubsubAND4_id",
+                "childId": "F61_id"
+            },
+            {
+                "parentId": "GDAsubsubAND4_id",
+                "childId": "F62_id"
+            },
+            {
+                "parentId": "GDAsubsubAND4_id",
+                "childId": "F63_id"
+            },
+            {
+                "parentId": "GDAsubsubAND4_id",
+                "childId": "F64_id"
+            },
+            {
+                "parentId": "GDAsubsubAND5_id",
+                "childId": "F123_id"
+            },
+            {
+                "parentId": "GDAsubsubAND5_id",
+                "childId": "F124_id"
+            },
+            {
+                "parentId": "GDAsubsubAND5_id",
+                "childId": "F125_id"
+            },
+            {
+                "parentId": "GDAsubsubAND5_id",
+                "childId": "F126_id"
+            },
+            {
+                "parentId": "GDAsubsubAND6_id",
+                "childId": "F127_id"
+            },
+            {
+                "parentId": "GDAsubsubAND6_id",
+                "childId": "F128_id"
+            },
+            {
+                "parentId": "GDAsubsubAND6_id",
+                "childId": "F119_id"
+            },
+            {
+                "parentId": "GDAsubsubAND6_id",
+                "childId": "F120_id"
+            },
+            {
+                "parentId": "GDAsubsubAND7_id",
+                "childId": "F121_id"
+            },
+            {
+                "parentId": "GDAsubsubAND7_id",
+                "childId": "F122_id"
+            },
+            {
+                "parentId": "GDAsubsubAND7_id",
+                "childId": "F123_id"
+            },
+            {
+                "parentId": "GDAsubsubAND7_id",
+                "childId": "F124_id"
+            },
+            {
+                "parentId": "GDAsubsubAND8_id",
+                "childId": "F125_id"
+            },
+            {
+                "parentId": "GDAsubsubAND8_id",
+                "childId": "F126_id"
+            },
+            {
+                "parentId": "GDAsubsubAND8_id",
+                "childId": "F127_id"
+            },
+            {
+                "parentId": "GDAsubsubAND8_id",
+                "childId": "F128_id"
+            },
+            {
+                "parentId": "IAOR1_id",
+                "childId": "IAAND1_id"
+            },
+            {
+                "parentId": "IAOR1_id",
+                "childId": "IAAND2_id"
+            },
+            {
+                "parentId": "IAAND1_id",
+                "childId": "IAsubOR1_id"
+            },
+            {
+                "parentId": "IAAND1_id",
+                "childId": "IAsubOR2_id"
+            },
+            {
+                "parentId": "IAAND2_id",
+                "childId": "IAsubOR3_id"
+            },
+            {
+                "parentId": "IAAND2_id",
+                "childId": "IAsubOR4_id"
+            },
+            {
+                "parentId": "IAsubOR1_id",
+                "childId": "IAsubAND1_id"
+            },
+            {
+                "parentId": "IAsubOR1_id",
+                "childId": "IAsubAND2_id"
+            },
+            {
+                "parentId": "IAsubOR2_id",
+                "childId": "IAsubAND3_id"
+            },
+            {
+                "parentId": "IAsubOR2_id",
+                "childId": "IAsubAND4_id"
+            },
+            {
+                "parentId": "IAsubOR3_id",
+                "childId": "IAsubAND5_id"
+            },
+            {
+                "parentId": "IAsubOR3_id",
+                "childId": "IAsubAND6_id"
+            },
+            {
+                "parentId": "IAsubOR4_id",
+                "childId": "IAsubAND7_id"
+            },
+            {
+                "parentId": "IAsubOR4_id",
+                "childId": "IAsubAND8_id"
+            },
+            {
+                "parentId": "IAsubAND1_id",
+                "childId": "F1_id"
+            },
+            {
+                "parentId": "IAsubAND1_id",
+                "childId": "F2_id"
+            },
+            {
+                "parentId": "IAsubAND1_id",
+                "childId": "F13_id"
+            },
+            {
+                "parentId": "IAsubAND1_id",
+                "childId": "F14_id"
+            },
+            {
+                "parentId": "IAsubAND2_id",
+                "childId": "F25_id"
+            },
+            {
+                "parentId": "IAsubAND2_id",
+                "childId": "F26_id"
+            },
+            {
+                "parentId": "IAsubAND2_id",
+                "childId": "F27_id"
+            },
+            {
+                "parentId": "IAsubAND2_id",
+                "childId": "F28_id"
+            },
+            {
+                "parentId": "IAsubAND3_id",
+                "childId": "F49_id"
+            },
+            {
+                "parentId": "IAsubAND3_id",
+                "childId": "F50_id"
+            },
+            {
+                "parentId": "IAsubAND3_id",
+                "childId": "F51_id"
+            },
+            {
+                "parentId": "IAsubAND3_id",
+                "childId": "F52_id"
+            },
+            {
+                "parentId": "IAsubAND4_id",
+                "childId": "F53_id"
+            },
+            {
+                "parentId": "IAsubAND4_id",
+                "childId": "F54_id"
+            },
+            {
+                "parentId": "IAsubAND4_id",
+                "childId": "F55_id"
+            },
+            {
+                "parentId": "IAsubAND4_id",
+                "childId": "F56_id"
+            },
+            {
+                "parentId": "IAsubAND5_id",
+                "childId": "F97_id"
+            },
+            {
+                "parentId": "IAsubAND5_id",
+                "childId": "F98_id"
+            },
+            {
+                "parentId": "IAsubAND5_id",
+                "childId": "F99_id"
+            },
+            {
+                "parentId": "IAsubAND5_id",
+                "childId": "F100_id"
+            },
+            {
+                "parentId": "IAsubAND6_id",
+                "childId": "F101_id"
+            },
+            {
+                "parentId": "IAsubAND6_id",
+                "childId": "F102_id"
+            },
+            {
+                "parentId": "IAsubAND6_id",
+                "childId": "F103_id"
+            },
+            {
+                "parentId": "IAsubAND6_id",
+                "childId": "F104_id"
+            },
+            {
+                "parentId": "IAsubAND7_id",
+                "childId": "F105_id"
+            },
+            {
+                "parentId": "IAsubAND7_id",
+                "childId": "F106_id"
+            },
+            {
+                "parentId": "IAsubAND7_id",
+                "childId": "F107_id"
+            },
+            {
+                "parentId": "IAsubAND7_id",
+                "childId": "F108_id"
+            },
+            {
+                "parentId": "IAsubAND8_id",
+                "childId": "F109_id"
+            },
+            {
+                "parentId": "IAsubAND8_id",
+                "childId": "F110_id"
+            },
+            {
+                "parentId": "IAsubAND8_id",
+                "childId": "F111_id"
+            },
+            {
+                "parentId": "IAsubAND8_id",
+                "childId": "F112_id"
+            },
+
+            {
+                "parentId": "GDBFailure1_id",
+                "childId": "GDBAND1_id"
+            },
+            {
+                "parentId": "GDBAND1_id",
+                "childId": "GDBOR1_id"
+            },
+            {
+                "parentId": "GDBOR1_id",
+                "childId": "GDBsubAND1_id"
+            },
+            {
+                "parentId": "GDBOR1_id",
+                "childId": "GDBsubAND2_id"
+            },
+            {
+                "parentId": "GDBAND1_id",
+                "childId": "IBFailure1_id"
+            },
+            {
+                "parentId": "IBFailure1_id",
+                "childId": "IBOR1_id"
+            },
+            {
+                "parentId": "GDBsubAND1_id",
+                "childId": "GDBsubOR1_id"
+            },
+            {
+                "parentId": "GDBsubAND1_id",
+                "childId": "GDBsubOR2_id"
+            },
+            {
+                "parentId": "GDBsubAND2_id",
+                "childId": "GDBsubOR3_id"
+            },
+            {
+                "parentId": "GDBsubAND2_id",
+                "childId": "GDBsubOR4_id"
+            },
+            {
+                "parentId": "GDBsubOR1_id",
+                "childId": "GDBsubsubAND1_id"
+            },
+            {
+                "parentId": "GDBsubOR1_id",
+                "childId": "GDBsubsubAND2_id"
+            },
+            {
+                "parentId": "GDBsubOR2_id",
+                "childId": "GDBsubsubAND3_id"
+            },
+            {
+                "parentId": "GDBsubOR2_id",
+                "childId": "GDBsubsubAND4_id"
+            },
+            {
+                "parentId": "GDBsubOR3_id",
+                "childId": "GDBsubsubAND5_id"
+            },
+            {
+                "parentId": "GDBsubOR3_id",
+                "childId": "GDBsubsubAND6_id"
+            },
+            {
+                "parentId": "GDBsubOR4_id",
+                "childId": "GDBsubsubAND7_id"
+            },
+            {
+                "parentId": "GDBsubOR4_id",
+                "childId": "GDBsubsubAND8_id"
+            },
+            {
+                "parentId": "GDBsubsubAND1_id",
+                "childId": "F7_id"
+            },
+            {
+                "parentId": "GDBsubsubAND1_id",
+                "childId": "F8_id"
+            },
+            {
+                "parentId": "GDBsubsubAND1_id",
+                "childId": "F19_id"
+            },
+            {
+                "parentId": "GDBsubsubAND1_id",
+                "childId": "F20_id"
+            },
+            {
+                "parentId": "GDBsubsubAND2_id",
+                "childId": "F37_id"
+            },
+            {
+                "parentId": "GDBsubsubAND2_id",
+                "childId": "F38_id"
+            },
+            {
+                "parentId": "GDBsubsubAND2_id",
+                "childId": "F39_id"
+            },
+            {
+                "parentId": "GDBsubsubAND2_id",
+                "childId": "F40_id"
+            },
+            {
+                "parentId": "GDBsubsubAND3_id",
+                "childId": "F73_id"
+            },
+            {
+                "parentId": "GDBsubsubAND3_id",
+                "childId": "F74_id"
+            },
+            {
+                "parentId": "GDBsubsubAND3_id",
+                "childId": "F75_id"
+            },
+            {
+                "parentId": "GDBsubsubAND3_id",
+                "childId": "F76_id"
+            },
+            {
+                "parentId": "GDBsubsubAND4_id",
+                "childId": "F77_id"
+            },
+            {
+                "parentId": "GDBsubsubAND4_id",
+                "childId": "F78_id"
+            },
+            {
+                "parentId": "GDBsubsubAND4_id",
+                "childId": "F79_id"
+            },
+            {
+                "parentId": "GDBsubsubAND4_id",
+                "childId": "F80_id"
+            },
+            {
+                "parentId": "GDBsubsubAND5_id",
+                "childId": "F145_id"
+            },
+            {
+                "parentId": "GDBsubsubAND5_id",
+                "childId": "F146_id"
+            },
+            {
+                "parentId": "GDBsubsubAND5_id",
+                "childId": "F147_id"
+            },
+            {
+                "parentId": "GDBsubsubAND5_id",
+                "childId": "F148_id"
+            },
+            {
+                "parentId": "GDBsubsubAND6_id",
+                "childId": "F149_id"
+            },
+            {
+                "parentId": "GDBsubsubAND6_id",
+                "childId": "F150_id"
+            },
+            {
+                "parentId": "GDBsubsubAND6_id",
+                "childId": "F151_id"
+            },
+            {
+                "parentId": "GDBsubsubAND6_id",
+                "childId": "F152_id"
+            },
+            {
+                "parentId": "GDBsubsubAND7_id",
+                "childId": "F153_id"
+            },
+            {
+                "parentId": "GDBsubsubAND7_id",
+                "childId": "F154_id"
+            },
+            {
+                "parentId": "GDBsubsubAND7_id",
+                "childId": "F155_id"
+            },
+            {
+                "parentId": "GDBsubsubAND7_id",
+                "childId": "F156_id"
+            },
+            {
+                "parentId": "GDBsubsubAND8_id",
+                "childId": "F157_id"
+            },
+            {
+                "parentId": "GDBsubsubAND8_id",
+                "childId": "F158_id"
+            },
+            {
+                "parentId": "GDBsubsubAND8_id",
+                "childId": "F159_id"
+            },
+            {
+                "parentId": "GDBsubsubAND8_id",
+                "childId": "F160_id"
+            },
+            {
+                "parentId": "IBOR1_id",
+                "childId": "IBAND1_id"
+            },
+            {
+                "parentId": "IBOR1_id",
+                "childId": "IBAND2_id"
+            },
+            {
+                "parentId": "IBAND1_id",
+                "childId": "IBsubOR1_id"
+            },
+            {
+                "parentId": "IBAND1_id",
+                "childId": "IBsubOR2_id"
+            },
+            {
+                "parentId": "IBAND2_id",
+                "childId": "IBsubOR3_id"
+            },
+            {
+                "parentId": "IBAND2_id",
+                "childId": "IBsubOR4_id"
+            },
+
+            {
+                "parentId": "IBsubOR1_id",
+                "childId": "IBsubAND1_id"
+            },
+            {
+                "parentId": "IBsubOR1_id",
+                "childId": "IBsubAND2_id"
+            },
+            {
+                "parentId": "IBsubOR2_id",
+                "childId": "IBsubAND3_id"
+            },
+            {
+                "parentId": "IBsubOR2_id",
+                "childId": "IBsubAND4_id"
+            },
+            {
+                "parentId": "IBsubOR3_id",
+                "childId": "IBsubAND5_id"
+            },
+            {
+                "parentId": "IBsubOR3_id",
+                "childId": "IBsubAND6_id"
+            },
+            {
+                "parentId": "IBsubOR4_id",
+                "childId": "IBsubAND7_id"
+            },
+            {
+                "parentId": "IBsubOR4_id",
+                "childId": "IBsubAND8_id"
+            },
+            {
+                "parentId": "IBsubAND1_id",
+                "childId": "F5_id"
+            },
+            {
+                "parentId": "IBsubAND1_id",
+                "childId": "F6_id"
+            },
+            {
+                "parentId": "IBsubAND1_id",
+                "childId": "F17_id"
+            },
+            {
+                "parentId": "IBsubAND1_id",
+                "childId": "F18_id"
+            },
+            {
+                "parentId": "IBsubAND2_id",
+                "childId": "F33_id"
+            },
+            {
+                "parentId": "IBsubAND2_id",
+                "childId": "F34_id"
+            },
+            {
+                "parentId": "IBsubAND2_id",
+                "childId": "F35_id"
+            },
+            {
+                "parentId": "IBsubAND2_id",
+                "childId": "F36_id"
+            },
+            {
+                "parentId": "IBsubAND3_id",
+                "childId": "F65_id"
+            },
+            {
+                "parentId": "IBsubAND3_id",
+                "childId": "F66_id"
+            },
+            {
+                "parentId": "IBsubAND3_id",
+                "childId": "F67_id"
+            },
+            {
+                "parentId": "IBsubAND3_id",
+                "childId": "F68_id"
+            },
+            {
+                "parentId": "IBsubAND4_id",
+                "childId": "F69_id"
+            },
+            {
+                "parentId": "IBsubAND4_id",
+                "childId": "F70_id"
+            },
+            {
+                "parentId": "IBsubAND4_id",
+                "childId": "F71_id"
+            },
+            {
+                "parentId": "IBsubAND4_id",
+                "childId": "F72_id"
+            },
+            {
+                "parentId": "IBsubAND15_id",
+                "childId": "F129_id"
+            },
+            {
+                "parentId": "IBsubAND5_id",
+                "childId": "F130_id"
+            },
+            {
+                "parentId": "IBsubAND5_id",
+                "childId": "F131_id"
+            },
+            {
+                "parentId": "IBsubAND5_id",
+                "childId": "F132_id"
+            },
+            {
+                "parentId": "IBsubAND6_id",
+                "childId": "F133_id"
+            },
+            {
+                "parentId": "IBsubAND6_id",
+                "childId": "F134_id"
+            },
+            {
+                "parentId": "IBsubAND6_id",
+                "childId": "F135_id"
+            },
+            {
+                "parentId": "IBsubAND6_id",
+                "childId": "F136_id"
+            },
+            {
+                "parentId": "IBsubAND7_id",
+                "childId": "F137_id"
+            },
+            {
+                "parentId": "IBsubAND7_id",
+                "childId": "F138_id"
+            },
+            {
+                "parentId": "IBsubAND7_id",
+                "childId": "F139_id"
+            },
+            {
+                "parentId": "IBsubAND7_id",
+                "childId": "F140_id"
+            },
+            {
+                "parentId": "IBsubAND8_id",
+                "childId": "F141_id"
+            },
+            {
+                "parentId": "IBsubAND8_id",
+                "childId": "F142_id"
+            },
+            {
+                "parentId": "IBsubAND8_id",
+                "childId": "F143_id"
+            },
+            {
+                "parentId": "IBsubAND8_id",
+                "childId": "F144_id"
+            },
+            {
+                "parentId": "GDCFailure1_id",
+                "childId": "GDCAND1_id"
+            },
+            {
+                "parentId": "GDCAND1_id",
+                "childId": "GDCOR1_id"
+            },
+
+            {
+                "parentId": "GDCAND1_id",
+                "childId": "ICFailure1_id"
+            },
+            {
+                "parentId": "ICFailure1_id",
+                "childId": "ICOR1_id"
+            },
+            {
+                "parentId": "ICOR1_id",
+                "childId": "ICAND1_id"
+            },
+            {
+                "parentId": "ICOR1_id",
+                "childId": "ICAND2_id"
+            },
+            {
+                "parentId": "ICAND1_id",
+                "childId": "ICsubOR1_id"
+            },
+            {
+                "parentId": "ICAND1_id",
+                "childId": "ICsubOR2_id"
+            },
+            {
+                "parentId": "ICAND2_id",
+                "childId": "ICsubOR3_id"
+            },
+            {
+                "parentId": "ICAND2_id",
+                "childId": "ICsubOR4_id"
+            },
+            {
+                "parentId": "ICsubOR1_id",
+                "childId": "ICsubAND1_id"
+            },
+            {
+                "parentId": "ICsubOR1_id",
+                "childId": "ICsubAND2_id"
+            },
+            {
+                "parentId": "ICsubOR2_id",
+                "childId": "ICsubAND3_id"
+            },
+            {
+                "parentId": "ICsubOR2_id",
+                "childId": "ICsubAND4_id"
+            },
+            {
+                "parentId": "ICsubOR3_id",
+                "childId": "ICsubAND5_id"
+            },
+            {
+                "parentId": "ICsubOR3_id",
+                "childId": "ICsubAND6_id"
+            },
+            {
+                "parentId": "ICsubOR4_id",
+                "childId": "ICsubAND7_id"
+            },
+            {
+                "parentId": "ICsubOR4_id",
+                "childId": "ICsubAND8_id"
+            },
+            {
+                "parentId": "GDCOR1_id",
+                "childId": "GDCsubAND1_id"
+            },
+            {
+                "parentId": "GDCOR1_id",
+                "childId": "GDCsubAND2_id"
+            },
+            {
+                "parentId": "GDCsubAND1_id",
+                "childId": "GDCsubOR1_id"
+            },
+            {
+                "parentId": "GDCsubAND1_id",
+                "childId": "GDCsubOR2_id"
+            },
+            {
+                "parentId": "GDCsubAND2_id",
+                "childId": "GDCsubOR3_id"
+            },
+            {
+                "parentId": "GDCsubAND2_id",
+                "childId": "GDCsubOR4_id"
+            },
+            {
+                "parentId": "GDCsubOR1_id",
+                "childId": "GDCsubsubAND1_id"
+            },
+            {
+                "parentId": "GDCsubOR1_id",
+                "childId": "GDCsubsubAND2_id"
+            },
+            {
+                "parentId": "GDCsubOR2_id",
+                "childId": "GDCsubsubAND3_id"
+            },
+            {
+                "parentId": "GDCsubOR2_id",
+                "childId": "GDCsubsubAND4_id"
+            },
+            {
+                "parentId": "GDCsubOR3_id",
+                "childId": "GDCsubsubAND5_id"
+            },
+            {
+                "parentId": "GDCsubOR3_id",
+                "childId": "GDCsubsubAND6_id"
+            },
+            {
+                "parentId": "GDCsubOR4_id",
+                "childId": "GDCsubsubAND7_id"
+            },
+            {
+                "parentId": "GDCsubOR4_id",
+                "childId": "GDCsubsubAND8_id"
+            },
+            {
+                "parentId": "GDCsubsubAND1_id",
+                "childId": "F11_id"
+            },
+            {
+                "parentId": "GDCsubsubAND1_id",
+                "childId": "F12_id"
+            },
+            {
+                "parentId": "GDCsubsubAND1_id",
+                "childId": "F23_id"
+            },
+            {
+                "parentId": "GDCsubsubAND1_id",
+                "childId": "F24_id"
+            },
+            {
+                "parentId": "GDCsubsubAND2_id",
+                "childId": "F45_id"
+            },
+            {
+                "parentId": "GDCsubsubAND2_id",
+                "childId": "F46_id"
+            },
+            {
+                "parentId": "GDCsubsubAND2_id",
+                "childId": "F47_id"
+            },
+            {
+                "parentId": "GDCsubsubAND2_id",
+                "childId": "F48_id"
+            },
+            {
+                "parentId": "GDCsubsubAND3_id",
+                "childId": "F89_id"
+            },
+            {
+                "parentId": "GDCsubsubAND3_id",
+                "childId": "F90_id"
+            },
+            {
+                "parentId": "GDCsubsubAND3_id",
+                "childId": "F91_id"
+            },
+            {
+                "parentId": "GDCsubsubAND3_id",
+                "childId": "F92_id"
+            },
+            {
+                "parentId": "GDCsubsubAND4_id",
+                "childId": "F93_id"
+            },
+            {
+                "parentId": "GDCsubsubAND4_id",
+                "childId": "F94_id"
+            },
+            {
+                "parentId": "GDCsubsubAND4_id",
+                "childId": "F95_id"
+            },
+            {
+                "parentId": "GDCsubsubAND4_id",
+                "childId": "F96_id"
+            },
+            {
+                "parentId": "GDCsubsubAND5_id",
+                "childId": "F177_id"
+            },
+            {
+                "parentId": "GDCsubsubAND5_id",
+                "childId": "F178_id"
+            },
+            {
+                "parentId": "GDCsubsubAND5_id",
+                "childId": "F179_id"
+            },
+            {
+                "parentId": "GDCsubsubAND5_id",
+                "childId": "F180_id"
+            },
+            {
+                "parentId": "GDCsubsubAND6_id",
+                "childId": "F181_id"
+            },
+            {
+                "parentId": "GDCsubsubAND6_id",
+                "childId": "F182_id"
+            },
+            {
+                "parentId": "GDCsubsubAND6_id",
+                "childId": "F183_id"
+            },
+            {
+                "parentId": "GDCsubsubAND6_id",
+                "childId": "F184_id"
+            },
+            {
+                "parentId": "GDCsubsubAND7_id",
+                "childId": "F185_id"
+            },
+            {
+                "parentId": "GDCsubsubAND7_id",
+                "childId": "F186_id"
+            },
+            {
+                "parentId": "GDCsubsubAND7_id",
+                "childId": "F187_id"
+            },
+            {
+                "parentId": "GDCsubsubAND7_id",
+                "childId": "F188_id"
+            },
+            {
+                "parentId": "GDCsubsubAND8_id",
+                "childId": "F189_id"
+            },
+            {
+                "parentId": "GDCsubsubAND8_id",
+                "childId": "F190_id"
+            },
+            {
+                "parentId": "GDCsubsubAND8_id",
+                "childId": "F191_id"
+            },
+            {
+                "parentId": "GDCsubsubAND8_id",
+                "childId": "F192_id"
+            },
+            {
+                "parentId": "ICsubAND1_id",
+                "childId": "F9_id"
+            },
+            {
+                "parentId": "ICsubAND1_id",
+                "childId": "F10_id"
+            },
+            {
+                "parentId": "ICsubAND1_id",
+                "childId": "F21_id"
+            },
+            {
+                "parentId": "ICsubAND1_id",
+                "childId": "F22_id"
+            },
+            {
+                "parentId": "ICsubAND2_id",
+                "childId": "F41_id"
+            },
+            {
+                "parentId": "ICsubAND2_id",
+                "childId": "F42_id"
+            },
+            {
+                "parentId": "ICsubAND2_id",
+                "childId": "F43_id"
+            },
+            {
+                "parentId": "ICsubAND2_id",
+                "childId": "F44_id"
+            },
+            {
+                "parentId": "ICsubAND3_id",
+                "childId": "F81_id"
+            },
+            {
+                "parentId": "ICsubAND3_id",
+                "childId": "F82_id"
+            },
+            {
+                "parentId": "ICsubAND3_id",
+                "childId": "F83_id"
+            },
+            {
+                "parentId": "ICsubAND3_id",
+                "childId": "F84_id"
+            },
+            {
+                "parentId": "ICsubAND4_id",
+                "childId": "F85_id"
+            },
+            {
+                "parentId": "ICsubAND4_id",
+                "childId": "F86_id"
+            },
+            {
+                "parentId": "ICsubAND4_id",
+                "childId": "F87_id"
+            },
+            {
+                "parentId": "ICsubAND4_id",
+                "childId": "F88_id"
+            },
+            {
+                "parentId": "ICsubAND5_id",
+                "childId": "F161_id"
+            },
+            {
+                "parentId": "ICsubAND5_id",
+                "childId": "F162_id"
+            },
+            {
+                "parentId": "ICsubAND5_id",
+                "childId": "F163_id"
+            },
+            {
+                "parentId": "ICsubAND5_id",
+                "childId": "F164_id"
+            },
+            {
+                "parentId": "ICsubAND6_id",
+                "childId": "F165_id"
+            },
+            {
+                "parentId": "ICsubAND6_id",
+                "childId": "F166_id"
+            },
+            {
+                "parentId": "ICsubAND6_id",
+                "childId": "F167_id"
+            },
+            {
+                "parentId": "ICsubAND6_id",
+                "childId": "F168_id"
+            },
+            {
+                "parentId": "ICsubAND7_id",
+                "childId": "F169_id"
+            },
+            {
+                "parentId": "ICsubAND7_id",
+                "childId": "F170_id"
+            },
+            {
+                "parentId": "ICsubAND7_id",
+                "childId": "F171_id"
+            },
+            {
+                "parentId": "ICsubAND7_id",
+                "childId": "F172_id"
+            },
+            {
+                "parentId": "ICsubAND8_id",
+                "childId": "F173_id"
+            },
+            {
+                "parentId": "ICsubAND8_id",
+                "childId": "F174_id"
+            },
+            {
+                "parentId": "ICsubAND8_id",
+                "childId": "F175_id"
+            },
+            {
+                "parentId": "ICsubAND8_id",
+                "childId": "F176_id"
+            }
+        ],
+        "topEvents": ["GDSFailure1_id"]
+    }
+}

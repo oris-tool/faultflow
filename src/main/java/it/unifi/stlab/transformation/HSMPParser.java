@@ -77,9 +77,19 @@ public class HSMPParser {
             PartitionedFunction partitionedFunction = getPartitionedFunction(errorMode.getTimetofailurePDFToString());
             name = errorMode.getName();
             FinalLocation finalLocation = new FinalLocation(name + "_final");
-            nextLocation = new SimpleStep(errorMode.getName() + "_propagation", partitionedFunction,
-                    List.of(finalLocation), List.of(1.0), 0);
-            ((SimpleStep) nextLocation).addNextLocation(finalLocation, 1.0);
+            if(node.getRoutingProbability() < 1.0){
+                SimpleStep absorbingStep = new SimpleStep(errorMode.getName()+"_absorbing", getPartitionedFunction("dirac(0)"),
+                        new ArrayList<>(), new ArrayList<>() , 0);
+                //step.addNextLocation(step, 1.0);
+                Double routingprob = node.getRoutingProbability();
+                nextLocation = new SimpleStep(errorMode.getName() + "_propagation", partitionedFunction,
+                        List.of(finalLocation, absorbingStep), List.of(routingprob, 1-routingprob), 0);
+            }
+            else{
+                nextLocation = new SimpleStep(errorMode.getName() + "_propagation", partitionedFunction,
+                        List.of(finalLocation), List.of(1.0), 0);
+                ((SimpleStep) nextLocation).addNextLocation(finalLocation, 1.0);
+            }
         } else {
             name = node.getName();
             nextLocation = new FinalLocation(name + "_final");

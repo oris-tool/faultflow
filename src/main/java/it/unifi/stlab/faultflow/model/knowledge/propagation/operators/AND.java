@@ -93,6 +93,15 @@ public class AND extends Operator {
     }
 
     @Override
+    public String toBracketFormat() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("(");
+        for (BooleanExpression be : elements) {
+            sb.append(be.toBracketFormat()).append(")&&(");
+        }
+        return sb.substring(0, sb.length() - 3);    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

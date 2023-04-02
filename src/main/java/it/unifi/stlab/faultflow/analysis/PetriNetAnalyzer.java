@@ -30,6 +30,7 @@ import org.oristool.models.stpn.steady.RegSteadyState;
 import org.oristool.models.stpn.trans.RegTransient;
 import org.oristool.models.stpn.trees.DeterministicEnablingState;
 import org.oristool.petrinet.Marking;
+import org.oristool.petrinet.MarkingCondition;
 import org.oristool.petrinet.PetriNet;
 import org.oristool.petrinet.Place;
 
@@ -60,6 +61,7 @@ public class PetriNetAnalyzer {
         builder.timeBound(time);
         builder.timeStep(step);
         builder.greedyPolicy(time, error);
+        builder.stopOn(MarkingCondition.fromString(rewards));
         builder.markingFilter(RewardRate.nonZero(0.0, rewardRates));
         RegTransient analysis = builder.build();
 

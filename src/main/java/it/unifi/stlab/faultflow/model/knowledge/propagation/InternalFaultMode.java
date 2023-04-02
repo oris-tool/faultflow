@@ -78,5 +78,10 @@ public class InternalFaultMode extends FaultMode {
     public int hashCode() {
         return Objects.hash(super.hashCode(), arisingPDF);
     }
+
+    @Override
+    public String toBracketFormat() {
+        return toSimpleString();
+    }
 }
 

@@ -29,13 +29,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FlightControlSystemBuilder {
+public class FlightControlSystemBuilder extends SystemBuilder {
     private static FlightControlSystemBuilder single_instance;
-    private static System system;
-    private static HashMap<String, FaultMode> faultModes;
-    private static HashMap<String, FailureMode> failureModes;
-    private static HashMap<String, ErrorMode> errorModes;
-    private static List< PropagationPort> propagationPorts;
 
     private FlightControlSystemBuilder() {
         faultModes = new HashMap<>();
@@ -96,7 +91,7 @@ public class FlightControlSystemBuilder {
         enFM_F3.setArisingPDF("exp(0.00005)");
         InternalFaultMode enFM_F4 = new InternalFaultMode("F4");
         enFM_F4.setArisingPDF("erlang(2,0.00005)");
-        InternalFaultMode enFM_F13= new InternalFaultMode("F13");
+        InternalFaultMode enFM_F13 = new InternalFaultMode("F13");
         enFM_F13.setArisingPDF("exp(0.0001)");
         InternalFaultMode enFM_F14 = new InternalFaultMode("F14");
         enFM_F14.setArisingPDF("erlang(4,0.0008)");
@@ -199,7 +194,7 @@ public class FlightControlSystemBuilder {
         faultModes.put(exFM_LlefF1.getName(), exFM_LlefF1);
         faultModes.put(exFM_RlefF1.getName(), exFM_RlefF1);
 
-        // Definizione delle Failure Mode per Sensor1, Sensor2, Sensor3
+        // Definizione delle Failure Mode
 
         FailureMode fM_FCCAF1 = new FailureMode("Fcca1Failure");
         ErrorMode eM_fccaOR1 = new ErrorMode("fccaOR1");
@@ -438,23 +433,4 @@ public class FlightControlSystemBuilder {
         if (single_instance == null)
             single_instance = new FlightControlSystemBuilder();
         return single_instance;
-    }
-
-    public System getSystem() {
-        return system;
-    }
-
-    public HashMap<String, FaultMode> getFaultModes() {
-        return faultModes;
-    }
-
-    public static List<PropagationPort> getPropagationPorts(){
-        return propagationPorts;
-    }
-    public static List<ErrorMode> getErrorModes(){
-        return new ArrayList<>(errorModes.values());
-    }
-    public static ErrorMode getErrorMode(String errorModeName){
-        return errorModes.get(errorModeName);
-    }
-}
+    }}

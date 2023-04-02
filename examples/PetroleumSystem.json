@@ -1,0 +1,444 @@
+{
+    "bdd":{
+        "blocks":   [
+            {
+                "externalId": "GasDetectionSystem_id",
+                "name": "GasDetectionSystem",
+                "description": "Gas Detection System"
+            },
+            {
+                "externalId": "GasDetectorA_id",
+                "name": "GasDetectorA",
+                "description": "Gas Detector A"
+            },
+            {
+                "externalId": "GasDetectorB_id",
+                "name": "GasDetectorB",
+                "description": "Gas Detector B"
+            },
+            {
+                "externalId": "GasDetectorC_id",
+                "name": "GasDetectorC",
+                "description": "Gas Detector C"
+            },
+            {
+                "externalId": "InitiatorA_id",
+                "name": "InitiatorA",
+                "description": "Initiator A"
+            },
+            {
+                "externalId": "InitiatorB_id",
+                "name": "InitiatorB",
+                "description": "Initiator B"
+            },
+            {
+                "externalId": "InitiatorC_id",
+                "name": "InitiatorC",
+                "description": "Initiator C"
+            }
+        ],
+        "parentings": [
+            {
+                "parentId": "GasDetectionSystem_id",
+                "childId":"GasDetectorA_id",
+                "label":"cp1"
+            },
+            {
+                "parentId": "GasDetectionSystem_id",
+                "childId":"GasDetectorB_id",
+                "label":"cp2"
+            },
+            {
+                "parentId": "GasDetectionSystem_id",
+                "childId":"GasDetectorC_id",
+                "label":"cp3"
+            },
+            {
+                "parentId": "GasDetectorA_id",
+                "childId":"InitiatorA_id",
+                "label":"cp4"
+            },
+            {
+                "parentId": "GasDetectorB_id",
+                "childId":"InitiatorB_id",
+                "label":"cp5"
+            },
+            {
+                "parentId": "GasDetectorC_id",
+                "childId":"InitiatorC_id",
+                "label":"cp6"
+            }
+        ],
+        "rootId":"GasDetectionSystem_id"
+    },
+    "faultTree": {
+        "nodes": [
+
+            {
+                "externalId": "F1_id",
+                "componentName": "InitiatorA",
+                "label": "F1",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00004)"
+            },
+            {
+                "externalId": "F2_id",
+                "componentName": "InitiatorA",
+                "label": "F2",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0002)"
+            },
+            {
+                "externalId": "F3_id",
+                "componentName": "GasDetectorA",
+                "label": "F3",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F4_id",
+                "componentName": "GasDetectorA",
+                "label": "F4",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0002)"
+            },
+            {
+                "externalId": "F5_id",
+                "componentName": "InitiatorB",
+                "label": "F5",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F6_id",
+                "componentName": "InitiatorB",
+                "label": "F6",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.0001)"
+            },
+            {
+                "externalId": "F7_id",
+                "componentName": "GasDetectorB",
+                "label": "F7",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00008)"
+            },
+            {
+                "externalId": "F8_id",
+                "componentName": "GasDetectorB",
+                "label": "F8",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.0001)"
+            },
+            {
+                "externalId": "F9_id",
+                "componentName": "InitiatorC",
+                "label": "F9",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.00006)"
+            },
+            {
+                "externalId": "F10_id",
+                "componentName": "InitiatorC",
+                "label": "F10",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(3,0.000015)"
+            },
+            {
+                "externalId": "F11_id",
+                "componentName": "GasDetectorC",
+                "label": "F11",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "exp(0.0001)"
+            },
+            {
+                "externalId": "F12_id",
+                "componentName": "GasDetectorC",
+                "label": "F12",
+                "nodeType": "BASIC_EVENT",
+                "pdf": "erlang(2,0.000015)"
+            },
+            {
+                "externalId": "IAOR1_id",
+                "componentName": "InitiatorA",
+                "label": "IAOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IBOR1_id",
+                "componentName": "InitiatorB",
+                "label": "IBOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "ICOR1_id",
+                "componentName": "InitiatorC",
+                "label": "ICOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDAAND1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDAOR1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDBAND1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDBOR1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDCAND1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDCOR1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "GDSAND1_id",
+                "componentName": "GasDetectionSystem",
+                "label": "GDSAND1",
+                "nodeType": "GATE",
+                "gateType": "AND"
+            },
+            {
+                "externalId": "GDSOR1_id",
+                "componentName": "GasDetectionSystem",
+                "label": "GDSOR1",
+                "nodeType": "GATE",
+                "gateType": "OR"
+            },
+            {
+                "externalId": "IAFailure1_id",
+                "componentName": "InitiatorA",
+                "label": "IAFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectorA",
+                        "faultName":"GDAEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "IBFailure1_id",
+                "componentName": "InitiatorB",
+                "label": "IBFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectorB",
+                        "faultName":"GDBEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "ICFailure1_id",
+                "componentName": "InitiatorC",
+                "label": "ICFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectorC",
+                        "faultName":"GDCEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDAFailure1_id",
+                "componentName": "GasDetectorA",
+                "label": "GDAFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "uniform(0,24)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectionSystem",
+                        "faultName":"GDSEF1"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDBFailure1_id",
+                "componentName": "GasDetectorB",
+                "label": "GDBFailGDBFailure1ure1",
+                "nodeType": "FAILURE",
+                "pdf": "uniform(0,24)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectionSystem",
+                        "faultName":"GDSEF2"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDCFailure1_id",
+                "componentName": "GasDetectorC",
+                "label": "GDCFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "uniform(0,24)",
+                "actsAs": [
+                    {
+                        "componentName":"GasDetectionSystem",
+                        "faultName":"GDSEF3"
+                    }
+                ]
+            },
+            {
+                "externalId": "GDSFailure1_id",
+                "componentName": "GasDetectionSystem",
+                "label": "GDSFailure1",
+                "nodeType": "FAILURE",
+                "pdf": "dirac(0)"
+            }
+        ],
+        "parentings": [
+            {
+                "parentId": "GDSFailure1_id",
+                "childId": "GDSOR1_id"
+            },
+            {
+                "parentId": "GDSOR1_id",
+                "childId": "GDSAND1_id"
+            },
+            {
+                "parentId": "GDSOR1_id",
+                "childId": "GDCFailure1_id"
+            },
+            {
+                "parentId": "GDSAND1_id",
+                "childId": "GDBFailure1_id"
+            },
+            {
+                "parentId": "GDSAND1_id",
+                "childId": "GDAFailure1_id"
+            },
+            {
+                "parentId": "GDAFailure1_id",
+                "childId": "GDAAND1_id"
+            },
+            {
+                "parentId": "GDAAND1_id",
+                "childId": "GDAOR1_id"
+            },
+            {
+                "parentId": "GDAAND1_id",
+                "childId": "IAFailure1_id"
+            },
+            {
+                "parentId": "IAFailure1_id",
+                "childId": "IAOR1_id"
+            },
+            {
+                "parentId": "GDAOR1_id",
+                "childId": "F3_id"
+            },
+            {
+                "parentId": "GDAOR1_id",
+                "childId": "F4_id"
+            },
+            {
+                "parentId": "IAOR1_id",
+                "childId": "F1_id"
+            },
+            {
+                "parentId": "IAOR1_id",
+                "childId": "F2_id"
+            },
+            {
+                "parentId": "GDBFailure1_id",
+                "childId": "GDBAND1_id"
+            },
+            {
+                "parentId": "GDBAND1_id",
+                "childId": "GDBOR1_id"
+            },
+            {
+                "parentId": "GDBAND1_id",
+                "childId": "IBFailure1_id"
+            },
+            {
+                "parentId": "IBFailure1_id",
+                "childId": "IBOR1_id"
+            },
+            {
+                "parentId": "GDBOR1_id",
+                "childId": "F7_id"
+            },
+            {
+                "parentId": "GDBOR1_id",
+                "childId": "F8_id"
+            },
+            {
+                "parentId": "IBOR1_id",
+                "childId": "F5_id"
+            },
+            {
+                "parentId": "IBOR1_id",
+                "childId": "F6_id"
+            },
+            {
+                "parentId": "GDCFailure1_id",
+                "childId": "GDCAND1_id"
+            },
+            {
+                "parentId": "GDCAND1_id",
+                "childId": "GDCOR1_id"
+            },
+            {
+                "parentId": "GDCAND1_id",
+                "childId": "ICFailure1_id"
+            },
+            {
+                "parentId": "ICFailure1_id",
+                "childId": "ICOR1_id"
+            },
+            {
+                "parentId": "GDCOR1_id",
+                "childId": "F11_id"
+            },
+            {
+                "parentId": "GDCOR1_id",
+                "childId": "F12_id"
+            },
+            {
+                "parentId": "ICOR1_id",
+                "childId": "F9_id"
+            },
+            {
+                "parentId": "ICOR1_id",
+                "childId": "F10_id"
+            }
+        ],
+        "topEvents": ["GDSFailure1_id"]
+    }
+}

@@ -140,6 +140,39 @@ public class KofN extends Operator {
         return res.toString();
     }
 
+    @Override
+    public String toBracketFormat() {
+        StringBuilder res = new StringBuilder();
+        if (k == 1) {
+            res.append("(").append(this.elements.get(0).toBracketFormat()).append(")");
+            for (int i = 1; i < this.n; i++) {
+                res.append("||").append("(").append(this.elements.get(i).toBracketFormat()).append(")");
+            }
+        } else if (k == n) {
+            res.append("(").append(this.elements.get(0).toBracketFormat()).append(")");
+            for (int i = 1; i < this.n; i++) {
+                res.append("&&").append("(").append(this.elements.get(i).toBracketFormat()).append(")");
+            }
+        } else {
+            for (int i = 0; i <= n - k; i++) {
+                BooleanExpression first = elements.get(i);
+                for (int z = i + 1; z <= n - k + 1; z++) {
+                    res.append("(");
+                    res.append("(").append(first.toBracketFormat()).append(")");
+                    BooleanExpression next;
+                    for (int j = 0; j < k - 1; j++) {
+                        next = elements.get(z + j);
+                        res.append("&&").append("(").append(next.toBracketFormat()).append(")");
+                    }
+                    res.append(")");
+                    res.append("||");
+                }
+            }
+            res = new StringBuilder(res.substring(0, res.length() - 2));
+        }
+        return res.toString();
+    }
+
     /**
      * Getter of the k parameter
      *

@@ -34,6 +34,7 @@ public abstract class Gate implements Node {
     protected GateType gateType;
     String name;
     private ErrorMode errorMode;
+    private Double routingProbability;
 
     public Gate() {
         children = new ArrayList<>();
@@ -80,6 +81,14 @@ public abstract class Gate implements Node {
 
     public GateType getGateType() {
         return gateType;
+    }
+
+    public Double getRoutingProbability() {
+        return routingProbability;
+    }
+
+    public void setRoutingProbability(Double routingProbability) {
+        this.routingProbability = routingProbability;
     }
 
     @Override

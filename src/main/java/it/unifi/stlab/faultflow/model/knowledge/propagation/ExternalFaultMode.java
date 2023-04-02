@@ -49,4 +49,9 @@ public class ExternalFaultMode extends FaultMode {
     public int hashCode() {
         return Objects.hash(uuid, name);
     }
+
+    @Override
+    public String toBracketFormat() {
+        return toSimpleString();
+    }
 }

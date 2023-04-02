@@ -45,7 +45,8 @@ public class ActivationFunctionParser {
         List<String> subFunctions = getSubFunctions(activationFunction);
 
         for (String subFunction : subFunctions)
-            activationFunctionEntities.put(removeOuterParentheses(subFunction), getFunctionEntities(subFunction));
+            if(subFunction != null)
+                activationFunctionEntities.put(removeOuterParentheses(subFunction), getFunctionEntities(subFunction));
 
         return activationFunctionEntities;
     }
@@ -77,6 +78,7 @@ public class ActivationFunctionParser {
                 }
             }
         }
+
 
         return sortedParentheses;
     }
@@ -118,7 +120,8 @@ public class ActivationFunctionParser {
         } else if (polishedFunction.contains("!")) {
             functionEntities.add(0, polishedFunction.split("!")[1]);
             functionEntities.add(0, "NOT");
-        } else if (polishedFunction.contains("KOUTOFN")) {
+        }
+        else if (polishedFunction.contains("KOUTOFN")) {
             List<String> subEntities = new ArrayList<>(Arrays.asList(polishedFunction.split("KOUTOFN\\[(.*?)\\]")[1].split(",")));
             subEntities.remove(0);
             functionEntities.addAll(0, subEntities);

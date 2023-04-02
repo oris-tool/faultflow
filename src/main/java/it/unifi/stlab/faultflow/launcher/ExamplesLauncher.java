@@ -25,6 +25,7 @@ import it.unifi.stlab.faultflow.analysis.PetriNetReducer;
 import it.unifi.stlab.faultflow.exporter.PetriNetExportMethod;
 import it.unifi.stlab.faultflow.exporter.PetriNetExporter;
 import it.unifi.stlab.faultflow.launcher.builders.FlightControlSystemBuilder;
+import it.unifi.stlab.faultflow.launcher.builders.PetroleumSystemBuilder;
 import it.unifi.stlab.faultflow.model.knowledge.composition.System;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.translator.PetriNetTranslator;
@@ -34,6 +35,8 @@ import it.unifi.stlab.transformation.HSMPParser;
 import it.unifi.stlab.transformation.TreeParser;
 import it.unifi.hierarchical.analysis.HierarchicalSMPAnalysis;
 import it.unifi.stlab.transformation.minimalcutset.ImportanceMeasure;
+import it.unifi.stlab.transformation.minimalcutset.MOCUSEngine;
+import it.unifi.stlab.transformation.minimalcutset.MinimalCutSet;
 import org.oristool.models.stpn.RewardRate;
 import org.oristool.models.stpn.TransientSolution;
 import org.oristool.models.stpn.trees.DeterministicEnablingState;
@@ -44,6 +47,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class ExamplesLauncher {
@@ -51,7 +55,7 @@ public class ExamplesLauncher {
     public static void main(String[] args) throws JAXBException, IOException {
         //Per cambiare sistema da buildare è sufficiente modificare l'istruzione seguente
         //con il builder del sistema desiderato.
-        System s = FlightControlSystemBuilder.getInstance().getSystem();
+        System s = PetroleumSystemBuilder.getInstance().getSystem();
         //Exporting petri net as fault injection -faults with deterministic occurrence sampled from the pdfs
         PetriNetExporter.exportPetriNetFromSystem(s, PetriNetExportMethod.FAULT_INJECTION);
         //Exporting petri net as fault analysis -faults with their original pdf
@@ -59,17 +63,19 @@ public class ExamplesLauncher {
 
         //ANALYSIS WITH SIRIO
 
+
         //Reduce Petri Net
         PetriNetReducer petriNetReducer = new PetriNetReducer(pnt.getPetriNet(), pnt.getMarking());
-        String failureName = "Asyml1Failure";
-        petriNetReducer.reduce(failureName, FlightControlSystemBuilder.getPropagationPorts(), FlightControlSystemBuilder.getErrorModes());
+        String failureName = "GDBFailure1";
+        petriNetReducer.reduce(failureName, PetroleumSystemBuilder.getPropagationPorts(), PetroleumSystemBuilder.getErrorModes());
         //Analyze reduced Petri Net
         PetriNetAnalyzer petriNetAnalyzer = new PetriNetAnalyzer(petriNetReducer.getPetriNet(), petriNetReducer.getMarking());
-        String exoFaultName = "Asyml1fail";
-        String error = "0.1";
+        String exoFaultName = "GDSEF2";
+        String error = "0.0";
+
         Date start = new Date();
         TransientSolution<DeterministicEnablingState, RewardRate> rewards =
-                petriNetAnalyzer.regenerativeTransient(exoFaultName, new BigDecimal(200000), new BigDecimal(200), new BigDecimal(error));
+                petriNetAnalyzer.regenerativeTransient(exoFaultName, new BigDecimal(8000), new BigDecimal(2), new BigDecimal(error));
         Date end = new Date();
         long time = end.getTime() - start.getTime();
         java.lang.System.out.println("Elapsed analysis time with Sirio: "+time+" ms");
@@ -87,7 +93,7 @@ public class ExamplesLauncher {
         //TRANSLATE SYSTEM TO HSMP AND RUN ANALYSIS WITH PYRAMIS
 
         TreeParser treeParser = new TreeParser(s);
-        ErrorMode errorMode = FlightControlSystemBuilder.getErrorMode("lefOR1");
+        ErrorMode errorMode = PetroleumSystemBuilder.getErrorMode("GDSOR1");
         HSMP hsmp = HSMPParser.parseTree(treeParser.createTree(errorMode));
         HierarchicalSMPAnalysis analysis = new HierarchicalSMPAnalysis(hsmp, 0);
         start = new Date();
@@ -108,8 +114,8 @@ public class ExamplesLauncher {
         writer.close();
 
         ImportanceMeasure importanceMeasure = new ImportanceMeasure();
-        double timeStep = 200;
-        int timeAnalysis = 200000;
+        double timeStep = 2;
+        int timeAnalysis = 8000;
         writer = new FileWriter("export/fusselvesely.csv");
         writer.append("Fussel Vesely Importance Measure Result of Errormode "+ errorMode.getName()+"\n");
         writer.append("Time: "+timeAnalysis+", Step: "+timeStep+"\n");
@@ -131,5 +137,11 @@ public class ExamplesLauncher {
             writer.append("\n");
         }
         writer.close();
+
+        List<MinimalCutSet> minimalCutSets = MOCUSEngine.getInstance().getMinimalCutSet(treeParser.createTree(errorMode));
+        java.lang.System.out.println("Minumal Cutset:\n");
+        for(MinimalCutSet cs: minimalCutSets){
+            java.lang.System.out.println(cs.getCutSet());
+        }
     }
 }
