@@ -22,9 +22,11 @@ package it.unifi.stlab.faultflow.model.knowledge.propagation;
 
 import it.unifi.stlab.faultflow.model.knowledge.propagation.operators.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Interface, later implemented by {@link Operator}, {@link AND}, {@link KofN}, {@link NOT} and {@link OR}, that
@@ -72,13 +74,13 @@ public interface BooleanExpression {
         switch (findOuterOperator(booleanExpression)) {
             case '°':
                 be = new OR();
-                for (String literal : booleanExpression.split("°"))
-                    be.addChild(_config(literal.replaceAll("[\\[\\](){}]", ""), faultModes));
+                    for (String literal : findSplittings('°', booleanExpression.trim()))
+                        be.addChild(_config(literal, faultModes));
                 return be;
             case '&':
                 be = new AND();
-                for (String literal : booleanExpression.split("&"))
-                    be.addChild(_config(literal.replaceAll("[\\[\\](){}]", ""), faultModes));
+                    for (String literal : findSplittings('&', booleanExpression.trim()))
+                    be.addChild(_config(literal, faultModes));
                 return be;
             case '!':
                 be = new NOT();
@@ -95,6 +97,29 @@ public interface BooleanExpression {
                 be = addFaultMode(booleanExpression, faultModes);
         }
         return be;
+    }
+
+    private static List<String> findSplittings(char operator, String be){
+        int k = 0;
+        int delimiter = 0;
+        List<String> res = new ArrayList<>();
+        for (int i=0; i<be.length(); i++){
+            if(be.charAt(i) == operator && k==0){
+                res.add(be.substring(delimiter, i));
+                delimiter = i+1;
+            }
+            else if(be.charAt(i) == '(')
+                k++;
+            else if(be.charAt(i) == ')')
+                k--;
+        }
+        if(res.isEmpty())
+            res = findSplittings(operator, be.substring(1, be.length() - 1));
+        //delete outer brackets
+        else
+            res.add(be.substring(delimiter));
+        return res;
+
     }
 
     /**

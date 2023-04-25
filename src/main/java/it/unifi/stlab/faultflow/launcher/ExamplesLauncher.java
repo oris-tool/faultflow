@@ -20,90 +20,93 @@
 
 package it.unifi.stlab.faultflow.launcher;
 
+import it.unifi.hierarchical.analysis.HierarchicalSMPAnalysis;
+import it.unifi.hierarchical.analysis.NumericalValues;
+import it.unifi.hierarchical.model.HSMP;
 import it.unifi.stlab.faultflow.analysis.PetriNetAnalyzer;
 import it.unifi.stlab.faultflow.analysis.PetriNetReducer;
 import it.unifi.stlab.faultflow.exporter.PetriNetExportMethod;
-import it.unifi.stlab.faultflow.exporter.PetriNetExporter;
-import it.unifi.stlab.faultflow.launcher.builders.FlightControlSystemBuilder;
 import it.unifi.stlab.faultflow.launcher.builders.PetroleumSystemBuilder;
 import it.unifi.stlab.faultflow.model.knowledge.composition.System;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.translator.PetriNetTranslator;
-import it.unifi.hierarchical.analysis.NumericalValues;
-import it.unifi.hierarchical.model.HSMP;
 import it.unifi.stlab.transformation.HSMPParser;
 import it.unifi.stlab.transformation.TreeParser;
-import it.unifi.hierarchical.analysis.HierarchicalSMPAnalysis;
 import it.unifi.stlab.transformation.minimalcutset.ImportanceMeasure;
-import it.unifi.stlab.transformation.minimalcutset.MOCUSEngine;
-import it.unifi.stlab.transformation.minimalcutset.MinimalCutSet;
 import org.oristool.models.stpn.RewardRate;
 import org.oristool.models.stpn.TransientSolution;
 import org.oristool.models.stpn.trees.DeterministicEnablingState;
 
-import javax.xml.bind.JAXBException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 public class ExamplesLauncher {
 
-    public static void main(String[] args) throws JAXBException, IOException {
-        //Per cambiare sistema da buildare è sufficiente modificare l'istruzione seguente
-        //con il builder del sistema desiderato.
+    public static void main(String[] args) throws IOException {
+        //Build Petroleum System
         System s = PetroleumSystemBuilder.getInstance().getSystem();
-        //Exporting petri net as fault injection -faults with deterministic occurrence sampled from the pdfs
-        PetriNetExporter.exportPetriNetFromSystem(s, PetriNetExportMethod.FAULT_INJECTION);
-        //Exporting petri net as fault analysis -faults with their original pdf
-        PetriNetTranslator pnt = PetriNetExporter.exportPetriNetFromSystem(s, PetriNetExportMethod.FAULT_ANALYSIS);
 
-        //ANALYSIS WITH SIRIO
+        //Analysis parameters
+        double timeLimit = 8000;
+        double timeStep = 2.0;
+        double error = 0.0;
+        //--> ANALYSIS WITH SIRIO
+        sirioAnalysis("GDBFailure1", s, timeLimit, timeStep, error);
+        sirioAnalysis("IBFailure1", s, timeLimit, timeStep, error);
 
+        //-->ANALYSIS WITH PYRAMIS
+        ErrorMode errorMode = PetroleumSystemBuilder.getErrorMode("GDSOR1");
+        pyramisAnalysis(s, errorMode, timeLimit, timeStep);
 
+        //Importance measures parameters
+        double imStep = 4;
+        int timeAnalysis = 60000;
+        fussellVesely(s, errorMode, timeAnalysis, imStep);
+        birnbaum(s, errorMode, timeAnalysis, imStep);
+    }
+
+    public static void sirioAnalysis(String failureName, System s, double timeLimit, double timeStep, double error) throws IOException {
         //Reduce Petri Net
+        PetriNetTranslator pnt = new PetriNetTranslator();
+        pnt.translate(s, PetriNetExportMethod.FAULT_ANALYSIS);
         PetriNetReducer petriNetReducer = new PetriNetReducer(pnt.getPetriNet(), pnt.getMarking());
-        String failureName = "GDBFailure1";
         petriNetReducer.reduce(failureName, PetroleumSystemBuilder.getPropagationPorts(), PetroleumSystemBuilder.getErrorModes());
         //Analyze reduced Petri Net
         PetriNetAnalyzer petriNetAnalyzer = new PetriNetAnalyzer(petriNetReducer.getPetriNet(), petriNetReducer.getMarking());
-        String exoFaultName = "GDSEF2";
-        String error = "0.0";
-
         Date start = new Date();
         TransientSolution<DeterministicEnablingState, RewardRate> rewards =
-                petriNetAnalyzer.regenerativeTransient(exoFaultName, new BigDecimal(8000), new BigDecimal(2), new BigDecimal(error));
+                petriNetAnalyzer.regenerativeTransient(failureName, new BigDecimal(timeLimit), new BigDecimal(timeStep), new BigDecimal(error));
         Date end = new Date();
         long time = end.getTime() - start.getTime();
-        java.lang.System.out.println("Elapsed analysis time with Sirio: "+time+" ms");
+        java.lang.System.out.println("Elapsed analysis time with Sirio of failure " + failureName + ": " + time + " ms");
         //Get results
-        FileWriter writer = new FileWriter("export/result-sirio.csv");
-        writer.append("Analysis Result of failure "+ failureName+"\n");
-        writer.append("Time: "+rewards.getTimeLimit().toString()+", Step: "+rewards.getStep().toString()+", Error: "+error+"\n");
+        FileWriter writer = new FileWriter("export/result-sirio-" + failureName + ".csv");
+        writer.append("Analysis Result of failure " + failureName + "\n");
+        writer.append("Time: " + rewards.getTimeLimit().toString() + ", Step: " + rewards.getStep().toString() + ", Error: " + error + "\n");
         writer.append("Values: \n");
         for (int index = 0; index < rewards.getSolution().length; index++) {
             writer.append(String.valueOf(rewards.getSolution()[index][0][0]));
             writer.append("\n");
         }
         writer.close();
+    }
 
-        //TRANSLATE SYSTEM TO HSMP AND RUN ANALYSIS WITH PYRAMIS
-
+    private static void pyramisAnalysis(System s, ErrorMode errorMode, double timeLimit, double timeStep) throws IOException {
         TreeParser treeParser = new TreeParser(s);
-        ErrorMode errorMode = PetroleumSystemBuilder.getErrorMode("GDSOR1");
         HSMP hsmp = HSMPParser.parseTree(treeParser.createTree(errorMode));
         HierarchicalSMPAnalysis analysis = new HierarchicalSMPAnalysis(hsmp, 0);
-        start = new Date();
-        analysis.evaluate(rewards.getStep().doubleValue(), rewards.getTimeLimit().doubleValue());
-        end = new Date();
-        time = end.getTime() - start.getTime();
-        java.lang.System.out.println("Elapsed analysis time with Pyramis: "+time+" ms");
-        writer = new FileWriter("export/result-pyramis.csv");
-        writer.append("Analysis Result of failure "+ errorMode.getOutgoingFailure().getDescription()+"\n");
-        writer.append("Time: "+rewards.getTimeLimit().doubleValue()+", Step: "+rewards.getStep().doubleValue()+"\n");
+        Date start = new Date();
+        analysis.evaluate(timeStep, timeLimit);
+        Date end = new Date();
+        long time = end.getTime() - start.getTime();
+        java.lang.System.out.println("Elapsed analysis time with Pyramis: " + time + " ms");
+        FileWriter writer = new FileWriter("export/result-pyramis.csv");
+        writer.append("Analysis Result of failure " + errorMode.getOutgoingFailure().getDescription() + "\n");
+        writer.append("Time: " + timeLimit + ", Step: " + timeStep + "\n");
         NumericalValues cdf = HierarchicalSMPAnalysis.cdf;
         writer.append("Values: \n");
 
@@ -112,36 +115,33 @@ public class ExamplesLauncher {
             writer.append("\n");
         }
         writer.close();
+    }
 
+    private static void fussellVesely(System s, ErrorMode errorMode, int timeAnalysis, double timeStep) throws IOException {
         ImportanceMeasure importanceMeasure = new ImportanceMeasure();
-        double timeStep = 2;
-        int timeAnalysis = 8000;
-        writer = new FileWriter("export/fusselvesely.csv");
-        writer.append("Fussel Vesely Importance Measure Result of Errormode "+ errorMode.getName()+"\n");
-        writer.append("Time: "+timeAnalysis+", Step: "+timeStep+"\n");
+        FileWriter writer = new FileWriter("export/fussellvesely.csv");
+        writer.append("Fussell-Vesely Importance Measure Result of Errormode " + errorMode.getName() + "\n");
+        writer.append("Time: " + timeAnalysis + ", Step: " + timeStep + "\n");
         writer.append("Values: \n");
-        Map<String, double[]> fusselvesely = importanceMeasure.getImportanceMeasure(s, errorMode, "fusselvesely", timeStep, timeAnalysis);
-        for (Map.Entry<String, double[]> entry : fusselvesely.entrySet()) {
-            writer.append(entry.getKey()+": "+ Arrays.toString(entry.getValue()));
+        Map<String, double[]> fussellvesely = importanceMeasure.getImportanceMeasure(s, errorMode, "fusselvesely", timeStep, timeAnalysis);
+        for (Map.Entry<String, double[]> entry : fussellvesely.entrySet()) {
+            writer.append(entry.getKey() + ": " + Arrays.toString(entry.getValue()));
             writer.append("\n");
         }
         writer.close();
+    }
 
-        writer = new FileWriter("export/birnbaum.csv");
-        writer.append("Birnbaum Importance Measure Result of Errormode "+ errorMode.getName()+"\n");
-        writer.append("Time: "+timeAnalysis+", Step: "+timeStep+"\n");
+    private static void birnbaum(System s, ErrorMode errorMode, int timeAnalysis, double timeStep) throws IOException {
+        ImportanceMeasure importanceMeasure = new ImportanceMeasure();
+        FileWriter writer = new FileWriter("export/birnbaum.csv");
+        writer.append("Birnbaum Importance Measure Result of Errormode " + errorMode.getName() + "\n");
+        writer.append("Time: " + timeAnalysis + ", Step: " + timeStep + "\n");
         writer.append("Values: \n");
         Map<String, double[]> birnbaum = importanceMeasure.getImportanceMeasure(s, errorMode, "birnbaum", timeStep, timeAnalysis);
         for (Map.Entry<String, double[]> entry : birnbaum.entrySet()) {
-            writer.append(entry.getKey()+": "+ Arrays.toString(entry.getValue()));
+            writer.append(entry.getKey() + ": " + Arrays.toString(entry.getValue()));
             writer.append("\n");
         }
         writer.close();
-
-        List<MinimalCutSet> minimalCutSets = MOCUSEngine.getInstance().getMinimalCutSet(treeParser.createTree(errorMode));
-        java.lang.System.out.println("Minumal Cutset:\n");
-        for(MinimalCutSet cs: minimalCutSets){
-            java.lang.System.out.println(cs.getCutSet());
-        }
     }
 }

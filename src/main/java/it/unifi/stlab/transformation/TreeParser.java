@@ -33,6 +33,7 @@ public class TreeParser {
     private final Map<FailureMode, ErrorMode> errorModes;
     private final Map<String, ErrorMode> activationFunctions;
     private final List<PropagationPort> propagations;
+    private final List<FaultMode> alreadyVisitedFaults;
     private final System system;
 
     public TreeParser(System system) {
@@ -40,6 +41,7 @@ public class TreeParser {
         errorModes = new HashMap<>();
         propagations = new ArrayList<>();
         activationFunctions = new HashMap<>();
+        alreadyVisitedFaults = new ArrayList<>();
 
         this.system = system;
     }
@@ -56,6 +58,7 @@ public class TreeParser {
             });
             propagations.addAll(component.getPropagationPorts());
         });
+        alreadyVisitedFaults.clear();
     }
 
     /**
@@ -85,7 +88,9 @@ public class TreeParser {
         if(subEntities!= null) {
             if (subEntities.size() == 0) {
                 FaultMode faultMode = faults.get(entity);
-
+                if(alreadyVisitedFaults.contains(faultMode))
+                    throw new RuntimeException("Repeated event: " + faultMode.getName());
+                alreadyVisitedFaults.add(faultMode);
                 if (faultMode instanceof InternalFaultMode) {
                     return new BasicEvent((InternalFaultMode) faultMode);
                 } else {
@@ -138,7 +143,7 @@ public class TreeParser {
                 for (int index = 1; index < subEntities.size(); index++) {
                     Node node = createTreeEntity(subEntities.get(index), errorModeEntities);
                     if( node != null)
-                        gate.addChild(createTreeEntity(subEntities.get(index), errorModeEntities));
+                        gate.addChild(node);
                 }
 
                 return gate;

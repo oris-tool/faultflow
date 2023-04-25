@@ -23,6 +23,7 @@ package it.unifi.stlab.transformation.faulttree;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.InternalFaultMode;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BasicEvent implements Node {
 
@@ -79,10 +80,12 @@ public class BasicEvent implements Node {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return id == ((BasicEvent) obj).id;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BasicEvent that = (BasicEvent) o;
+        return id == that.id ;
     }
-
     @Override
     public BasicEvent copy() {
         BasicEvent copied = new BasicEvent(description, id);

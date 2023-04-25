@@ -23,6 +23,7 @@ package it.unifi.stlab.transformation.faulttree;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OR extends Gate {
 
@@ -66,6 +67,14 @@ public class OR extends Gate {
         this.gateType = GateType.OR;
         id = lastId;
         lastId++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OR or = (OR) o;
+        return id == or.id;
     }
 
     public OR(String name) {

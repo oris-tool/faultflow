@@ -156,7 +156,7 @@ public final class MOCUSEngine {
             for (int j = 0; j < paths.get(i).size() && !found; j++) {// for e in row
                 if (!paths.get(i).get(j).isBasicEvent()) {
                     ret = new Result(i, j);
-                    //found = true;
+                    found = true;
                 }
             }
         }

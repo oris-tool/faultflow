@@ -23,6 +23,7 @@ package it.unifi.stlab.transformation.faulttree;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AND extends Gate {
 
@@ -59,5 +60,13 @@ public class AND extends Gate {
         this.gateType = GateType.AND;
         id = lastId;
         lastId++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AND and = (AND) o;
+        return id == and.id;
     }
 }

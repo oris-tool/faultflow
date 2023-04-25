@@ -54,7 +54,10 @@ public class ImportanceMeasure {
             Date start = new Date(); // Mark the starting time of the calculation
 
             List<MinimalCutSet> minimalCutSets = MOCUSEngine.getInstance().getMinimalCutSet(node);
-
+            java.lang.System.out.println("Minimal CutSets:\n");
+            for(MinimalCutSet cs: minimalCutSets){
+                java.lang.System.out.println(cs.getCutSet());
+            }
             // Calculate the CDF of each minimal cutset
             Map<List<String>, double[]> mcsCDFs = calculateMCSCDF(minimalCutSets, system, errorMode,
                     timeStep, time);
@@ -92,7 +95,7 @@ public class ImportanceMeasure {
 
             Date end = new Date(); // Saves the ending time of the calculation...
             long elapsedAnalysisTime = end.getTime() - start.getTime(); // ...and calculates the delta to get the corresponding computation time
-            java.lang.System.out.println("Fussel Vesely time: " + elapsedAnalysisTime);
+            java.lang.System.out.println("Fussel Vesely time: " + elapsedAnalysisTime +" ms\n");
         } else if (measure.equals("birnbaum")) {
             Date start = new Date();
 
@@ -144,7 +147,7 @@ public class ImportanceMeasure {
 
             Date end = new Date();
             long elapsedAnalysisTime = end.getTime() - start.getTime();
-            java.lang.System.out.println("Birnbaum time: " + elapsedAnalysisTime);
+            java.lang.System.out.println("Birnbaum time: " + elapsedAnalysisTime+" ms\n");
         }
         return importanceMeasures;
 

@@ -2,8 +2,8 @@
     "bdd":{
         "blocks":   [
             {
-                "externalId": "GasDetectionSystem_id",
-                "name": "GasDetectionSystem",
+                "externalId": "GasDetectionSystem12_id",
+                "name": "GasDetectionSystem12",
                 "description": "Gas Detection System"
             },
             {
@@ -39,17 +39,17 @@
         ],
         "parentings": [
             {
-                "parentId": "GasDetectionSystem_id",
+                "parentId": "GasDetectionSystem12_id",
                 "childId":"GasDetectorA_id",
                 "label":"cp1"
             },
             {
-                "parentId": "GasDetectionSystem_id",
+                "parentId": "GasDetectionSystem12_id",
                 "childId":"GasDetectorB_id",
                 "label":"cp2"
             },
             {
-                "parentId": "GasDetectionSystem_id",
+                "parentId": "GasDetectionSystem12_id",
                 "childId":"GasDetectorC_id",
                 "label":"cp3"
             },
@@ -69,7 +69,7 @@
                 "label":"cp6"
             }
         ],
-        "rootId":"GasDetectionSystem_id"
+        "rootId":"GasDetectionSystem12_id"
     },
     "faultTree": {
         "nodes": [
@@ -223,14 +223,14 @@
             },
             {
                 "externalId": "GDSAND1_id",
-                "componentName": "GasDetectionSystem",
+                "componentName": "GasDetectionSystem12",
                 "label": "GDSAND1",
                 "nodeType": "GATE",
                 "gateType": "AND"
             },
             {
                 "externalId": "GDSOR1_id",
-                "componentName": "GasDetectionSystem",
+                "componentName": "GasDetectionSystem12",
                 "label": "GDSOR1",
                 "nodeType": "GATE",
                 "gateType": "OR"
@@ -282,7 +282,7 @@
                 "pdf": "uniform(0,24)",
                 "actsAs": [
                     {
-                        "componentName":"GasDetectionSystem",
+                        "componentName":"GasDetectionSystem12",
                         "faultName":"GDSEF1"
                     }
                 ]
@@ -295,7 +295,7 @@
                 "pdf": "uniform(0,24)",
                 "actsAs": [
                     {
-                        "componentName":"GasDetectionSystem",
+                        "componentName":"GasDetectionSystem12",
                         "faultName":"GDSEF2"
                     }
                 ]
@@ -308,14 +308,14 @@
                 "pdf": "uniform(0,24)",
                 "actsAs": [
                     {
-                        "componentName":"GasDetectionSystem",
+                        "componentName":"GasDetectionSystem12",
                         "faultName":"GDSEF3"
                     }
                 ]
             },
             {
                 "externalId": "GDSFailure1_id",
-                "componentName": "GasDetectionSystem",
+                "componentName": "GasDetectionSystem12",
                 "label": "GDSFailure1",
                 "nodeType": "FAILURE",
                 "pdf": "dirac(0)"
