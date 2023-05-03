@@ -61,7 +61,7 @@ public class HSMPParser {
 
     public static LogicalLocation createSimpleStep(BasicEvent node) {
         InternalFaultMode faultMode = node.getFaultMode();
-        PartitionedFunction partitionedFunction = getPartitionedFunction(faultMode.getArisingPDFToString());
+        PartitionedFunction partitionedFunction = getPartitionedFunction(faultMode.getTimeToFaultPDFToString());
         FinalLocation finalLocation = new FinalLocation(faultMode.getName() + "_final");
 
         return new SimpleStep(faultMode.getName(), partitionedFunction, List.of(finalLocation),
@@ -74,7 +74,7 @@ public class HSMPParser {
         LogicalLocation nextLocation;
 
         if (errorMode != null) {
-            PartitionedFunction partitionedFunction = getPartitionedFunction(errorMode.getTimetofailurePDFToString());
+            PartitionedFunction partitionedFunction = getPartitionedFunction(errorMode.getFaultToFailurePDFToString());
             name = errorMode.getName();
             FinalLocation finalLocation = new FinalLocation(name + "_final");
             if(node.getRoutingProbability() < 1.0){

@@ -151,7 +151,7 @@ public class FaultTreeMapper {
                         default:
                             be.append(child.getLabel()).append("||");
                             InternalFaultMode internalFaultMode = new InternalFaultMode(child.getLabel());
-                            internalFaultMode.setArisingPDF(child.getPdf());
+                            internalFaultMode.setTimeToFaultPDF(child.getPdf());
                             errorMode.addInputFaultMode(internalFaultMode);
                             faultModes.put(child.getLabel(), internalFaultMode);
                     }
@@ -187,7 +187,7 @@ public class FaultTreeMapper {
                         default:
                             be.append(child.getLabel()).append("&&");
                             InternalFaultMode internalFaultMode = new InternalFaultMode(child.getLabel());
-                            internalFaultMode.setArisingPDF(child.getPdf());
+                            internalFaultMode.setTimeToFaultPDF(child.getPdf());
                             errorMode.addInputFaultMode(internalFaultMode);
                             faultModes.put(child.getLabel(), internalFaultMode);
                     }
@@ -221,7 +221,7 @@ public class FaultTreeMapper {
                         default:
                             be.append(child.getLabel()).append(",");
                             InternalFaultMode internalFaultMode = new InternalFaultMode(child.getLabel());
-                            internalFaultMode.setArisingPDF(child.getPdf());
+                            internalFaultMode.setTimeToFaultPDF(child.getPdf());
                             errorMode.addInputFaultMode(internalFaultMode);
                             faultModes.put(child.getLabel(), internalFaultMode);
                     }

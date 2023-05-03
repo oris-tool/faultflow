@@ -29,7 +29,7 @@ public class FaultModeDto {
     private final String uuid;
     private final FaultType faultType;
     private final String name;
-    private final String arisingPDF;
+    private final String timeToFaultPDF;
 
     public FaultModeDto(FaultMode faultMode) {
         uuid = faultMode.getUuid();
@@ -37,10 +37,10 @@ public class FaultModeDto {
 
         if (faultMode instanceof ExternalFaultMode) {
             faultType = FaultType.EXTERNAL;
-            arisingPDF = null;
+            timeToFaultPDF = null;
         } else {
             faultType = FaultType.INTERNAL;
-            arisingPDF = ((InternalFaultMode) faultMode).getArisingPDFToString();
+            timeToFaultPDF = ((InternalFaultMode) faultMode).getTimeToFaultPDFToString();
         }
     }
 
@@ -56,7 +56,7 @@ public class FaultModeDto {
         return name;
     }
 
-    public String getArisingPDF() {
-        return arisingPDF;
+    public String getTimeToFaultPDF() {
+        return timeToFaultPDF;
     }
 }

@@ -31,12 +31,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "internalFaultModes")
 public class InternalFaultMode extends FaultMode {
-    @Column(name = "arising_PDF")
-    private String arisingPDF;
+    @Column(name = "timeToFault_PDF")
+    private String timeToFaultPDF;
 
     public InternalFaultMode() {
         super.name = "";
-        this.arisingPDF = null;
+        this.timeToFaultPDF = null;
     }
 
     public InternalFaultMode(String name) {
@@ -44,25 +44,25 @@ public class InternalFaultMode extends FaultMode {
         this.name = name;
     }
 
-    public InternalFaultMode(String name, String arisingPDF) {
+    public InternalFaultMode(String name, String timeToFaultPDF) {
         this(name);
-        this.arisingPDF = arisingPDF;
+        this.timeToFaultPDF = timeToFaultPDF;
     }
 
-    public RealDistribution getArisingPDF() {
-        if (this.arisingPDF != null)
-            return PDFParser.parseStringToRealDistribution(arisingPDF);
+    public RealDistribution getTimeToFaultPDF() {
+        if (this.timeToFaultPDF != null)
+            return PDFParser.parseStringToRealDistribution(timeToFaultPDF);
         else
             return null;
     }
 
 
-    public void setArisingPDF(String arisingPDF) {
-        this.arisingPDF = arisingPDF;
+    public void setTimeToFaultPDF(String timeToFaultPDF) {
+        this.timeToFaultPDF = timeToFaultPDF;
     }
 
-    public String getArisingPDFToString() {
-        return this.arisingPDF;
+    public String getTimeToFaultPDFToString() {
+        return this.timeToFaultPDF;
     }
 
     @Override
@@ -71,12 +71,12 @@ public class InternalFaultMode extends FaultMode {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         InternalFaultMode that = (InternalFaultMode) o;
-        return Objects.equals(arisingPDF, that.arisingPDF);
+        return Objects.equals(timeToFaultPDF, that.timeToFaultPDF);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), arisingPDF);
+        return Objects.hash(super.hashCode(), timeToFaultPDF);
     }
 
     @Override

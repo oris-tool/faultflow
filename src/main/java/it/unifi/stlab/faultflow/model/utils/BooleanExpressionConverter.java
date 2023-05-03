@@ -51,7 +51,7 @@ public class BooleanExpressionConverter implements AttributeConverter<BooleanExp
             for (FaultMode faultMode : booleanExpression.extractIncomingFaults()) {
                 String keyValue = faultMode.getUuid() + "£" + faultMode.getClass().getSimpleName();
                 if (faultMode.getClass().getSimpleName().equals("InternalFaultMode"))
-                    keyValue += "£" + ((InternalFaultMode) faultMode).getArisingPDFToString();
+                    keyValue += "£" + ((InternalFaultMode) faultMode).getTimeToFaultPDFToString();
                 inputFaults.put(faultMode.getName(), keyValue);
             }
             dbDataObject.append("inputFaults", inputFaults);

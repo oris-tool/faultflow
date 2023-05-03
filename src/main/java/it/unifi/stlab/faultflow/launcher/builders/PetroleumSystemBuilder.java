@@ -25,10 +25,8 @@ import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPort;
 import it.unifi.stlab.faultflow.model.knowledge.composition.System;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class PetroleumSystemBuilder extends SystemBuilder {
 
@@ -75,29 +73,29 @@ public class PetroleumSystemBuilder extends SystemBuilder {
         // Definizione di Fault Mode Endogeni
 
         InternalFaultMode enFM_F1 = new InternalFaultMode("F1");
-        enFM_F1.setArisingPDF("exp(0.00004)");
+        enFM_F1.setTimeToFaultPDF("exp(0.00004)");
         InternalFaultMode enFM_F2 = new InternalFaultMode("F2");
-        enFM_F2.setArisingPDF("erlang(3,0.0002)");
+        enFM_F2.setTimeToFaultPDF("erlang(3,0.0002)");
         InternalFaultMode enFM_F3 = new InternalFaultMode("F3");
-        enFM_F3.setArisingPDF("exp(0.0001)");
+        enFM_F3.setTimeToFaultPDF("exp(0.0001)");
         InternalFaultMode enFM_F4 = new InternalFaultMode("F4");
-        enFM_F4.setArisingPDF("erlang(2,0.0002)");
+        enFM_F4.setTimeToFaultPDF("erlang(2,0.0002)");
         InternalFaultMode enFM_F5 = new InternalFaultMode("F5");
-        enFM_F5.setArisingPDF("exp(0.0001)");
+        enFM_F5.setTimeToFaultPDF("exp(0.0001)");
         InternalFaultMode enFM_F6 = new InternalFaultMode("F6");
-        enFM_F6.setArisingPDF("erlang(2,0.0001)");
+        enFM_F6.setTimeToFaultPDF("erlang(2,0.0001)");
         InternalFaultMode enFM_F7 = new InternalFaultMode("F7");
-        enFM_F7.setArisingPDF("exp(0.00008)");
+        enFM_F7.setTimeToFaultPDF("exp(0.00008)");
         InternalFaultMode enFM_F8 = new InternalFaultMode("F8");
-        enFM_F8.setArisingPDF("erlang(3,0.0001)");
+        enFM_F8.setTimeToFaultPDF("erlang(3,0.0001)");
         InternalFaultMode enFM_F9 = new InternalFaultMode("F9");
-        enFM_F9.setArisingPDF("exp(0.00006)");
+        enFM_F9.setTimeToFaultPDF("exp(0.00006)");
         InternalFaultMode enFM_F10 = new InternalFaultMode("F10");
-        enFM_F10.setArisingPDF("erlang(3,0.000015)");
+        enFM_F10.setTimeToFaultPDF("erlang(3,0.000015)");
         InternalFaultMode enFM_F11 = new InternalFaultMode("F11");
-        enFM_F11.setArisingPDF("exp(0.0001)");
+        enFM_F11.setTimeToFaultPDF("exp(0.0001)");
         InternalFaultMode enFM_F12 = new InternalFaultMode("F12");
-        enFM_F12.setArisingPDF("erlang(2,0.000015)");
+        enFM_F12.setTimeToFaultPDF("erlang(2,0.000015)");
 
         faultModes.put(enFM_F1.getName(), enFM_F1);
         faultModes.put(enFM_F2.getName(), enFM_F2);

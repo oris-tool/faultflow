@@ -63,7 +63,7 @@ public class Fault extends Event {
 
     public Fault(String description, InternalFaultMode faultMode) {
         super.setDescription(description);
-        BigDecimal timestamp = PDFParser.generateSample(faultMode.getArisingPDFToString());
+        BigDecimal timestamp = PDFParser.generateSample(faultMode.getTimeToFaultPDFToString());
         super.setTimestamp(timestamp);
         this.faultMode = faultMode;
 

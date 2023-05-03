@@ -27,7 +27,6 @@ import it.unifi.stlab.faultflow.model.knowledge.propagation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class FlightControlSystemBuilder extends SystemBuilder {
     private static FlightControlSystemBuilder single_instance;
@@ -81,60 +80,60 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         // Definizione di Fault Mode Endogeni
 
         InternalFaultMode enFM_F1 = new InternalFaultMode("F1");
-        enFM_F1.setArisingPDF("erlang(4,0.0008)");
+        enFM_F1.setTimeToFaultPDF("erlang(4,0.0008)");
         InternalFaultMode enFM_F2 = new InternalFaultMode("F2");
-        enFM_F2.setArisingPDF("erlang(2,0.0005)");
+        enFM_F2.setTimeToFaultPDF("erlang(2,0.0005)");
 
 
         //Definizione Internal Fault F3 F4 F13 F14
         InternalFaultMode enFM_F3 = new InternalFaultMode("F3");
-        enFM_F3.setArisingPDF("exp(0.00005)");
+        enFM_F3.setTimeToFaultPDF("exp(0.00005)");
         InternalFaultMode enFM_F4 = new InternalFaultMode("F4");
-        enFM_F4.setArisingPDF("erlang(2,0.00005)");
+        enFM_F4.setTimeToFaultPDF("erlang(2,0.00005)");
         InternalFaultMode enFM_F13 = new InternalFaultMode("F13");
-        enFM_F13.setArisingPDF("exp(0.0001)");
+        enFM_F13.setTimeToFaultPDF("exp(0.0001)");
         InternalFaultMode enFM_F14 = new InternalFaultMode("F14");
-        enFM_F14.setArisingPDF("erlang(4,0.0008)");
+        enFM_F14.setTimeToFaultPDF("erlang(4,0.0008)");
         //Fine Definizione
 
 
         InternalFaultMode enFM_F5 = new InternalFaultMode("F5");
-        enFM_F5.setArisingPDF("exp(0.00004)");
+        enFM_F5.setTimeToFaultPDF("exp(0.00004)");
         InternalFaultMode enFM_F6 = new InternalFaultMode("F6");
-        enFM_F6.setArisingPDF("erlang(2,0.00004)");
+        enFM_F6.setTimeToFaultPDF("erlang(2,0.00004)");
         InternalFaultMode enFM_F7 = new InternalFaultMode("F7");
-        enFM_F7.setArisingPDF("exp(0.0001)");
+        enFM_F7.setTimeToFaultPDF("exp(0.0001)");
         InternalFaultMode enFM_F8 = new InternalFaultMode("F8");
-        enFM_F8.setArisingPDF("erlang(2,0.00005)");
+        enFM_F8.setTimeToFaultPDF("erlang(2,0.00005)");
         InternalFaultMode enFM_F9 = new InternalFaultMode("F9");
-        enFM_F9.setArisingPDF("erlang(4,0.0008)");
+        enFM_F9.setTimeToFaultPDF("erlang(4,0.0008)");
         InternalFaultMode enFM_F10 = new InternalFaultMode("F10");
-        enFM_F10.setArisingPDF("erlang(2,0.0004)");
+        enFM_F10.setTimeToFaultPDF("erlang(2,0.0004)");
         InternalFaultMode enFM_F11 = new InternalFaultMode("F11");
-        enFM_F11.setArisingPDF("exp(0.0002)");
+        enFM_F11.setTimeToFaultPDF("exp(0.0002)");
         InternalFaultMode enFM_F12 = new InternalFaultMode("F12");
-        enFM_F12.setArisingPDF("erlang(2,0.00004)");
+        enFM_F12.setTimeToFaultPDF("erlang(2,0.00004)");
 
         InternalFaultMode enFM_F15 = new InternalFaultMode("F15");
-        enFM_F15.setArisingPDF("erlang(2,0.0005)");
+        enFM_F15.setTimeToFaultPDF("erlang(2,0.0005)");
         InternalFaultMode enFM_F16 = new InternalFaultMode("F16");
-        enFM_F16.setArisingPDF("exp(0.00005)");
+        enFM_F16.setTimeToFaultPDF("exp(0.00005)");
         InternalFaultMode enFM_F17 = new InternalFaultMode("F17");
-        enFM_F17.setArisingPDF("exp(0.0002)");
+        enFM_F17.setTimeToFaultPDF("exp(0.0002)");
         InternalFaultMode enFM_F18 = new InternalFaultMode("F18");
-        enFM_F18.setArisingPDF("erlang(4,0.0005)");
+        enFM_F18.setTimeToFaultPDF("erlang(4,0.0005)");
         InternalFaultMode enFM_F19 = new InternalFaultMode("F19");
-        enFM_F19.setArisingPDF("erlang(2,0.00004)");
+        enFM_F19.setTimeToFaultPDF("erlang(2,0.00004)");
         InternalFaultMode enFM_F20 = new InternalFaultMode("F20");
-        enFM_F20.setArisingPDF("exp(0.00004)");
+        enFM_F20.setTimeToFaultPDF("exp(0.00004)");
         InternalFaultMode enFM_F21 = new InternalFaultMode("F21");
-        enFM_F21.setArisingPDF("exp(0.0005)");
+        enFM_F21.setTimeToFaultPDF("exp(0.0005)");
         InternalFaultMode enFM_F22 = new InternalFaultMode("F22");
-        enFM_F22.setArisingPDF("erlang(2,0.00005)");
+        enFM_F22.setTimeToFaultPDF("erlang(2,0.00005)");
         InternalFaultMode enFM_F23 = new InternalFaultMode("F23");
-        enFM_F23.setArisingPDF("exp(0.0004)");
+        enFM_F23.setTimeToFaultPDF("exp(0.0004)");
         InternalFaultMode enFM_F24 = new InternalFaultMode("F24");
-        enFM_F24.setArisingPDF("erlang(2,0.00004)");
+        enFM_F24.setTimeToFaultPDF("erlang(2,0.00004)");
 
         faultModes.put(enFM_F1.getName(), enFM_F1);
         faultModes.put(enFM_F2.getName(), enFM_F2);

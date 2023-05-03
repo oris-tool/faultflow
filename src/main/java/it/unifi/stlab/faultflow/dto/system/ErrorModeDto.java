@@ -33,14 +33,14 @@ public class ErrorModeDto {
     private final String activationFunction;
     private final String outgoingFailure;
     private final List<FaultModeDto> inputFaultModes;
-    private final String timetofailurePDF;
+    private final String faultToFailurePDF;
 
     public ErrorModeDto(ErrorMode errorMode) {
         uuid = errorMode.getUuid();
         name = errorMode.getName();
         activationFunction = errorMode.getActivationFunction().toSimpleString();
         outgoingFailure = errorMode.getOutgoingFailure().getUuid();
-        timetofailurePDF = errorMode.getTimetofailurePDFToString();
+        faultToFailurePDF = errorMode.getFaultToFailurePDFToString();
         inputFaultModes = new ArrayList<>();
 
         for (FaultMode faultMode : errorMode.getInputFaultModes()) {
@@ -68,7 +68,7 @@ public class ErrorModeDto {
         return inputFaultModes;
     }
 
-    public String getTimetofailurePDF() {
-        return timetofailurePDF;
+    public String getFaultToFailurePDF() {
+        return faultToFailurePDF;
     }
 }

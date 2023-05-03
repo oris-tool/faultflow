@@ -71,8 +71,8 @@ public class ErrorMode extends BaseEntity {
     /**
      * Probability density failure that express the time before the propagation of the error mode to the failure mode
      */
-    @Column(name = "time_to_failure_pdf")
-    private String timetofailurePDF;
+    @Column(name = "fault_to_failure_pdf")
+    private String faultToFailurePDF;
 
     /**
      * Default constructor that sets an empty name for the error mode and initializes all the collections of fault modes
@@ -82,7 +82,7 @@ public class ErrorMode extends BaseEntity {
         inputFaultModes = new ArrayList<>();
         activationFunction = null;
         outgoingFailure = null;
-        timetofailurePDF = "";
+        faultToFailurePDF = "";
     }
 
     /**
@@ -96,7 +96,7 @@ public class ErrorMode extends BaseEntity {
         activationFunction = null;
         inputFaultModes = new ArrayList<>();
         outgoingFailure = null;
-        timetofailurePDF = "";
+        faultToFailurePDF = "";
     }
 
     /**
@@ -137,12 +137,12 @@ public class ErrorMode extends BaseEntity {
      * @param function         activation function (or enabling function) of the error mode, expressed as an instance of
      *                         {@link BooleanExpression}.
      * @param outgoingFailure  {@link FailureMode} instance that is activated after the error mode propagation
-     * @param timetofailurePDF {@link RealDistribution} expression that indicates the probability density function of
+     * @param faultToFailurePDF {@link RealDistribution} expression that indicates the probability density function of
      *                         the error mode propagation to its failure mode
      */
-    public ErrorMode(String name, BooleanExpression function, FailureMode outgoingFailure, RealDistribution timetofailurePDF) {
+    public ErrorMode(String name, BooleanExpression function, FailureMode outgoingFailure, RealDistribution faultToFailurePDF) {
         this(name, function, outgoingFailure);
-        this.timetofailurePDF = PDFParser.parseRealDistributionToString(timetofailurePDF);
+        this.faultToFailurePDF = PDFParser.parseRealDistributionToString(faultToFailurePDF);
     }
 
     /**
@@ -154,12 +154,12 @@ public class ErrorMode extends BaseEntity {
      * @param function         activation function (or enabling function) of the error mode, expressed as an instance of
      *                         {@link BooleanExpression}.
      * @param outgoingFailure  {@link FailureMode} instance that is activated after the error mode propagation
-     * @param timetofailurePDF {@link String} expression that indicates the probability density function of
+     * @param faultToFailurePDF {@link String} expression that indicates the probability density function of
      *                         the error mode propagation to its failure mode
      */
-    public ErrorMode(String name, BooleanExpression function, FailureMode outgoingFailure, String timetofailurePDF) {
+    public ErrorMode(String name, BooleanExpression function, FailureMode outgoingFailure, String faultToFailurePDF) {
         this(name, function, outgoingFailure);
-        setPDF(timetofailurePDF);
+        setPDF(faultToFailurePDF);
     }
 
     /**
@@ -240,8 +240,8 @@ public class ErrorMode extends BaseEntity {
      *
      * @return a {@link String} version of the time to failure probability density function
      */
-    public String getTimetofailurePDFToString() {
-        return timetofailurePDF;
+    public String getFaultToFailurePDFToString() {
+        return faultToFailurePDF;
     }
 
     /**
@@ -249,17 +249,17 @@ public class ErrorMode extends BaseEntity {
      *
      * @return a {@link RealDistribution} representation of the time to failure probability density function
      */
-    public RealDistribution getTimetofailurePDF() {
-        return PDFParser.parseStringToRealDistribution(timetofailurePDF);
+    public RealDistribution getFaultToFailurePDF() {
+        return PDFParser.parseStringToRealDistribution(faultToFailurePDF);
     }
 
     /**
      * Setter of the time to failure probability density function, in the form of string
      *
-     * @param timetofailurePDF a {@link String} version of the time to failure probability density function
+     * @param faultToFailurePDF a {@link String} version of the time to failure probability density function
      */
-    public void setPDF(String timetofailurePDF) {
-        this.timetofailurePDF = timetofailurePDF;
+    public void setPDF(String faultToFailurePDF) {
+        this.faultToFailurePDF = faultToFailurePDF;
     }
 
     /**

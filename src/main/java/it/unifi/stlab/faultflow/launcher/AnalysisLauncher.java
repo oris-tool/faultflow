@@ -44,7 +44,18 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
-public class ExamplesLauncher {
+/**
+ * Reproduces the examples shown in section 4.3 in the article. More specifically it calculates:
+ * - CDF with Sirio of GDBFailure1 with timeLimit 8000 and timeStep 2, printing the elapsed time and storing the result into a csv file (result-sirio-GDBFailure1.csv);
+ * - CDF with Sirio of IBFailure1 with timeLimit 8000 and timeStep 2, printing the elapsed time and storing the result into a csv file (result-sirio-IBFailure1.csv);
+ * - CDF with Pyramis of the top level Failure (GDSFailure1) with timeLimit 8000 and timeStep 2, printing the elapsed time and storing the result into a csv file (result-pyramis.csv);
+ * - Fussell-Vesely importance measure for every fault in the system with timeLimit 60000 and timeStep 4 and storing the result into a csv file (fussellvesely.csv);
+ * - Birnbaum importance measure for every fault in the system with timeLimit 60000 and timeStep 4 and storing the result into a csv file (birnbaum.csv);
+ *
+ * Each found can be found inside the "export" subdirectory.
+ */
+
+public class AnalysisLauncher {
 
     public static void main(String[] args) throws IOException {
         //Build Petroleum System
