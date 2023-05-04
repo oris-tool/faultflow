@@ -12,8 +12,11 @@ The most distinctive features of FaultFlow are:
 
 ## Experimental reproducibility
 
-Run the main method of AnalysisLauncher.java to analyze the SoS shown in Figure 6 of the paper and reproduce the results shown in Figure 4b (i.e., the .cvs files containing the distribution of the duration of the failure processes that determine Failure1 of component IB and Failure1 of component GDB), Figure 8c (i.e., the .csv file containing the distribution of the duration of the failure process of the entire SoS), Figure 10 (i.e., the .csv files containing the Birnbaum measures and the Fussell-Vesely measures of all internal faults). For the entire SoS, the minimal cut sets, shown in Table 1, are also provided. For each experiment, the execution time is also provided
-Run the main method of ScalabilityAnalysisLauncher.java to analyze the variants of the SoS shown in Figure 6 of the paper (which are described in Section 4.3 of the paper) and reproduce the results reported in Table 2 (i.e., the execution times needed to compute the time-to-failure CDF of the system, and the .csv files containing the Birnbaum measures and the Fussel-Vesely measure of all internal faults). For each model, the minimal cut sets are also provided.
+To support reproducibility of the experimental results reported in the paper, this repository contains the code that builds and evaluates the considered SoS, and the steps reported below illustrate how to repeat the experiments.
+
+- Run the main method of `faultflow/src/main/java/it/unifi/stlab/faultflow/launcher/AnalysisLauncher.java` to analyze the SoS shown in Figure 6 of the paper and reproduce the results shown in Figure 4b (i.e., the .cvs files containing the distribution of the duration of the failure processes that determine Failure1 of component IB and Failure1 of component GDB), Figure 8c (i.e., the .csv file containing the distribution of the duration of the failure process of the entire SoS), Figure 10 (i.e., the .csv files containing the Birnbaum measures and the Fussell-Vesely measures of all internal faults). For the entire SoS, the minimal cut sets, shown in Table 1, are also provided. For each experiment, the execution time is also provided.
+
+- Run the main method of `faultflow/src/main/java/it/unifi/stlab/faultflow/launcher/ScalabilityAnalysisLauncher.java` to analyze the variants of the SoS shown in Figure 6 of the paper (which are described in Section 4.3 of the paper) and reproduce the results reported in Table 2 (i.e., the execution times needed to compute the time-to-failure CDF of the system, and the .csv files containing the Birnbaum measures and the Fussel-Vesely measure of all internal faults). For each model, the minimal cut sets are also provided.
 
 ## Installation
 
