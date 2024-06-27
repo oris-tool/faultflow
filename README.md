@@ -18,7 +18,7 @@ To support reproducibility of the experimental results reported in the paper, th
 
 - Run the main method of `faultflow/src/main/java/it/unifi/stlab/faultflow/launcher/ScalabilityAnalysisLauncher.java` to analyze the variants of the system shown in Figure 6 of the paper (which are described in Section 4.3 of the paper) and reproduce the results reported in Table 2 (i.e., the execution times needed to compute the time-to-failure CDF of the system, and the .csv files containing the Birnbaum measures and the Fussell-Vesely measure of all internal faults). For each model, the minimal cut sets are also provided.
 
-- Run the main method of `faultflow/src/main/java/it/unifi/stlab/faultflow/launcher/PressureTankAnalysisLauncher.java` to analyze the variants of the system shown in Figure 12.a and 12.b of the paper (which are described in Section 5.1 of the paper) and reproduce the results reported in Fig 12.c (i.e., the .csv files containing the Birnbaum measures and the Fussell-Vesely measure of all internal faults). For each model, the minimal cut sets are also provided.
+- Run the main method of `faultflow/src/main/java/it/unifi/stlab/faultflow/launcher/PressureTankAnalysisLauncher.java` to analyze the variants of the system shown in Figure 12a and 12b of the paper (which are described in Section 5.1 of the paper) and reproduce the results reported in Figures 12.c and 12d (i.e., the .csv files containing the Birnbaum measures and the Fussell-Vesely measure of all internal faults). For each model, the minimal cut sets are also provided.
 
 
 ## Installation
