@@ -27,7 +27,7 @@ import it.unifi.stlab.faultflow.analysis.PetriNetAnalyzer;
 import it.unifi.stlab.faultflow.analysis.PetriNetReducer;
 import it.unifi.stlab.faultflow.exporter.PetriNetExportMethod;
 import it.unifi.stlab.faultflow.launcher.builders.PetroleumSystemBuilder;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.translator.PetriNetTranslator;
 import it.unifi.stlab.transformation.HSMPParser;
@@ -59,7 +59,7 @@ public class AnalysisLauncher {
 
     public static void main(String[] args) throws IOException {
         //Build Petroleum System
-        System s = PetroleumSystemBuilder.getInstance().getSystem();
+        SystemType s = PetroleumSystemBuilder.getInstance().getSystem();
 
         //Analysis parameters
         double timeLimit = 8000;
@@ -80,7 +80,7 @@ public class AnalysisLauncher {
         birnbaum(s, errorMode, timeAnalysis, imStep);
     }
 
-    public static void sirioAnalysis(String failureName, System s, double timeLimit, double timeStep, double error) throws IOException {
+    public static void sirioAnalysis(String failureName, SystemType s, double timeLimit, double timeStep, double error) throws IOException {
         //Reduce Petri Net
         PetriNetTranslator pnt = new PetriNetTranslator();
         pnt.translate(s, PetriNetExportMethod.FAULT_ANALYSIS);
@@ -106,7 +106,7 @@ public class AnalysisLauncher {
         writer.close();
     }
 
-    private static void pyramisAnalysis(System s, ErrorMode errorMode, double timeLimit, double timeStep) throws IOException {
+    public static void pyramisAnalysis(SystemType s, ErrorMode errorMode, double timeLimit, double timeStep) throws IOException {
         TreeParser treeParser = new TreeParser(s);
         HSMP hsmp = HSMPParser.parseTree(treeParser.createTree(errorMode));
         HierarchicalSMPAnalysis analysis = new HierarchicalSMPAnalysis(hsmp, 0);
@@ -128,7 +128,7 @@ public class AnalysisLauncher {
         writer.close();
     }
 
-    private static void fussellVesely(System s, ErrorMode errorMode, int timeAnalysis, double timeStep) throws IOException {
+    public static void fussellVesely(SystemType s, ErrorMode errorMode, int timeAnalysis, double timeStep) throws IOException {
         ImportanceMeasure importanceMeasure = new ImportanceMeasure();
         FileWriter writer = new FileWriter("export/fussellvesely.csv");
         writer.append("Fussell-Vesely Importance Measure Result of Errormode " + errorMode.getName() + "\n");
@@ -142,7 +142,7 @@ public class AnalysisLauncher {
         writer.close();
     }
 
-    private static void birnbaum(System s, ErrorMode errorMode, int timeAnalysis, double timeStep) throws IOException {
+    public static void birnbaum(SystemType s, ErrorMode errorMode, int timeAnalysis, double timeStep) throws IOException {
         ImportanceMeasure importanceMeasure = new ImportanceMeasure();
         FileWriter writer = new FileWriter("export/birnbaum.csv");
         writer.append("Birnbaum Importance Measure Result of Errormode " + errorMode.getName() + "\n");

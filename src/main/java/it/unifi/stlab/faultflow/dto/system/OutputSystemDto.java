@@ -21,8 +21,8 @@
 package it.unifi.stlab.faultflow.dto.system;
 
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class OutputSystemDto {
     private final List<ComponentDto> components;
     private final String topLevelComponent;
 
-    public OutputSystemDto(System system) {
+    public OutputSystemDto(SystemType system) {
         uuid = system.getUuid();
         name = system.getName();
         manufacturer = system.getManufacturer();
@@ -43,8 +43,8 @@ public class OutputSystemDto {
         topLevelComponent = system.getTopLevelComponent().getUuid();
         components = new ArrayList<>();
 
-        for (Component component : system.getComponents()) {
-            components.add(new ComponentDto(component));
+        for (ComponentType componentType : system.getComponents()) {
+            components.add(new ComponentDto(componentType));
         }
     }
 

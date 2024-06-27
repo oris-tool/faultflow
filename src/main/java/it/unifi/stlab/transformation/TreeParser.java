@@ -20,7 +20,7 @@
 
 package it.unifi.stlab.transformation;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.*;
 import it.unifi.stlab.transformation.faulttree.*;
 import it.unifi.stlab.transformation.utils.ActivationFunctionParser;
@@ -32,11 +32,11 @@ public class TreeParser {
     private final Map<String, FaultMode> faults;
     private final Map<FailureMode, ErrorMode> errorModes;
     private final Map<String, ErrorMode> activationFunctions;
-    private final List<PropagationPort> propagations;
+    private final List<PropagationPortType> propagations;
     private final List<FaultMode> alreadyVisitedFaults;
-    private final System system;
+    private final SystemType system;
 
-    public TreeParser(System system) {
+    public TreeParser(SystemType system) {
         faults = new HashMap<>();
         errorModes = new HashMap<>();
         propagations = new ArrayList<>();
@@ -115,7 +115,7 @@ public class TreeParser {
                     case "AND":
                         if (errorMode != null) {
                             gate = new AND(activationFunctions.get(entity));
-                            PropagationPort pp = getPropagationPortFromFailureMode(errorMode.getOutgoingFailure());
+                            PropagationPortType pp = getPropagationPortFromFailureMode(errorMode.getOutgoingFailure());
                             if(pp != null)
                                 gate.setRoutingProbability(pp.getRoutingProbability().doubleValue());
                             else
@@ -127,7 +127,7 @@ public class TreeParser {
                     case "OR":
                         if (errorMode != null) {
                             gate = new OR(activationFunctions.get(entity));
-                            PropagationPort pp = getPropagationPortFromFailureMode(errorMode.getOutgoingFailure());
+                            PropagationPortType pp = getPropagationPortFromFailureMode(errorMode.getOutgoingFailure());
                             if(pp != null)
                                 gate.setRoutingProbability(pp.getRoutingProbability().doubleValue());
                             else
@@ -167,18 +167,18 @@ public class TreeParser {
      * Private utility method used to retrieve the failure mode that propagates to a given external fault mode
      */
     private FailureMode getFailureModeFromPropagation(ExternalFaultMode externalFaultMode) {
-        for (PropagationPort propagationPort : propagations) {
-            if (propagationPort.getExternalFaultMode().equals(externalFaultMode))
-                return propagationPort.getPropagatedFailureMode();
+        for (PropagationPortType propagationPortType : propagations) {
+            if (propagationPortType.getExternalFaultMode().equals(externalFaultMode))
+                return propagationPortType.getPropagatedFailureMode();
         }
 
         return null;
     }
 
-    private PropagationPort getPropagationPortFromFailureMode(FailureMode failureMode){
-        for (PropagationPort propagationPort : propagations) {
-            if (propagationPort.getPropagatedFailureMode().equals(failureMode))
-                return propagationPort;
+    private PropagationPortType getPropagationPortFromFailureMode(FailureMode failureMode){
+        for (PropagationPortType propagationPortType : propagations) {
+            if (propagationPortType.getPropagatedFailureMode().equals(failureMode))
+                return propagationPortType;
         }
         return null;
     }

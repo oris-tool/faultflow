@@ -20,9 +20,9 @@
 
 package it.unifi.stlab.faultflow.launcher.builders;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
-import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPort;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPortType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.*;
 
 import java.util.ArrayList;
@@ -36,38 +36,38 @@ public class PetroleumSystemBuilder extends SystemBuilder {
         faultModes = new HashMap<>();
         failureModes = new HashMap<>();
         errorModes = new HashMap<>();
-        propagationPorts = new ArrayList<>();
+        propagationPortTypes = new ArrayList<>();
 
         // Definizione composizione del sistema
 
-        system = new System("PetroleumSystem_SYS");
+        system = new SystemType("PetroleumSystem_SYS");
         //Component petroleumSystem = new Component("PetroleumSystem");
-        Component gasDetectionSystem = new Component("GasDetectionSystem");
-        Component gasDetectorA = new Component("GasDetectorA");
-        Component gasDetectorB = new Component("GasDetectorB");
-        Component gasDetectorC = new Component("GasDetectorC");
-        Component initiatorA = new Component("InitiatorA");
-        Component initiatorB = new Component("InitiatorB");
-        Component initiatorC = new Component("InitiatorC");
+        ComponentType gasDetectionSystem = new ComponentType("GasDetectionSystem");
+        ComponentType gasDetectorA = new ComponentType("GasDetectorA");
+        ComponentType gasDetectorB = new ComponentType("GasDetectorB");
+        ComponentType gasDetectorC = new ComponentType("GasDetectorC");
+        ComponentType initiatorA = new ComponentType("InitiatorA");
+        ComponentType initiatorB = new ComponentType("InitiatorB");
+        ComponentType initiatorC = new ComponentType("InitiatorC");
 
         system.addComponent(gasDetectionSystem,
                 gasDetectorA, gasDetectorB, gasDetectorC,
                 initiatorA, initiatorB, initiatorC);
         system.setTopLevelComponent(gasDetectionSystem);
 
-        CompositionPort cp1 = new CompositionPort(gasDetectorA, gasDetectionSystem);
-        CompositionPort cp2 = new CompositionPort(gasDetectorB, gasDetectionSystem);
-        CompositionPort cp3 = new CompositionPort(gasDetectorC, gasDetectionSystem);
+        CompositionPortType cp1 = new CompositionPortType(gasDetectorA, gasDetectionSystem);
+        CompositionPortType cp2 = new CompositionPortType(gasDetectorB, gasDetectionSystem);
+        CompositionPortType cp3 = new CompositionPortType(gasDetectorC, gasDetectionSystem);
 
         gasDetectionSystem.addCompositionPorts(cp1, cp2, cp3);
 
-        CompositionPort cp4 = new CompositionPort(initiatorA, gasDetectorA);
+        CompositionPortType cp4 = new CompositionPortType(initiatorA, gasDetectorA);
         gasDetectorA.addCompositionPorts(cp4);
 
-        CompositionPort cp5 = new CompositionPort(initiatorB, gasDetectorB);
+        CompositionPortType cp5 = new CompositionPortType(initiatorB, gasDetectorB);
         gasDetectorB.addCompositionPorts(cp5);
 
-        CompositionPort cp6 = new CompositionPort(initiatorC, gasDetectorC);
+        CompositionPortType cp6 = new CompositionPortType(initiatorC, gasDetectorC);
         gasDetectorC.addCompositionPorts(cp6);
 
         // Definizione di Fault Mode Endogeni
@@ -208,23 +208,23 @@ public class PetroleumSystemBuilder extends SystemBuilder {
         gasDetectionSystem.addErrorMode(eM_GDSOR1);
 
         initiatorA.addPropagationPort(
-                new PropagationPort(fM_IAF1, exFM_GDAEF1, gasDetectorA));
-        propagationPorts.addAll(initiatorA.getPropagationPorts());
+                new PropagationPortType(fM_IAF1, exFM_GDAEF1, gasDetectorA));
+        propagationPortTypes.addAll(initiatorA.getPropagationPorts());
         initiatorB.addPropagationPort(
-                new PropagationPort(fM_IBF1, exFM_GDBEF1, gasDetectorB));
-        propagationPorts.addAll(initiatorB.getPropagationPorts());
+                new PropagationPortType(fM_IBF1, exFM_GDBEF1, gasDetectorB));
+        propagationPortTypes.addAll(initiatorB.getPropagationPorts());
         initiatorC.addPropagationPort(
-                new PropagationPort(fM_ICF1, exFM_GDCEF1, gasDetectorC));
-        propagationPorts.addAll(initiatorC.getPropagationPorts());
+                new PropagationPortType(fM_ICF1, exFM_GDCEF1, gasDetectorC));
+        propagationPortTypes.addAll(initiatorC.getPropagationPorts());
         gasDetectorA.addPropagationPort(
-                new PropagationPort(fM_GDAF1, exFM_GDSEF1, gasDetectionSystem));
-        propagationPorts.addAll(gasDetectorA.getPropagationPorts());
+                new PropagationPortType(fM_GDAF1, exFM_GDSEF1, gasDetectionSystem));
+        propagationPortTypes.addAll(gasDetectorA.getPropagationPorts());
         gasDetectorB.addPropagationPort(
-                new PropagationPort(fM_GDBF1, exFM_GDSEF2, gasDetectionSystem));
-        propagationPorts.addAll(gasDetectorB.getPropagationPorts());
+                new PropagationPortType(fM_GDBF1, exFM_GDSEF2, gasDetectionSystem));
+        propagationPortTypes.addAll(gasDetectorB.getPropagationPorts());
         gasDetectorC.addPropagationPort(
-                new PropagationPort(fM_GDCF1, exFM_GDSEF3, gasDetectionSystem));
-        propagationPorts.addAll(gasDetectorC.getPropagationPorts());
+                new PropagationPortType(fM_GDCF1, exFM_GDSEF3, gasDetectionSystem));
+        propagationPortTypes.addAll(gasDetectorC.getPropagationPorts());
 
     }
 
@@ -236,7 +236,7 @@ public class PetroleumSystemBuilder extends SystemBuilder {
         return single_instance;
     }
 
-    public System getSystem() {
+    public SystemType getSystem() {
         return system;
     }
 }

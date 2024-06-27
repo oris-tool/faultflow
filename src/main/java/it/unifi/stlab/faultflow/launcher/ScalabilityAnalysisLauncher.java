@@ -26,7 +26,7 @@ import it.unifi.hierarchical.model.HSMP;
 import it.unifi.stlab.faultflow.dto.inputsystemdto.InputSystemDto;
 import it.unifi.stlab.faultflow.mapper.FaultTreeMapper;
 import it.unifi.stlab.faultflow.mapper.SystemMapper;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.transformation.HSMPParser;
 import it.unifi.stlab.transformation.TreeParser;
@@ -57,7 +57,7 @@ public class ScalabilityAnalysisLauncher {
         for (String file : files) {
 
             InputSystemDto inputSystemDto = gson.fromJson(new FileReader("examples/" + file + ".json"), InputSystemDto.class);
-            System sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
+            SystemType sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
             FaultTreeMapper.decorateSystem(inputSystemDto.getFaultTree(), sys);
 
             calculateCDF(sys, timeStep, timeLimit);
@@ -66,7 +66,7 @@ public class ScalabilityAnalysisLauncher {
         java.lang.System.out.println("\n\nCALCULATE BIRNBAUM IMPORTANCE MEASURE: ");
         for (String file : files) {
             InputSystemDto inputSystemDto = gson.fromJson(new FileReader("examples/" + file + ".json"), InputSystemDto.class);
-            System sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
+            SystemType sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
             FaultTreeMapper.decorateSystem(inputSystemDto.getFaultTree(), sys);
 
             calculateBirnbaum(sys, timeStep, timeLimit);
@@ -74,14 +74,14 @@ public class ScalabilityAnalysisLauncher {
         java.lang.System.out.println("\n\nCALCULATE FUSSELL-VESELY IMPORTANCE MEASURE: ");
         for (String file : files) {
             InputSystemDto inputSystemDto = gson.fromJson(new FileReader("examples/" + file + ".json"), InputSystemDto.class);
-            System sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
+            SystemType sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
             FaultTreeMapper.decorateSystem(inputSystemDto.getFaultTree(), sys);
 
             calculateFussellVesely(sys, timeStep, timeLimit);
         }
     }
 
-    private static void calculateCDF(System sys, double timeStep, double timeLimit) {
+    private static void calculateCDF(SystemType sys, double timeStep, double timeLimit) {
         TreeParser treeParser = new TreeParser(sys);
         ErrorMode errorMode = sys.getTopLevelComponent().getErrorModes().get(0);
 
@@ -96,7 +96,7 @@ public class ScalabilityAnalysisLauncher {
 
     }
 
-    private static void calculateFussellVesely(System sys, double timeStep, double timeLimit) {
+    private static void calculateFussellVesely(SystemType sys, double timeStep, double timeLimit) {
         ErrorMode errorMode = sys.getTopLevelComponent().getErrorModes().get(0);
         ImportanceMeasure importanceMeasure = new ImportanceMeasure();
         java.lang.System.out.println("-- " + sys.getTopLevelComponent().getName() + " model --");
@@ -105,7 +105,7 @@ public class ScalabilityAnalysisLauncher {
 
     }
 
-    private static void calculateBirnbaum(System sys, double timeStep, double timeLimit) {
+    private static void calculateBirnbaum(SystemType sys, double timeStep, double timeLimit) {
         ErrorMode errorMode = sys.getTopLevelComponent().getErrorModes().get(0);
         ImportanceMeasure importanceMeasure = new ImportanceMeasure();
         java.lang.System.out.println("-- " + sys.getTopLevelComponent().getName() + " model --");

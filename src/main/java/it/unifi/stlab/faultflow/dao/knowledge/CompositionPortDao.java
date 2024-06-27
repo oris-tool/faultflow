@@ -21,7 +21,7 @@
 package it.unifi.stlab.faultflow.dao.knowledge;
 
 import it.unifi.stlab.faultflow.dao.BaseDao;
-import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPort;
+import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPortType;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -30,14 +30,14 @@ import java.util.List;
 
 @Dependent
 @Default
-public class CompositionPortDao extends BaseDao<CompositionPort> {
+public class CompositionPortDao extends BaseDao<CompositionPortType> {
 
     @Inject
     public CompositionPortDao() {
-        super(CompositionPort.class);
+        super(CompositionPortType.class);
     }
 
-    public List<CompositionPort> getAll() {
-        return entityManager.createQuery("SELECT cp FROM CompositionPort cp", CompositionPort.class).getResultList();
+    public List<CompositionPortType> getAll() {
+        return entityManager.createQuery("SELECT cp FROM CompositionPort cp", CompositionPortType.class).getResultList();
     }
 }

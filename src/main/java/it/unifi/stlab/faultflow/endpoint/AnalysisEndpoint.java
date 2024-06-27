@@ -20,6 +20,9 @@
 
 package it.unifi.stlab.faultflow.endpoint;
 
+import it.unifi.hierarchical.analysis.HierarchicalSMPAnalysis;
+import it.unifi.hierarchical.analysis.NumericalValues;
+import it.unifi.hierarchical.model.HSMP;
 import it.unifi.stlab.faultflow.dao.knowledge.ErrorModeDao;
 import it.unifi.stlab.faultflow.dao.knowledge.SystemDao;
 import it.unifi.stlab.faultflow.dto.analysis.CutsetCalculationDTO;
@@ -28,19 +31,16 @@ import it.unifi.stlab.faultflow.dto.analysis.ImportanceMeasureDTO;
 import it.unifi.stlab.faultflow.dto.analysis.TFLResultsDTO;
 import it.unifi.stlab.faultflow.endpoint.exception.NoEntityFoundException;
 import it.unifi.stlab.faultflow.endpoint.response.NotFoundResponse;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.FaultMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.InternalFaultMode;
-import it.unifi.hierarchical.analysis.NumericalValues;
-import it.unifi.hierarchical.model.HSMP;
 import it.unifi.stlab.transformation.HSMPParser;
 import it.unifi.stlab.transformation.TreeParser;
 import it.unifi.stlab.transformation.faulttree.BasicEvent;
 import it.unifi.stlab.transformation.faulttree.BasicEventsFinder;
 import it.unifi.stlab.transformation.faulttree.Node;
 import it.unifi.stlab.transformation.faulttree.TreeNodeChanger;
-import it.unifi.hierarchical.analysis.HierarchicalSMPAnalysis;
 import it.unifi.stlab.transformation.minimalcutset.MOCUSEngine;
 import it.unifi.stlab.transformation.minimalcutset.MinimalCutSet;
 
@@ -93,7 +93,7 @@ public class AnalysisEndpoint {
                                          @QueryParam("measure") String measure,
                                          @QueryParam("timeStep") double timestep,
                                          @QueryParam("time") int time) {
-        System system = systemDao.findById(systemUUID);
+        SystemType system = systemDao.findById(systemUUID);
         ErrorMode errorMode = errorModeDao.findById(errorModeUUID);
 
         if (system == null)
@@ -277,7 +277,7 @@ public class AnalysisEndpoint {
      * of the activation function of an error mode.
      */
     private Node getTreeFromSystemErrorMode(String systemUUID, String errorModeUUID) throws NoEntityFoundException {
-        System system = systemDao.findById(systemUUID);
+        SystemType system = systemDao.findById(systemUUID);
         ErrorMode errorMode = errorModeDao.findById(errorModeUUID);
 
         if (system == null)
@@ -295,7 +295,7 @@ public class AnalysisEndpoint {
      * iteration to calculate the CDF by causing the top event only with the fault modes in the minimal cutset. It then
      * returns a Map to associate each cutset to an array of doubles representing the CDF over time
      */
-    private Map<List<String>, double[]> calculateMCSCDF(List<MinimalCutSet> minimalCutSets, System system,
+    private Map<List<String>, double[]> calculateMCSCDF(List<MinimalCutSet> minimalCutSets, SystemType system,
                                                         ErrorMode errorMode, double timeStep, int time) {
         TreeParser treeParser = new TreeParser(system);
         Map<List<String>, double[]> cdfValues = new HashMap<>();

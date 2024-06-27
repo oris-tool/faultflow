@@ -20,9 +20,9 @@ for filename in files:
         response = json.loads(r.text)
         system_uuid = response["uuid"]
 
-        for component in response["components"]:
-            if component['name'] == "GasDetectionSystem":
-                error_uuid = component["errorModes"][0]["uuid"]
+        for componentType in response["componentTypes"]:
+            if componentType['name'] == "GasDetectionSystem":
+                error_uuid = componentType["errorModes"][0]["uuid"]
                 break
 
     URL = "http://faultflow-2point0.unifi.it/rest/analysis/pyramisCDF"

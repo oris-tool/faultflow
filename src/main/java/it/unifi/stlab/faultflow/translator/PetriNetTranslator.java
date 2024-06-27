@@ -21,8 +21,8 @@
 package it.unifi.stlab.faultflow.translator;
 
 import it.unifi.stlab.faultflow.exporter.PetriNetExportMethod;
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.*;
 import it.unifi.stlab.faultflow.model.operational.Error;
 import it.unifi.stlab.faultflow.model.operational.Event;
@@ -64,15 +64,15 @@ public class PetriNetTranslator implements Translator {
         return Character.toString(placeName.charAt(0)).toLowerCase() + placeName.substring(1);
     }
 
-    public void translate(System system, PetriNetExportMethod method) {
+    public void translate(SystemType system, PetriNetExportMethod method) {
         this.sysName = system.getName();
         //First add ErrorModes to the net, thus the ErrorMode and its outgoing failure become places and
         //between them there's a transition with the ErrorMode's enabling function
         Place a, b;
         Transition t;
         int k = 1;
-        for (Component component : system.getComponents()) {
-            for (ErrorMode e : component.getErrorModes()) {
+        for (ComponentType componentType : system.getComponents()) {
+            for (ErrorMode e : componentType.getErrorModes()) {
                 //add ErrorMode and its failureMode
                 a = net.addPlace(e.getName());
                 b = net.addPlace(e.getOutgoingFailure().getDescription());
@@ -110,8 +110,8 @@ public class PetriNetTranslator implements Translator {
                 }
             }
             //cycle through propPorts to connect propagatedFailureMode to its externalFaultModeS
-            if (!component.getPropagationPorts().isEmpty()) {
-                for (PropagationPort pp : component.getPropagationPorts()) {
+            if (!componentType.getPropagationPorts().isEmpty()) {
+                for (PropagationPortType pp : componentType.getPropagationPorts()) {
                     a = net.getPlace(pp.getPropagatedFailureMode().getDescription());
                     b = net.addPlace(pp.getExternalFaultMode().getName());
                     t = net.getTransition(a.getName() + "toFaults");
@@ -145,7 +145,7 @@ public class PetriNetTranslator implements Translator {
         }
     }
 
-    public void translate(System system) {
+    public void translate(SystemType system) {
         translate(system, PetriNetExportMethod.FAULT_ANALYSIS);
     }
 

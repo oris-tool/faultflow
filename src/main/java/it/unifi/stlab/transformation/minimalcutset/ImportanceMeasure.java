@@ -20,10 +20,10 @@
 
 package it.unifi.stlab.transformation.minimalcutset;
 
-import it.unifi.hierarchical.analysis.NumericalValues;
 import it.unifi.hierarchical.analysis.HierarchicalSMPAnalysis;
+import it.unifi.hierarchical.analysis.NumericalValues;
 import it.unifi.hierarchical.model.HSMP;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.FaultMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.InternalFaultMode;
@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 
 public class ImportanceMeasure {
 
-    public Map<String, double[]> getImportanceMeasure(System system, ErrorMode errorMode, String measure,
+    public Map<String, double[]> getImportanceMeasure(SystemType system, ErrorMode errorMode, String measure,
                                                       double timeStep, int time) {
         // Create the fault tree given the system and its error mode of interest
         TreeParser treeParser = new TreeParser(system);
@@ -95,7 +95,7 @@ public class ImportanceMeasure {
 
             Date end = new Date(); // Saves the ending time of the calculation...
             long elapsedAnalysisTime = end.getTime() - start.getTime(); // ...and calculates the delta to get the corresponding computation time
-            java.lang.System.out.println("Fussel Vesely time: " + elapsedAnalysisTime +" ms\n");
+            java.lang.System.out.println("Fussell Vesely time: " + elapsedAnalysisTime +" ms\n");
         } else if (measure.equals("birnbaum")) {
             Date start = new Date();
 
@@ -160,7 +160,7 @@ public class ImportanceMeasure {
      * iteration to calculate the CDF by causing the top event only with the fault modes in the minimal cutset. It then
      * returns a Map to associate each cutset to an array of doubles representing the CDF over time
      */
-    private Map<List<String>, double[]> calculateMCSCDF(List<MinimalCutSet> minimalCutSets, System system,
+    private Map<List<String>, double[]> calculateMCSCDF(List<MinimalCutSet> minimalCutSets, SystemType system,
                                                         ErrorMode errorMode, double timeStep, int time) {
         TreeParser treeParser = new TreeParser(system);
         Map<List<String>, double[]> cdfValues = new HashMap<>();

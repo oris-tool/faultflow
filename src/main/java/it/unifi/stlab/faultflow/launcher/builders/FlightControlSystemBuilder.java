@@ -20,9 +20,9 @@
 
 package it.unifi.stlab.faultflow.launcher.builders;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
-import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPort;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPortType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.*;
 
 import java.util.ArrayList;
@@ -35,46 +35,46 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         faultModes = new HashMap<>();
         failureModes = new HashMap<>();
         errorModes = new HashMap<>();
-        propagationPorts = new ArrayList<>();
+        propagationPortTypes = new ArrayList<>();
 
         // Definizione composizione del sistema
 
-        system = new System("FlightControlSystem_SYS");
-        Component flightControlSystem = new Component("FlightControlSystem");
-        Component leadingEdgeFlap = new Component("LeadingEdgeFlap");
-        Component leftAsymmetricControlUnit = new Component("LeftAsymmetricControlUnit");
-        Component rightAsymmetricControlUnit = new Component("RightAsymmetricControlUnit");
-        Component leftLeadingEdgeFlap = new Component("LeftLeadingEdgeFlap");
-        Component rightLeadingEdgeFlap = new Component("RightLeadingEdgeFlap");
-        Component leftServoDriveUnit = new Component("LeftServoDriveUnit");
-        Component rightServoDriveUnit = new Component("RightServoDriveUnit");
-        Component flightControlComponentA = new Component("FlightControlComponentA");
-        Component flightControlComponentB = new Component("FlightControlComponentB");
+        system = new SystemType("FlightControlSystem_SYS");
+        ComponentType flightControlSystem = new ComponentType("FlightControlSystem");
+        ComponentType leadingEdgeFlap = new ComponentType("LeadingEdgeFlap");
+        ComponentType leftAsymmetricControlUnit = new ComponentType("LeftAsymmetricControlUnit");
+        ComponentType rightAsymmetricControlUnit = new ComponentType("RightAsymmetricControlUnit");
+        ComponentType leftLeadingEdgeFlap = new ComponentType("LeftLeadingEdgeFlap");
+        ComponentType rightLeadingEdgeFlap = new ComponentType("RightLeadingEdgeFlap");
+        ComponentType leftServoDriveUnit = new ComponentType("LeftServoDriveUnit");
+        ComponentType rightServoDriveUnit = new ComponentType("RightServoDriveUnit");
+        ComponentType flightControlComponentTypeA = new ComponentType("FlightControlComponentA");
+        ComponentType flightControlComponentTypeB = new ComponentType("FlightControlComponentB");
         system.addComponent(flightControlSystem,
                 leadingEdgeFlap,
                 leftAsymmetricControlUnit, rightAsymmetricControlUnit, leftLeadingEdgeFlap, rightLeadingEdgeFlap,
                 leftServoDriveUnit, rightServoDriveUnit,
-                flightControlComponentA, flightControlComponentB);
+                flightControlComponentTypeA, flightControlComponentTypeB);
         system.setTopLevelComponent(flightControlSystem);
 
 
-        CompositionPort cp1 = new CompositionPort(leadingEdgeFlap, flightControlSystem);
+        CompositionPortType cp1 = new CompositionPortType(leadingEdgeFlap, flightControlSystem);
         flightControlSystem.addCompositionPorts(cp1);
 
-        CompositionPort cp2 = new CompositionPort(leftAsymmetricControlUnit, leadingEdgeFlap);
-        CompositionPort cp3 = new CompositionPort(rightAsymmetricControlUnit, leadingEdgeFlap);
-        CompositionPort cp4 = new CompositionPort(leftLeadingEdgeFlap, leadingEdgeFlap);
-        CompositionPort cp5 = new CompositionPort(rightLeadingEdgeFlap, leadingEdgeFlap);
+        CompositionPortType cp2 = new CompositionPortType(leftAsymmetricControlUnit, leadingEdgeFlap);
+        CompositionPortType cp3 = new CompositionPortType(rightAsymmetricControlUnit, leadingEdgeFlap);
+        CompositionPortType cp4 = new CompositionPortType(leftLeadingEdgeFlap, leadingEdgeFlap);
+        CompositionPortType cp5 = new CompositionPortType(rightLeadingEdgeFlap, leadingEdgeFlap);
         leadingEdgeFlap.addCompositionPorts(cp2, cp3, cp4, cp5);
 
-        CompositionPort cp6 = new CompositionPort(leftServoDriveUnit, leftLeadingEdgeFlap);
+        CompositionPortType cp6 = new CompositionPortType(leftServoDriveUnit, leftLeadingEdgeFlap);
         leftLeadingEdgeFlap.addCompositionPorts(cp6);
-        CompositionPort cp7 = new CompositionPort(rightServoDriveUnit, rightLeadingEdgeFlap);
+        CompositionPortType cp7 = new CompositionPortType(rightServoDriveUnit, rightLeadingEdgeFlap);
         rightLeadingEdgeFlap.addCompositionPorts(cp7);
 
-        CompositionPort cp8 = new CompositionPort(flightControlComponentA, leftServoDriveUnit);
+        CompositionPortType cp8 = new CompositionPortType(flightControlComponentTypeA, leftServoDriveUnit);
         leftServoDriveUnit.addCompositionPorts(cp8);
-        CompositionPort cp9 = new CompositionPort(flightControlComponentB, rightServoDriveUnit);
+        CompositionPortType cp9 = new CompositionPortType(flightControlComponentTypeB, rightServoDriveUnit);
         rightServoDriveUnit.addCompositionPorts(cp9);
 
         // Definizione di Fault Mode Endogeni
@@ -204,7 +204,7 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         errorModes.put(eM_fccaOR1.getName(), eM_fccaOR1);
         failureModes.put(fM_FCCAF1.getDescription(), fM_FCCAF1);
 
-        flightControlComponentA.addErrorMode(eM_fccaOR1);
+        flightControlComponentTypeA.addErrorMode(eM_fccaOR1);
 
         //Definizione di FCCA Failure 2
 
@@ -217,7 +217,7 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         errorModes.put(eM_fccaAND1.getName(), eM_fccaAND1);
         failureModes.put(fM_FCCAF2.getDescription(), fM_FCCAF2);
 
-        flightControlComponentA.addErrorMode(eM_fccaAND1);
+        flightControlComponentTypeA.addErrorMode(eM_fccaAND1);
 
         //Fine Definizione
 
@@ -231,7 +231,7 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         errorModes.put(eM_fccaAND2.getName(), eM_fccaAND2);
         failureModes.put(fM_FCCAF3.getDescription(), fM_FCCAF3);
 
-        flightControlComponentA.addErrorMode(eM_fccaAND2);
+        flightControlComponentTypeA.addErrorMode(eM_fccaAND2);
 
         FailureMode fM_FCCBF2 = new FailureMode("Fccb2Failure");
         ErrorMode eM_fccbOR1 = new ErrorMode("fccbOR1");
@@ -242,7 +242,7 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         errorModes.put(eM_fccbOR1.getName(), eM_fccbOR1);
         failureModes.put(fM_FCCBF2.getDescription(), fM_FCCBF2);
 
-        flightControlComponentB.addErrorMode(eM_fccbOR1);
+        flightControlComponentTypeB.addErrorMode(eM_fccbOR1);
 
         FailureMode fM_FCCBF1 = new FailureMode("Fccb1Failure");
         ErrorMode eM_fccbAND1 = new ErrorMode("fccbAND1");
@@ -253,7 +253,7 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         errorModes.put(eM_fccbAND1.getName(), eM_fccbAND1);
         failureModes.put(fM_FCCBF1.getDescription(), fM_FCCBF1);
 
-        flightControlComponentB.addErrorMode(eM_fccbAND1);
+        flightControlComponentTypeB.addErrorMode(eM_fccbAND1);
 
         FailureMode fM_FCCBF3 = new FailureMode("Fccb3Failure");
         ErrorMode eM_fccbAND2 = new ErrorMode("fccbAND2");
@@ -264,7 +264,7 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         errorModes.put(eM_fccbAND2.getName(), eM_fccbAND2);
         failureModes.put(fM_FCCBF3.getDescription(), fM_FCCBF3);
 
-        flightControlComponentB.addErrorMode(eM_fccbAND2);
+        flightControlComponentTypeB.addErrorMode(eM_fccbAND2);
 
         //Definizione di Asyml Failure 1
 
@@ -371,60 +371,60 @@ public class FlightControlSystemBuilder extends SystemBuilder {
         leadingEdgeFlap.addErrorMode(eM_lefOR1);
 
 
-        flightControlComponentA.addPropagationPort(
-                new PropagationPort(fM_FCCAF1, exFM_FCCAF1, leftServoDriveUnit));
-        flightControlComponentA.addPropagationPort(
-                new PropagationPort(fM_FCCAF2, exFM_FCCAF2, leftAsymmetricControlUnit));
-        flightControlComponentA.addPropagationPort(
-                new PropagationPort(fM_FCCAF3, exFM_FCCAF3, rightAsymmetricControlUnit));
-        propagationPorts.addAll(flightControlComponentA.getPropagationPorts());
+        flightControlComponentTypeA.addPropagationPort(
+                new PropagationPortType(fM_FCCAF1, exFM_FCCAF1, leftServoDriveUnit));
+        flightControlComponentTypeA.addPropagationPort(
+                new PropagationPortType(fM_FCCAF2, exFM_FCCAF2, leftAsymmetricControlUnit));
+        flightControlComponentTypeA.addPropagationPort(
+                new PropagationPortType(fM_FCCAF3, exFM_FCCAF3, rightAsymmetricControlUnit));
+        propagationPortTypes.addAll(flightControlComponentTypeA.getPropagationPorts());
 
-        flightControlComponentB.addPropagationPort(
-                new PropagationPort(fM_FCCBF1, exFM_FCCBF1, leftAsymmetricControlUnit));
-        flightControlComponentB.addPropagationPort(
-                new PropagationPort(fM_FCCBF2, exFM_FCCBF2, rightServoDriveUnit));
-        flightControlComponentB.addPropagationPort(
-                new PropagationPort(fM_FCCBF3, exFM_FCCBF3, rightAsymmetricControlUnit));
-        propagationPorts.addAll(flightControlComponentB.getPropagationPorts());
+        flightControlComponentTypeB.addPropagationPort(
+                new PropagationPortType(fM_FCCBF1, exFM_FCCBF1, leftAsymmetricControlUnit));
+        flightControlComponentTypeB.addPropagationPort(
+                new PropagationPortType(fM_FCCBF2, exFM_FCCBF2, rightServoDriveUnit));
+        flightControlComponentTypeB.addPropagationPort(
+                new PropagationPortType(fM_FCCBF3, exFM_FCCBF3, rightAsymmetricControlUnit));
+        propagationPortTypes.addAll(flightControlComponentTypeB.getPropagationPorts());
 
 
         leftAsymmetricControlUnit.addPropagationPort(
-                new PropagationPort(fM_Asyml1F, exFM_AsymlF1, leftLeadingEdgeFlap)
+                new PropagationPortType(fM_Asyml1F, exFM_AsymlF1, leftLeadingEdgeFlap)
         );
         leftAsymmetricControlUnit.addPropagationPort(
-                new PropagationPort(fM_Asyml2F, exFM_AsymlF2, leftLeadingEdgeFlap)
+                new PropagationPortType(fM_Asyml2F, exFM_AsymlF2, leftLeadingEdgeFlap)
         );
-        propagationPorts.addAll(leftAsymmetricControlUnit.getPropagationPorts());
+        propagationPortTypes.addAll(leftAsymmetricControlUnit.getPropagationPorts());
 
 
         rightAsymmetricControlUnit.addPropagationPort(
-                new PropagationPort(fM_Asymr1F, exFM_AsymrF1, rightLeadingEdgeFlap)
+                new PropagationPortType(fM_Asymr1F, exFM_AsymrF1, rightLeadingEdgeFlap)
         );
         rightAsymmetricControlUnit.addPropagationPort(
-                new PropagationPort(fM_Asymr2F, exFM_AsymrF2, rightLeadingEdgeFlap)
+                new PropagationPortType(fM_Asymr2F, exFM_AsymrF2, rightLeadingEdgeFlap)
         );
-        propagationPorts.addAll(rightAsymmetricControlUnit.getPropagationPorts());
+        propagationPortTypes.addAll(rightAsymmetricControlUnit.getPropagationPorts());
 
 
         leftServoDriveUnit.addPropagationPort(
-                new PropagationPort(fM_ServlF, exFM_ServlF1, leftLeadingEdgeFlap)
+                new PropagationPortType(fM_ServlF, exFM_ServlF1, leftLeadingEdgeFlap)
         );
-        propagationPorts.addAll(leftServoDriveUnit.getPropagationPorts());
+        propagationPortTypes.addAll(leftServoDriveUnit.getPropagationPorts());
         rightServoDriveUnit.addPropagationPort(
-                new PropagationPort(fM_ServrF, exFM_ServrF1, rightLeadingEdgeFlap)
+                new PropagationPortType(fM_ServrF, exFM_ServrF1, rightLeadingEdgeFlap)
         );
-        propagationPorts.addAll(rightServoDriveUnit.getPropagationPorts());
+        propagationPortTypes.addAll(rightServoDriveUnit.getPropagationPorts());
 
 
         leftLeadingEdgeFlap.addPropagationPort(
-                new PropagationPort(fM_LlefF, exFM_LlefF1, leadingEdgeFlap)
+                new PropagationPortType(fM_LlefF, exFM_LlefF1, leadingEdgeFlap)
         );
-        propagationPorts.addAll(leftLeadingEdgeFlap.getPropagationPorts());
+        propagationPortTypes.addAll(leftLeadingEdgeFlap.getPropagationPorts());
 
         rightLeadingEdgeFlap.addPropagationPort(
-                new PropagationPort(fM_RlefF, exFM_RlefF1, leadingEdgeFlap)
+                new PropagationPortType(fM_RlefF, exFM_RlefF1, leadingEdgeFlap)
         );
-        propagationPorts.addAll(rightLeadingEdgeFlap.getPropagationPorts());
+        propagationPortTypes.addAll(rightLeadingEdgeFlap.getPropagationPorts());
 
     }
 

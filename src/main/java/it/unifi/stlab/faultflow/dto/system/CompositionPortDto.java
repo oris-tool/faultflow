@@ -20,7 +20,7 @@
 
 package it.unifi.stlab.faultflow.dto.system;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPort;
+import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPortType;
 
 public class CompositionPortDto {
 
@@ -28,10 +28,10 @@ public class CompositionPortDto {
     private final String parent;
     private final String child;
 
-    public CompositionPortDto(CompositionPort compositionPort) {
-        uuid = compositionPort.getUuid();
-        parent = compositionPort.getParent().getUuid();
-        child = compositionPort.getChild().getUuid();
+    public CompositionPortDto(CompositionPortType compositionPortType) {
+        uuid = compositionPortType.getUuid();
+        parent = compositionPortType.getParent().getUuid();
+        child = compositionPortType.getChild().getUuid();
     }
 
     public String getUuid() {

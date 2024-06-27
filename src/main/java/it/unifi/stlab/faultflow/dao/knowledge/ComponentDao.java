@@ -22,7 +22,7 @@ package it.unifi.stlab.faultflow.dao.knowledge;
 
 
 import it.unifi.stlab.faultflow.dao.BaseDao;
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -31,22 +31,22 @@ import java.util.List;
 
 @Dependent
 @Default
-public class ComponentDao extends BaseDao<Component> {
+public class ComponentDao extends BaseDao<ComponentType> {
 
     @Inject
     public ComponentDao() {
-        super(Component.class);
+        super(ComponentType.class);
     }
 
-    public List<Component> getAll() {
-        return entityManager.createQuery("SELECT c FROM Component c ", Component.class)
+    public List<ComponentType> getAll() {
+        return entityManager.createQuery("SELECT c FROM Component c ", ComponentType.class)
                 .getResultList();
     }
 
-    public Component getComponentByErrorModeUUID(String errorModeUUID) {
+    public ComponentType getComponentByErrorModeUUID(String errorModeUUID) {
         return entityManager.createQuery("SELECT c FROM Component c " +
                 "LEFT JOIN FETCH c.errorModes ce " +
-                "WHERE ce.uuid = :uuid", Component.class)
+                "WHERE ce.uuid = :uuid", ComponentType.class)
                 .setParameter("uuid", errorModeUUID)
                 .getSingleResult();
     }

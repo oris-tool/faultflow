@@ -20,7 +20,7 @@
 
 package it.unifi.stlab.faultflow.dto.system;
 
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
 
 public class PropagationPortDto {
 
@@ -30,12 +30,12 @@ public class PropagationPortDto {
     private final String affectedComponent;
     private final double routingProbability;
 
-    public PropagationPortDto(PropagationPort propagationPort) {
-        uuid = propagationPort.getUuid();
-        propagatedFailureMode = propagationPort.getPropagatedFailureMode().getUuid();
-        externalFaultMode = propagationPort.getExternalFaultMode().getUuid();
-        affectedComponent = propagationPort.getAffectedComponent().getUuid();
-        routingProbability = propagationPort.getRoutingProbability().doubleValue();
+    public PropagationPortDto(PropagationPortType propagationPortType) {
+        uuid = propagationPortType.getUuid();
+        propagatedFailureMode = propagationPortType.getPropagatedFailureMode().getUuid();
+        externalFaultMode = propagationPortType.getExternalFaultMode().getUuid();
+        affectedComponent = propagationPortType.getAffectedComponent().getUuid();
+        routingProbability = propagationPortType.getRoutingProbability().doubleValue();
     }
 
     public String getUuid() {

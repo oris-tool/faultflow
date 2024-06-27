@@ -21,7 +21,7 @@
 package it.unifi.stlab.faultflow.dao.operational;
 
 import it.unifi.stlab.faultflow.dao.BaseDao;
-import it.unifi.stlab.faultflow.model.operational.ConcreteComponent;
+import it.unifi.stlab.faultflow.model.operational.Component;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -29,10 +29,10 @@ import javax.inject.Inject;
 
 @Dependent
 @Default
-public class ConcreteComponentDao extends BaseDao<ConcreteComponent> {
+public class ConcreteComponentDao extends BaseDao<Component> {
 
     @Inject
     public ConcreteComponentDao() {
-        super(ConcreteComponent.class);
+        super(Component.class);
     }
 }

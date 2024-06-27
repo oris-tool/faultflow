@@ -21,7 +21,7 @@
 package it.unifi.stlab.faultflow.model.operational;
 
 import it.unifi.stlab.faultflow.model.knowledge.BaseEntity;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.FaultMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.InternalFaultMode;
@@ -50,28 +50,28 @@ public class Scenario extends BaseEntity {
     @OneToMany
     @JoinTable(name = "scenario_concretecomponents",
             inverseJoinColumns = {@JoinColumn(name = "concretecomponent_serial", referencedColumnName = "serial")})
-    private List<ConcreteComponent> concreteComponents;
+    private List<Component> components;
 
     public Scenario() {
-        concreteComponents = new ArrayList<>();
+        components = new ArrayList<>();
         incomingEvents = new ArrayList<>();
     }
 
-    public Scenario(System system, String serial) {
+    public Scenario(SystemType system, String serial) {
         this();
-        this.concreteComponents = system.getComponents().stream()
-                .map(c -> new ConcreteComponent(c.getName() + serial, c))
+        this.components = system.getComponents().stream()
+                .map(c -> new Component(c.getName() + serial, c))
                 .collect(Collectors.toList());
     }
 
     public void InitializeScenarioFromSystem() {
-        if (this.concreteComponents != null) {
-            for (ConcreteComponent concreteComponent : this.concreteComponents) {
-                for (ErrorMode errorMode : concreteComponent.getComponentType().getErrorModes()) {
+        if (this.components != null) {
+            for (Component component : this.components) {
+                for (ErrorMode errorMode : component.getComponentType().getErrorModes()) {
                     for (FaultMode faultMode : errorMode.getInputFaultModes()) {
                         if (faultMode instanceof InternalFaultMode) {
                             Fault basicEvent = new Fault(faultMode.getName() + "Occurred", (InternalFaultMode) faultMode);
-                            addEvent(basicEvent, concreteComponent);
+                            addEvent(basicEvent, component);
                         }
                     }
                 }
@@ -79,22 +79,22 @@ public class Scenario extends BaseEntity {
         }
     }
 
-    public void InitializeScenarioFromSystem(System system, String serial) {
-        if (this.concreteComponents == null) {
-            this.concreteComponents = system.getComponents().stream()
-                    .map(c -> new ConcreteComponent(c.getName() + serial, c))
+    public void InitializeScenarioFromSystem(SystemType system, String serial) {
+        if (this.components == null) {
+            this.components = system.getComponents().stream()
+                    .map(c -> new Component(c.getName() + serial, c))
                     .collect(Collectors.toList());
         }
         InitializeScenarioFromSystem();
     }
 
-    public void InitializeScenarioFromSystem(System system) {
+    public void InitializeScenarioFromSystem(SystemType system) {
         InitializeScenarioFromSystem(system, "_Base");
     }
 
-    public void addEvent(Event event, ConcreteComponent concreteComponent) {
+    public void addEvent(Event event, Component component) {
         incomingEvents.add(event);
-        concreteComponent.addFault((Fault) event);
+        component.addFault((Fault) event);
     }
 
     public void removeEvent(Event event) {
@@ -109,12 +109,12 @@ public class Scenario extends BaseEntity {
         this.incomingEvents = incomingEvents;
     }
 
-    public Map<String, ConcreteComponent> getConcreteComponents() {
-        return this.concreteComponents.stream().collect(Collectors.toMap(ConcreteComponent::getSerial, Function.identity()));
+    public Map<String, Component> getConcreteComponents() {
+        return this.components.stream().collect(Collectors.toMap(Component::getSerial, Function.identity()));
     }
 
-    public void setConcreteComponents(List<ConcreteComponent> concreteComponents) {
-        this.concreteComponents = concreteComponents;
+    public void setConcreteComponents(List<Component> components) {
+        this.components = components;
     }
 
     /**
@@ -138,12 +138,12 @@ public class Scenario extends BaseEntity {
     }
 
     public void printReport() {
-        for (ConcreteComponent concreteComponent : concreteComponents) {
+        for (Component component : components) {
             java.lang.System.out.println(
-                    "Component: " + concreteComponent.getSerial() +
-                            " of Type: " + concreteComponent.getComponentType().getName() +
+                    "Component: " + component.getSerial() +
+                            " of Type: " + component.getComponentType().getName() +
                             " has Faults:");
-            for (Fault fault : concreteComponent.getFaultList()) {
+            for (Fault fault : component.getFaultList()) {
                 java.lang.System.out.println(fault.getDescription() + " Occurred at time: " + fault.getTimestamp());
             }
             java.lang.System.out.println();

@@ -23,7 +23,7 @@ package it.unifi.stlab.faultflow.analysis;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.FaultMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.InternalFaultMode;
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
 import org.oristool.petrinet.Marking;
 import org.oristool.petrinet.PetriNet;
 import org.oristool.petrinet.Place;
@@ -42,8 +42,8 @@ public class PetriNetReducer {
         this.marking = new Marking(marking);
     }
 
-    public void reduce(String failureModeName, List<PropagationPort> propagationPorts, List<ErrorMode> errorModes) {
-        List<String> contributingPlaces = getThreatChainEntityNames(failureModeName, propagationPorts, errorModes);
+    public void reduce(String failureModeName, List<PropagationPortType> propagationPortTypes, List<ErrorMode> errorModes) {
+        List<String> contributingPlaces = getThreatChainEntityNames(failureModeName, propagationPortTypes, errorModes);
         List<Place> placesWithTokens = petriNet.getPlaces()
                 .stream()
                 .filter(place -> marking.getTokens(place.getName()) > 0).collect(Collectors.toList());
@@ -55,7 +55,7 @@ public class PetriNetReducer {
         }
     }
 
-    private List<String> getThreatChainEntityNames(String  failureModeName, List<PropagationPort> propagationPorts, List<ErrorMode> errorModes) {
+    private List<String> getThreatChainEntityNames(String  failureModeName, List<PropagationPortType> propagationPortTypes, List<ErrorMode> errorModes) {
         List<String> contributingPlaces = new ArrayList<>();
 
         for(ErrorMode errorMode: errorModes) {
@@ -65,9 +65,9 @@ public class PetriNetReducer {
                     if (faultMode instanceof InternalFaultMode) {
                         contributingPlaces.add(faultMode.getName().trim());
                     } else {
-                        for(PropagationPort pp : propagationPorts){
+                        for(PropagationPortType pp : propagationPortTypes){
                             if(pp.getExternalFaultMode().equals(faultMode)){
-                                contributingPlaces.addAll(getThreatChainEntityNames(pp.getPropagatedFailureMode().getDescription(), propagationPorts, errorModes));
+                                contributingPlaces.addAll(getThreatChainEntityNames(pp.getPropagatedFailureMode().getDescription(), propagationPortTypes, errorModes));
                             }
                         }
                     }

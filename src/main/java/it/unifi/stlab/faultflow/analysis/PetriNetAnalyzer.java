@@ -21,8 +21,8 @@
 package it.unifi.stlab.faultflow.analysis;
 
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
-import it.unifi.stlab.faultflow.model.operational.ConcreteComponent;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
+import it.unifi.stlab.faultflow.model.operational.Component;
 import org.oristool.models.stpn.RewardRate;
 import org.oristool.models.stpn.SteadyStateSolution;
 import org.oristool.models.stpn.TransientSolution;
@@ -113,22 +113,22 @@ public class PetriNetAnalyzer {
         return result.getSteadyState();
     }
 
-    public static Map<String, String> createExoFaultsMap(List<ConcreteComponent> concreteComponents, List<String> failureNames) {
+    public static Map<String, String> createExoFaultsMap(List<Component> components, List<String> failureNames) {
         Map<String, String> exoFaults = new HashMap<>();
 
-        for (ConcreteComponent concreteComponent : concreteComponents) {
-            String serial = concreteComponent.getSerial();
+        for (Component component : components) {
+            String serial = component.getSerial();
 
-            for (ErrorMode errorMode : concreteComponent.getComponentType().getErrorModes()) {
+            for (ErrorMode errorMode : component.getComponentType().getErrorModes()) {
                 String failureName = errorMode.getOutgoingFailure().getDescription().trim() + "_" + serial;
                 failureNames.add(failureName);
             }
 
-            List<PropagationPort> propagationPorts = concreteComponent.getComponentType().getPropagationPorts();
+            List<PropagationPortType> propagationPortTypes = component.getComponentType().getPropagationPorts();
 
-            for (PropagationPort propagationPort : propagationPorts) {
-                String failureName = propagationPort.getPropagatedFailureMode().getDescription().trim() + "_" + serial;
-                String exoFaultName = propagationPort.getExternalFaultMode().getName().trim() + "_" + serial;
+            for (PropagationPortType propagationPortType : propagationPortTypes) {
+                String failureName = propagationPortType.getPropagatedFailureMode().getDescription().trim() + "_" + serial;
+                String exoFaultName = propagationPortType.getExternalFaultMode().getName().trim() + "_" + serial;
 
                 exoFaults.put(failureName, exoFaultName);
             }

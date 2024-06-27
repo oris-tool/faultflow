@@ -23,8 +23,8 @@ package it.unifi.stlab.faultflow.mapper;
 import it.unifi.stlab.faultflow.dto.inputsystemdto.faulttree.*;
 import it.unifi.stlab.faultflow.dto.petrinet.*;
 import it.unifi.stlab.faultflow.dto.system.OutputSystemDto;
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.*;
 import it.unifi.stlab.faultflow.model.utils.PDFParser;
 import org.oristool.models.stpn.trees.StochasticTransitionFeature;
@@ -35,22 +35,22 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class FaultTreeMapper {
-    private static boolean isComponentInSystem(System system, String name) {
+    private static boolean isComponentInSystem(SystemType system, String name) {
         return system.getComponents().stream().anyMatch(x -> x.getName().equalsIgnoreCase(name));
     }
 
-    private static Component getComponentInSystem(System system, String name) {
-        Optional<Component> mc = system.getComponents().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findAny();
+    private static ComponentType getComponentInSystem(SystemType system, String name) {
+        Optional<ComponentType> mc = system.getComponents().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findAny();
         if (mc.isPresent())
             return mc.get();
         else {
-            Component component = new Component(name);
-            system.addComponent(component);
-            return component;
+            ComponentType componentType = new ComponentType(name);
+            system.addComponent(componentType);
+            return componentType;
         }
     }
 
-    public static void decorateSystem(FaultTreeDto faultTreeDto, System system) {
+    public static void decorateSystem(FaultTreeDto faultTreeDto, SystemType system) {
         Queue<NodeDto> nodeToVisit = new LinkedList<>();
         HashMap<String, FaultMode> faultModes = new HashMap<>();
         HashMap<String, FailureMode> failureModes = new HashMap<>();
@@ -64,7 +64,7 @@ public class FaultTreeMapper {
                 NodeDto currentNode = getNodeFromID(faultTreeDto, parenting.getChildId());
 
                 if (currentNode.getNodeType() == NodeType.GATE) {
-                    Component mc = getComponentInSystem(system, currentNode.getComponentName());
+                    ComponentType mc = getComponentInSystem(system, currentNode.getComponentName());
                     if (!mc.isErrorModeNamePresent(currentNode.getLabel())) {
                         ErrorMode errorMode = new ErrorMode(currentNode.getLabel());
                         FailureMode fm = failureModes.get(parent.getLabel());
@@ -87,14 +87,14 @@ public class FaultTreeMapper {
         }
     }
 
-    public static System generateSystemFromFaultTree(FaultTreeDto faultTreeDto) {
-        System system = null;
+    public static SystemType generateSystemFromFaultTree(FaultTreeDto faultTreeDto) {
+        SystemType system = null;
         for (String topEvent : faultTreeDto.getTopEvents()) {
             NodeDto rootNode = getNodeFromID(faultTreeDto, topEvent);
-            Component topComponent = new Component(rootNode.getComponentName());
-            system = new System(rootNode.getComponentName() + "_SYS");
-            system.addComponent(topComponent);
-            system.setTopLevelComponent(topComponent);
+            ComponentType topComponentType = new ComponentType(rootNode.getComponentName());
+            system = new SystemType(rootNode.getComponentName() + "_SYS");
+            system.addComponent(topComponentType);
+            system.setTopLevelComponent(topComponentType);
         }
         decorateSystem(faultTreeDto, system);
         return system;
@@ -118,7 +118,7 @@ public class FaultTreeMapper {
 
     public static String getEnablingFunctionByNavigatingTree(FaultTreeDto faultTreeDto, String currentNode, ErrorMode errorMode,
                                                              HashMap<String, FaultMode> faultModes, HashMap<String, FailureMode> failureModes,
-                                                             Queue<NodeDto> nodeToVisit, System system) {
+                                                             Queue<NodeDto> nodeToVisit, SystemType system) {
         StringBuilder be = new StringBuilder();
         NodeDto nodeDto = getNodeFromID(faultTreeDto, currentNode);
         switch (nodeDto.getGateType()) {
@@ -144,9 +144,9 @@ public class FaultTreeMapper {
                             be.append(faultname).append("||");
                             if (!nodeToVisit.contains(child))
                                 nodeToVisit.add(child);
-                            Component mc = getComponentInSystem(system, child.getComponentName());
-                            Component affectedComponent = getComponentInSystem(system, nodeDto.getComponentName());
-                            mc.addPropagationPort(new PropagationPort(failureMode, externalFaultMode, affectedComponent, routingProbability));
+                            ComponentType mc = getComponentInSystem(system, child.getComponentName());
+                            ComponentType affectedComponentType = getComponentInSystem(system, nodeDto.getComponentName());
+                            mc.addPropagationPort(new PropagationPortType(failureMode, externalFaultMode, affectedComponentType, routingProbability));
                             break;
                         default:
                             be.append(child.getLabel()).append("||");
@@ -180,9 +180,9 @@ public class FaultTreeMapper {
                             be.append(faultname).append("&&");
                             if (!nodeToVisit.contains(child))
                                 nodeToVisit.add(child);
-                            Component mc = getComponentInSystem(system, child.getComponentName());
-                            Component affectedComponent = getComponentInSystem(system, nodeDto.getComponentName());
-                            mc.addPropagationPort(new PropagationPort(failureMode, externalFaultMode, affectedComponent, routingProbability));
+                            ComponentType mc = getComponentInSystem(system, child.getComponentName());
+                            ComponentType affectedComponentType = getComponentInSystem(system, nodeDto.getComponentName());
+                            mc.addPropagationPort(new PropagationPortType(failureMode, externalFaultMode, affectedComponentType, routingProbability));
                             break;
                         default:
                             be.append(child.getLabel()).append("&&");
@@ -214,9 +214,9 @@ public class FaultTreeMapper {
                             faultModes.put(faultname, externalFaultMode);
                             if (!nodeToVisit.contains(child))
                                 nodeToVisit.add(child);
-                            Component mc = getComponentInSystem(system, child.getComponentName());
-                            Component affectedComponent = getComponentInSystem(system, nodeDto.getComponentName());
-                            mc.addPropagationPort(new PropagationPort(failureMode, externalFaultMode, affectedComponent, routingProbability));
+                            ComponentType mc = getComponentInSystem(system, child.getComponentName());
+                            ComponentType affectedComponentType = getComponentInSystem(system, nodeDto.getComponentName());
+                            mc.addPropagationPort(new PropagationPortType(failureMode, externalFaultMode, affectedComponentType, routingProbability));
                             break;
                         default:
                             be.append(child.getLabel()).append(",");
@@ -283,7 +283,7 @@ public class FaultTreeMapper {
         return outputNet;
     }
 
-    public static OutputSystemDto systemToOutputSystem(System system) {
+    public static OutputSystemDto systemToOutputSystem(SystemType system) {
         return new OutputSystemDto(system);
     }
 

@@ -20,10 +20,10 @@
 
 package it.unifi.stlab.faultflow.dto.system;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
-import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPort;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPortType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,23 +36,23 @@ public class ComponentDto {
     private final List<ErrorModeDto> errorModes;
     private final List<PropagationPortDto> propagationPorts;
 
-    public ComponentDto(Component component) {
-        uuid = component.getUuid();
-        name = component.getName();
+    public ComponentDto(ComponentType componentType) {
+        uuid = componentType.getUuid();
+        name = componentType.getName();
         compositionPorts = new ArrayList<>();
         errorModes = new ArrayList<>();
         propagationPorts = new ArrayList<>();
 
-        for (CompositionPort compositionPort : component.getChildren()) {
-            compositionPorts.add(new CompositionPortDto(compositionPort));
+        for (CompositionPortType compositionPortType : componentType.getChildren()) {
+            compositionPorts.add(new CompositionPortDto(compositionPortType));
         }
 
-        for (ErrorMode errorMode : component.getErrorModes()) {
+        for (ErrorMode errorMode : componentType.getErrorModes()) {
             errorModes.add(new ErrorModeDto(errorMode));
         }
 
-        for (PropagationPort propagationPort : component.getPropagationPorts()) {
-            propagationPorts.add(new PropagationPortDto(propagationPort));
+        for (PropagationPortType propagationPortType : componentType.getPropagationPorts()) {
+            propagationPorts.add(new PropagationPortDto(propagationPortType));
         }
     }
 

@@ -22,7 +22,7 @@ package it.unifi.stlab.faultflow.exporter;
 
 import it.unifi.stlab.faultflow.exporter.strategies.BasicExportToXPN;
 import it.unifi.stlab.faultflow.exporter.strategies.OrderByComponentToXPN;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.translator.PetriNetTranslator;
 
 import javax.xml.bind.JAXBException;
@@ -30,7 +30,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class PetriNetExporter {
-    public static PetriNetTranslator exportPetriNetFromSystem(System system, PetriNetExportMethod method) throws JAXBException, FileNotFoundException {
+    public static PetriNetTranslator exportPetriNetFromSystem(SystemType system, PetriNetExportMethod method) throws JAXBException, FileNotFoundException {
         PetriNetTranslator pnt = new PetriNetTranslator();
         pnt.translate(system, method);
         File dir = new File("export/");
@@ -46,7 +46,7 @@ public class PetriNetExporter {
                 new BasicExportToXPN(pnt.getPetriNet(), pnt.getMarking()));
     }
 
-    public static void exportPetriNetOrderedByComponent(PetriNetTranslator pnt, System system) throws JAXBException, FileNotFoundException{
+    public static void exportPetriNetOrderedByComponent(PetriNetTranslator pnt, SystemType system) throws JAXBException, FileNotFoundException{
         XPNExporter.export(new File("export/"+system.getName() +"_ByComponent_Fault2Failure.xpn"),
                 new OrderByComponentToXPN(system, pnt.getPetriNet(), pnt.getMarking()));
     }

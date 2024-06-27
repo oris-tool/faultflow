@@ -21,14 +21,14 @@
 package it.unifi.stlab.faultflow.model.knowledge.propagation;
 
 import it.unifi.stlab.faultflow.model.knowledge.BaseEntity;
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "propagationports")
-public class PropagationPort extends BaseEntity {
+public class PropagationPortType extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "failure_mode_fk")
     private final FailureMode propagatedFailureMode;
@@ -39,13 +39,13 @@ public class PropagationPort extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "component_fk")
-    private final Component affectedComponent;
+    private final ComponentType affectedComponentType;
 
     private final BigDecimal routingProbability;
 
-    public PropagationPort() {
+    public PropagationPortType() {
         this.externalFaultMode = null;
-        this.affectedComponent = null;
+        this.affectedComponentType = null;
         this.propagatedFailureMode = null;
         this.routingProbability = null;
     }
@@ -56,20 +56,20 @@ public class PropagationPort extends BaseEntity {
      *
      * @param inFail            the FailureMode that triggers the propagation.
      * @param outFault          the ExternalFaultMode in which the inputFail propagates
-     * @param affectedComponent the MetaComponent affected by the propagation. This means that the outputFault specified
+     * @param affectedComponentType the MetaComponent affected by the propagation. This means that the outputFault specified
      *                          is one of the FailureModes that could happen inside this metaComponent.
      */
-    public PropagationPort(FailureMode inFail, ExternalFaultMode outFault, Component affectedComponent) {
+    public PropagationPortType(FailureMode inFail, ExternalFaultMode outFault, ComponentType affectedComponentType) {
         this.propagatedFailureMode = inFail;
         this.externalFaultMode = outFault;
-        this.affectedComponent = affectedComponent;
+        this.affectedComponentType = affectedComponentType;
         this.routingProbability = BigDecimal.ONE;
     }
 
-    public PropagationPort(FailureMode inFail, ExternalFaultMode outFault, Component affectedComponent, BigDecimal routingProbability) {
+    public PropagationPortType(FailureMode inFail, ExternalFaultMode outFault, ComponentType affectedComponentType, BigDecimal routingProbability) {
         this.propagatedFailureMode = inFail;
         this.externalFaultMode = outFault;
-        this.affectedComponent = affectedComponent;
+        this.affectedComponentType = affectedComponentType;
         this.routingProbability = routingProbability;
     }
 
@@ -81,8 +81,8 @@ public class PropagationPort extends BaseEntity {
         return externalFaultMode;
     }
 
-    public Component getAffectedComponent() {
-        return affectedComponent;
+    public ComponentType getAffectedComponent() {
+        return affectedComponentType;
     }
 
     public BigDecimal getRoutingProbability() {

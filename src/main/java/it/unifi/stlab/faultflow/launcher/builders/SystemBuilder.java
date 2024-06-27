@@ -20,11 +20,11 @@
 
 package it.unifi.stlab.faultflow.launcher.builders;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.FailureMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.FaultMode;
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,13 +32,13 @@ import java.util.List;
 
 public abstract class SystemBuilder {
     protected static SystemBuilder single_instance;
-    protected static System system;
+    protected static SystemType system;
     protected static HashMap<String, FaultMode> faultModes;
     protected static HashMap<String, FailureMode> failureModes;
     protected static HashMap<String, ErrorMode> errorModes;
-    protected static List<PropagationPort> propagationPorts;
+    protected static List<PropagationPortType> propagationPortTypes;
 
-    public System getSystem() {
+    public SystemType getSystem() {
         return system;
     }
 
@@ -46,8 +46,8 @@ public abstract class SystemBuilder {
         return faultModes;
     }
 
-    public static List<PropagationPort> getPropagationPorts() {
-        return propagationPorts;
+    public static List<PropagationPortType> getPropagationPorts() {
+        return propagationPortTypes;
     }
 
     public static List<ErrorMode> getErrorModes() {

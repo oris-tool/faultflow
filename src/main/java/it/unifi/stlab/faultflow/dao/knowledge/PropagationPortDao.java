@@ -21,7 +21,7 @@
 package it.unifi.stlab.faultflow.dao.knowledge;
 
 import it.unifi.stlab.faultflow.dao.BaseDao;
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -29,21 +29,21 @@ import java.util.List;
 
 @Default
 @Dependent
-public class PropagationPortDao extends BaseDao<PropagationPort> {
+public class PropagationPortDao extends BaseDao<PropagationPortType> {
     public PropagationPortDao() {
-        super(PropagationPort.class);
+        super(PropagationPortType.class);
     }
 
-    public List<PropagationPort> getAll() {
-        return entityManager.createQuery("SELECT pp FROM PropagationPort pp", PropagationPort.class).getResultList();
+    public List<PropagationPortType> getAll() {
+        return entityManager.createQuery("SELECT pp FROM PropagationPort pp", PropagationPortType.class).getResultList();
     }
 
-    public List<PropagationPort> getPropagationPortsByExoFaultMode(String exoFaultUUID) {
+    public List<PropagationPortType> getPropagationPortsByExoFaultMode(String exoFaultUUID) {
         return entityManager.createQuery("SELECT pp FROM PropagationPort pp " +
                 "JOIN FETCH pp.externalFaultMode " +
                 "JOIN FETCH pp.propagatedFailureMode " +
                 "JOIN FETCH pp.affectedComponent " +
-                "WHERE pp.externalFaultMode.uuid=:uuid", PropagationPort.class)
+                "WHERE pp.externalFaultMode.uuid=:uuid", PropagationPortType.class)
                 .setParameter("uuid", exoFaultUUID).getResultList();
     }
 }

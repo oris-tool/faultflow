@@ -34,7 +34,7 @@ import java.util.NoSuchElementException;
  */
 @Entity
 @Table(name = "systems")
-public class System extends BaseEntity {
+public class SystemType extends BaseEntity {
 
     /**
      * User-friendly name of the system
@@ -60,21 +60,21 @@ public class System extends BaseEntity {
             joinColumns = @JoinColumn(name = "system_uuid"),
             inverseJoinColumns = @JoinColumn(name = "component_fk")
     )
-    private List<Component> components;
+    private List<ComponentType> componentTypes;
 
     /**
      * Top-level component from which the sub-components hierarchy starts
      */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "top_level_component_fk")
-    private Component topLevelComponent;
+    private ComponentType topLevelComponentType;
 
     /**
      * Default constructor that sets a default name and an empty list of components
      */
-    public System() {
+    public SystemType() {
         this.name = "nd";
-        this.components = new ArrayList<>();
+        this.componentTypes = new ArrayList<>();
     }
 
     /**
@@ -82,9 +82,9 @@ public class System extends BaseEntity {
      *
      * @param name a {@link String} representing the user-friendly name of the system
      */
-    public System(String name) {
+    public SystemType(String name) {
         this.name = name;
-        this.components = new ArrayList<>();
+        this.componentTypes = new ArrayList<>();
     }
 
     /**
@@ -95,7 +95,7 @@ public class System extends BaseEntity {
      *                     system
      * @param model        a {@link String} representing the name, serial or identifier of the model of the system
      */
-    public System(String name, String manufacturer, String model) {
+    public SystemType(String name, String manufacturer, String model) {
         this(name);
         this.manufacturer = manufacturer;
         this.model = model;
@@ -160,60 +160,60 @@ public class System extends BaseEntity {
      *
      * @return a {@link List} of components in the system
      */
-    public List<Component> getComponents() {
-        return components;
+    public List<ComponentType> getComponents() {
+        return componentTypes;
     }
 
     /**
      * Setter of the list of components in the system
      *
-     * @param components a {@link List} of components in the system
+     * @param componentTypes a {@link List} of components in the system
      */
-    public void setComponents(List<Component> components) {
-        this.components = components;
+    public void setComponents(List<ComponentType> componentTypes) {
+        this.componentTypes = componentTypes;
     }
 
     /**
      * Getter of the top-level component of the system
      *
-     * @return the top-level {@link Component} instance of the system
+     * @return the top-level {@link ComponentType} instance of the system
      */
-    public Component getTopLevelComponent() {
-        return topLevelComponent;
+    public ComponentType getTopLevelComponent() {
+        return topLevelComponentType;
     }
 
     /**
      * Setter of the top-level component of the system
      *
-     * @param component the top-level {@link Component} instance of the system
+     * @param componentType the top-level {@link ComponentType} instance of the system
      * @throws IllegalArgumentException if the specified top-level component is not contained in the system
      */
-    public void setTopLevelComponent(Component component) throws IllegalArgumentException {
+    public void setTopLevelComponent(ComponentType componentType) throws IllegalArgumentException {
         //assure that top level component it's inside the list of components that make up the system
-        if (components.contains(component))
-            this.topLevelComponent = component;
+        if (componentTypes.contains(componentType))
+            this.topLevelComponentType = componentType;
         else
             throw new IllegalArgumentException("Top level component must be inside the system");
     }
 
     /**
-     * Method that adds a {@link Component} instance to the system
+     * Method that adds a {@link ComponentType} instance to the system
      *
-     * @param components one or more {@link Component} instances to be added to the system
+     * @param componentTypes one or more {@link ComponentType} instances to be added to the system
      */
-    public void addComponent(Component... components) {
-        this.components.addAll(Arrays.asList(components));
+    public void addComponent(ComponentType... componentTypes) {
+        this.componentTypes.addAll(Arrays.asList(componentTypes));
     }
 
     /**
-     * Utility method used to retrieve a {@link Component} instance from the system using its name
+     * Utility method used to retrieve a {@link ComponentType} instance from the system using its name
      *
      * @param componentName a {@link String} representing the user-friendly name of the component
-     * @return a {@link Component} instance with the specified name
+     * @return a {@link ComponentType} instance with the specified name
      * @throws NoSuchElementException if there is no component with the specified name
      */
     @Transient
-    public Component getComponent(String componentName) throws NoSuchElementException {
-        return components.stream().filter(x -> x.getName().equals(componentName)).findFirst().orElseThrow();
+    public ComponentType getComponent(String componentName) throws NoSuchElementException {
+        return componentTypes.stream().filter(x -> x.getName().equals(componentName)).findFirst().orElseThrow();
     }
 }

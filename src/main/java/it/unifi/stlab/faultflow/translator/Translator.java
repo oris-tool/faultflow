@@ -20,9 +20,9 @@
 
 package it.unifi.stlab.faultflow.translator;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 
 public interface Translator {
-    void translate(System system);
+    void translate(SystemType system);
 
 }

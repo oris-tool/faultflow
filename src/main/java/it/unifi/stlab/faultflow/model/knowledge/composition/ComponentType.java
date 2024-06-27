@@ -22,7 +22,7 @@ package it.unifi.stlab.faultflow.model.knowledge.composition;
 
 import it.unifi.stlab.faultflow.model.knowledge.BaseEntity;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -37,7 +37,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "components")
-public class Component extends BaseEntity {
+public class ComponentType extends BaseEntity {
 
     /**
      * User-friendly name of the component
@@ -66,7 +66,7 @@ public class Component extends BaseEntity {
             joinColumns = @JoinColumn(name = "component_uuid"),
             inverseJoinColumns = @JoinColumn(name = "propagationport_fk")
     )
-    private List<PropagationPort> propagationPorts;
+    private List<PropagationPortType> propagationPortTypes;
 
     /**
      * Collection of children (sub-components) of the component, identified by their composition ports
@@ -74,16 +74,16 @@ public class Component extends BaseEntity {
     @OneToMany(mappedBy = "parent",
             orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<CompositionPort> children;
+    private List<CompositionPortType> children;
 
     /**
      * Default constructor that sets an empty name and initializes all the collections of the component
      */
-    public Component() {
+    public ComponentType() {
         this.name = "";
         this.children = new ArrayList<>();
         this.errorModes = new ArrayList<>();
-        this.propagationPorts = new ArrayList<>();
+        this.propagationPortTypes = new ArrayList<>();
     }
 
     /**
@@ -91,11 +91,11 @@ public class Component extends BaseEntity {
      *
      * @param name a {@link String} representing the user-friendly name of the component
      */
-    public Component(String name) {
+    public ComponentType(String name) {
         this.name = name;
         this.children = new ArrayList<>();
         this.errorModes = new ArrayList<>();
-        this.propagationPorts = new ArrayList<>();
+        this.propagationPortTypes = new ArrayList<>();
     }
 
     /**
@@ -119,18 +119,18 @@ public class Component extends BaseEntity {
     /**
      * Getter of the collection of composition ports of the component
      *
-     * @return a {@link List} of {@link CompositionPort} instances of the component
+     * @return a {@link List} of {@link CompositionPortType} instances of the component
      */
-    public List<CompositionPort> getChildren() {
+    public List<CompositionPortType> getChildren() {
         return this.children;
     }
 
     /**
      * Setter of the collection of composition port of the component
      *
-     * @param children a {@link List} of {@link CompositionPort} instances of the component
+     * @param children a {@link List} of {@link CompositionPortType} instances of the component
      */
-    protected void setChildren(List<CompositionPort> children) {
+    protected void setChildren(List<CompositionPortType> children) {
         this.children = children;
     }
 
@@ -155,19 +155,19 @@ public class Component extends BaseEntity {
     /**
      * Getter of the collection of propagation ports of the component
      *
-     * @return a {@link List} of {@link PropagationPort} instances of the component
+     * @return a {@link List} of {@link PropagationPortType} instances of the component
      */
-    public List<PropagationPort> getPropagationPorts() {
-        return propagationPorts;
+    public List<PropagationPortType> getPropagationPorts() {
+        return propagationPortTypes;
     }
 
     /**
      * Setter of the collection of propagation ports of the component
      *
-     * @param propagationPorts a {@link List} of {@link PropagationPort} instances of the component
+     * @param propagationPortTypes a {@link List} of {@link PropagationPortType} instances of the component
      */
-    public void setPropagationPorts(List<PropagationPort> propagationPorts) {
-        this.propagationPorts = propagationPorts;
+    public void setPropagationPorts(List<PropagationPortType> propagationPortTypes) {
+        this.propagationPortTypes = propagationPortTypes;
     }
 
     /**
@@ -182,19 +182,19 @@ public class Component extends BaseEntity {
     /**
      * Method that adds one or more propagation ports to the collection of the component
      *
-     * @param propagationPort one or more {@link PropagationPort} instances to be added to the component
+     * @param propagationPortType one or more {@link PropagationPortType} instances to be added to the component
      */
-    public void addPropagationPort(PropagationPort... propagationPort) {
-        this.propagationPorts.addAll(Arrays.asList(propagationPort));
+    public void addPropagationPort(PropagationPortType... propagationPortType) {
+        this.propagationPortTypes.addAll(Arrays.asList(propagationPortType));
     }
 
     /**
      * Method that adds one or more composition ports to the collection of the component
      *
-     * @param compositionPort one or more {@link CompositionPort} instances to be added to the component
+     * @param compositionPortType one or more {@link CompositionPortType} instances to be added to the component
      */
-    public void addCompositionPorts(CompositionPort... compositionPort) {
-        this.children.addAll(Arrays.asList(compositionPort));
+    public void addCompositionPorts(CompositionPortType... compositionPortType) {
+        this.children.addAll(Arrays.asList(compositionPortType));
     }
 
     /**

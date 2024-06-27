@@ -20,7 +20,7 @@
 
 package it.unifi.stlab.faultflow.model.operational;
 
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "concrete_components")
-public class ConcreteComponent {
+public class Component {
 
     @Id
     private String serial;
@@ -37,9 +37,9 @@ public class ConcreteComponent {
     private List<Fault> faultList;
 
     @ManyToOne
-    private Component componentType;
+    private ComponentType componentType;
 
-    public ConcreteComponent() {
+    public Component() {
         faultList = new ArrayList<>();
     }
 
@@ -49,7 +49,7 @@ public class ConcreteComponent {
      * @param serial        a string that describes the serial number of the component.
      * @param componentType a reference to MetaComponent that expresses the object's Component type.
      */
-    public ConcreteComponent(String serial, Component componentType) {
+    public Component(String serial, ComponentType componentType) {
         this();
         this.serial = serial;
         this.componentType = componentType;
@@ -63,11 +63,11 @@ public class ConcreteComponent {
         this.serial = serial;
     }
 
-    public Component getComponentType() {
+    public ComponentType getComponentType() {
         return this.componentType;
     }
 
-    public void setComponentType(Component componentType) {
+    public void setComponentType(ComponentType componentType) {
         this.componentType = componentType;
     }
 

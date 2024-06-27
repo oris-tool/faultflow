@@ -21,7 +21,7 @@
 package it.unifi.stlab.faultflow.dao.knowledge;
 
 import it.unifi.stlab.faultflow.dao.BaseDao;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -29,13 +29,13 @@ import java.util.List;
 
 @Dependent
 @Default
-public class SystemDao extends BaseDao<System> {
+public class SystemDao extends BaseDao<SystemType> {
 
     public SystemDao() {
-        super(System.class);
+        super(SystemType.class);
     }
 
-    public List<System> getAll() {
-        return entityManager.createQuery("SELECT DISTINCT s FROM System s LEFT JOIN FETCH s.components", System.class).getResultList();
+    public List<SystemType> getAll() {
+        return entityManager.createQuery("SELECT DISTINCT s FROM System s LEFT JOIN FETCH s.components", SystemType.class).getResultList();
     }
 }

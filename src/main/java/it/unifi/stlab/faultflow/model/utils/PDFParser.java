@@ -26,9 +26,13 @@ import org.oristool.math.expression.Expolynomial;
 import org.oristool.math.function.EXP;
 import org.oristool.math.function.Erlang;
 import org.oristool.math.function.GEN;
+import org.oristool.math.function.PartitionedGEN;
+import org.oristool.models.stpn.MarkingExpr;
 import org.oristool.models.stpn.trees.StochasticTransitionFeature;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PDFParser {
@@ -81,6 +85,24 @@ public class PDFParser {
                     return StochasticTransitionFeature.newExpolynomial(density, eft, lft);
                 else
                     throw new UnsupportedOperationException("Function not well formed");
+            case "piecewise":
+                //piecewise[funct1; funct2...]
+                //functi(density, eft, lft)
+                String[] functs = arguments.split(";");
+                List<GEN> functions = new ArrayList<>();
+                for(String funct: functs){
+                    args = funct.split(",");
+                    String densityi = args[0];
+                    OmegaBigDecimal efti = new OmegaBigDecimal(args[1]);
+                    OmegaBigDecimal lfti = new OmegaBigDecimal(args[2]);
+                    if (Expolynomial.isValid(densityi)) {
+                        functions.add(GEN.newExpolynomial(densityi, efti, lfti));
+                    }
+                    else
+                        throw new UnsupportedOperationException("Function not well formed");
+                }
+                 StochasticTransitionFeature.of(new PartitionedGEN(functions), MarkingExpr.ONE, MarkingExpr.ONE);
+
             default:
                 throw new UnsupportedOperationException("PDF not supported");
         }

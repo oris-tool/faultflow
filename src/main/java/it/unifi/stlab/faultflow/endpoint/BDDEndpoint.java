@@ -22,7 +22,7 @@ package it.unifi.stlab.faultflow.endpoint;
 
 import it.unifi.stlab.faultflow.dto.inputsystemdto.bdd.InputBddDto;
 import it.unifi.stlab.faultflow.mapper.SystemMapper;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -39,7 +39,7 @@ public class BDDEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getSystem(InputBddDto inputBddDto) {
-		System sys = SystemMapper.BddToSystem(inputBddDto);
+		SystemType sys = SystemMapper.BddToSystem(inputBddDto);
 
 		return Response.ok(SystemMapper.systemToOutputSystem(sys)).build();
 	}

@@ -21,12 +21,12 @@
 package it.unifi.stlab.faultflow.businessLogic.controller;
 
 import it.unifi.stlab.faultflow.dao.knowledge.*;
-import it.unifi.stlab.faultflow.model.knowledge.composition.Component;
-import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPort;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.ComponentType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.CompositionPortType;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.ErrorMode;
 import it.unifi.stlab.faultflow.model.knowledge.propagation.FaultMode;
-import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPort;
+import it.unifi.stlab.faultflow.model.knowledge.propagation.PropagationPortType;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -53,28 +53,28 @@ public class SystemController {
     CompositionPortDao compositionPortDao;
 
     @Transactional
-    public System findSystem(String systemUUID) {
+    public SystemType findSystem(String systemUUID) {
         return systemDao.findById(systemUUID);
     }
 
     @Transactional
-    public void persistSystem(System system) {
-        for (Component component : system.getComponents()) {
-            for (ErrorMode errorMode : component.getErrorModes()) {
+    public void persistSystem(SystemType system) {
+        for (ComponentType componentType : system.getComponents()) {
+            for (ErrorMode errorMode : componentType.getErrorModes()) {
                 failureModeDao.save(errorMode.getOutgoingFailure());
                 for (FaultMode faultMode : errorMode.getInputFaultModes()) {
                     faultModeDao.save(faultMode);
                 }
                 errorModeDao.save(errorMode);
             }
-            componentDao.save(component);
+            componentDao.save(componentType);
         }
-        for (Component component : system.getComponents()) {
-            for (CompositionPort compositionPort : component.getChildren()) {
-                compositionPortDao.save(compositionPort);
+        for (ComponentType componentType : system.getComponents()) {
+            for (CompositionPortType compositionPortType : componentType.getChildren()) {
+                compositionPortDao.save(compositionPortType);
             }
-            for (PropagationPort propagationPort : component.getPropagationPorts()) {
-                propagationPortDao.save(propagationPort);
+            for (PropagationPortType propagationPortType : componentType.getPropagationPorts()) {
+                propagationPortDao.save(propagationPortType);
             }
         }
         systemDao.save(system);
@@ -91,11 +91,11 @@ public class SystemController {
     }
 
     public void removeSystem(String systemUUID) throws Exception {
-        System system = systemDao.getReferenceById(systemUUID);
+        SystemType system = systemDao.getReferenceById(systemUUID);
         systemDao.remove(system);
         //orphan child removal automatically removes components, compositionPorts and PropagationPorts.
-        for (Component component : system.getComponents()) {
-            for (ErrorMode errorMode : component.getErrorModes()) {
+        for (ComponentType componentType : system.getComponents()) {
+            for (ErrorMode errorMode : componentType.getErrorModes()) {
                 failureModeDao.remove(errorMode.getOutgoingFailure());
                 for (FaultMode faultMode : errorMode.getInputFaultModes()) {
                     boolean res = true;

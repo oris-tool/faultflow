@@ -29,7 +29,7 @@ import it.unifi.stlab.faultflow.exporter.XPNExporter;
 import it.unifi.stlab.faultflow.exporter.strategies.OrderByComponentToXPN;
 import it.unifi.stlab.faultflow.mapper.FaultTreeMapper;
 import it.unifi.stlab.faultflow.mapper.SystemMapper;
-import it.unifi.stlab.faultflow.model.knowledge.composition.System;
+import it.unifi.stlab.faultflow.model.knowledge.composition.SystemType;
 import it.unifi.stlab.faultflow.translator.PetriNetTranslator;
 
 import javax.inject.Inject;
@@ -54,7 +54,7 @@ public class SystemEndpoint {
     public Response getPetriNetXPN(InputSystemDto inputSystemDto,
                                    @QueryParam("method") @DefaultValue("fa") String method) {
         PetriNetTranslator pnt = new PetriNetTranslator();
-        System sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
+        SystemType sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
         FaultTreeMapper.decorateSystem(inputSystemDto.getFaultTree(), sys);
         File out = new File("PetriNet.xpn");
         try {
@@ -76,7 +76,7 @@ public class SystemEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response persistSystem(InputSystemDto inputSystemDto) {
-        System sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
+        SystemType sys = SystemMapper.BddToSystem(inputSystemDto.getBdd());
         FaultTreeMapper.decorateSystem(inputSystemDto.getFaultTree(), sys);
         systemController.persistSystem(sys);
         return Response.ok(FaultTreeMapper.systemToOutputSystem(sys)).build();
@@ -87,7 +87,7 @@ public class SystemEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public Response getSystem(@QueryParam("uuid") String systemUUID) {
-        System system = systemController.findSystem(systemUUID);
+        SystemType system = systemController.findSystem(systemUUID);
 
         if (system != null)
             return Response
