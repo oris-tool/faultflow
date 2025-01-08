@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/580339339.svg)](https://doi.org/10.5281/zenodo.14615110)
+
 # Fault Flow Library
 
 This repository provides FaultFlow, a Java library implementing a Model Driven Engineering (MDE) approach to dependability evaluation of componentType-based coherent systems. 
