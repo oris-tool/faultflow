@@ -2,7 +2,7 @@
 
 This repository provides FaultFlow, a Java library implementing a Model Driven Engineering (MDE) approach to dependability evaluation of componentType-based coherent systems. 
 
-FaultFlow is presented in a paper titled "FaultFlow: an MDE Library for Dependability Evaluation of Component-Based System", authored by Laura Carnevali, Stefania Cerboni, Leonardo Montecchi, and Enrico Vicario, currently submitted to the IEEE Transactions on Dependable and Secure Computing.
+FaultFlow is presented in a paper titled "FaultFlow: an MDE Library for Dependability Evaluation of Component-Based System", authored by Laura Carnevali, Stefania Cerboni, Leonardo Montecchi, and Enrico Vicario, currently accepted for publication in the IEEE Transactions on Dependable and Secure Computing.
 
 The most distinctive features of FaultFlow are: 
 - definition of a custom-made extensible metamodel to specify system structure and failure logic, modeling both intra-componentType fault-to-failure propagations (i.e., faults propagating into errors, in turn yielding failures) and inter-componentType failure-to-fault propagations (i.e., componentType failures acting as faults for other same- or higher-level, possibly not physically connected, componentTypes) characterized by non-Markovian durations; 
